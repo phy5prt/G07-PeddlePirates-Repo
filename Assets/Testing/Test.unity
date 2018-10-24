@@ -1028,7 +1028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18299e117038eac4cba1a3d62e1c0fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bikeVolts: 0
+  bikeVolts: 7.27
 --- !u!23 &2141640563
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//need to turn off more constraints as now collision roughly working sinking on destruction isnt
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
