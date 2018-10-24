@@ -20,8 +20,8 @@ using UnityEngine.Networking;
 
 public class MyPlayer : NetworkBehaviour  {
 
-[Range( -100f,1000f)] //cant reverse in game but may be useful for testing
-public float forwardMultiplier =1000f; //why does it have to be huge - boat only weighs 100kg at moment and drag it 1
+[Range( -10f,10f)] //cant reverse in game but may be useful for testing
+public float forwardMultiplier =3.42f; //why does it have to be huge - boat only weighs 100kg at moment and drag it 1
 
 
 [Range( 0f,1f)] //note that can go over 100% if cycle faster than the person who set their max at game beginning. so do not restrict on final game
@@ -30,9 +30,9 @@ public float cycPercSpeedLeft = 1f;
 public float cycPercSpeedRight = 0.5f;
 [Range (0f,200f)] //this is adding two percentage based on 100% is max set by rival players so could be higher also could divide it by 2 to make it 100 and put an if statement to avoid 0/2
 private float forwardSpeed = 0f;
-public float torqueModifier = 0f;
+public float angularVel = 0f; //delete later this is just to help with adjustments
 	[Range (0f,2f)] 
-public float torqueMultiplier = 0.5f;
+public float angVelMultiplier = 0.24f;
 
 private Health health;
 
@@ -92,16 +92,27 @@ private Health health;
 				//GetComponent<Rigidbody>().AddForceAtPosition(boatVelocityRaw*MovePower, steerForcePos, ForceMode.VelocityChange);
 			//GetComponent<Rigidbody>().AddForce(boatVector*MovePower,ForceMode.Impulse);
 
+			//was using impulse due to issues with colliders but maybe can set instead of adding
 
+		forwardSpeed = (cycPercSpeedLeft+cycPercSpeedRight)*forwardMultiplier;
+		angularVel = (cycPercSpeedLeft - cycPercSpeedRight)*angVelMultiplier;
+		//torqueModifier = cycPercSpeedLeft - cycPercSpeedRight; //works but changing to velocity
 
-		forwardSpeed = cycPercSpeedLeft+cycPercSpeedRight;
-		torqueModifier = cycPercSpeedLeft - cycPercSpeedRight;
 //		Debug.Log(" forward " + Vector3.right*forwardSpeed*forwardMultiplier + " torque Mod " + torqueModifier + " torque " + torqueModifier*torqueMultiplier );
 
 		//should it try multiplying by time.delta time on my forward speed as force should be and acceleration
-		GetComponent<Rigidbody>().AddRelativeTorque(0f, torqueModifier*torqueMultiplier,0f,ForceMode.Impulse);
-		GetComponent<Rigidbody>().AddRelativeForce(Vector3.right*forwardSpeed*forwardMultiplier, ForceMode.Impulse);
+		//changed from impulse
+		//this.gameObject.GetComponent<Rigidbody>().AddRelativeTorque(0f, torqueModifier*torqueMultiplier,0f,ForceMode.VelocityChange);
+		//this.gameObject.GetComponent<Rigidbody>().AddRelativeForce(Vector3.right*forwardSpeed*forwardMultiplier, ForceMode.VelocityChange);
 
+		//though suppost to use forces like this better no accelerations
+		//isnt local
+		//needs code not to always give some percent forwards otherwise there will be no turning
+		//actually should do above anyway
+
+		//not sure it likes the  fixed update seems to jerk as turns
+		this.gameObject.GetComponent<Rigidbody>().angularVelocity = transform.up*angularVel;
+		this.gameObject.GetComponent<Rigidbody>().velocity = transform.right*forwardSpeed;
 
 		 
 	}
