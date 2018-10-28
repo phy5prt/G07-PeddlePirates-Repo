@@ -80,8 +80,9 @@ private bool isFiring = false;
 	//if change one remember to change both
 	if(coll.tag != "Ship" ){return;}     //is it a ship
 	if(coll.gameObject.GetComponent<Health>() == null){return;} //is the collider one for taking damage
-	if(transform.root == coll.transform.root){return;} //is it my collider
-	Debug.Log(transform.root + " " + coll.transform.root);
+	//if(transform.root == coll.transform.root){return;} //is it my collider
+		if(transform == coll.transform){return;} //they share the spawn parent now and health is on collider so changed this
+	//Debug.Log(transform.root + " " + coll.transform.root);
 	if(!isFiring){isFiring = true; InvokeRepeating("Firing" , 0f , (1f/ShotsPS));}
 
 
@@ -97,8 +98,8 @@ private bool isFiring = false;
 
 	if(coll.tag != "Ship" ){return;}     //is it a ship
 	if(coll.gameObject.GetComponent<Health>() == null){return;} //is the collider one for taking damage
-	if(transform.root == coll.transform.root){return;}
-
+	//if(transform.root == coll.transform.root){return;} // are they all the same root now theyre in spawner but now health on collider may work just asking is same game object
+		if(transform == coll.transform){return;}
 		CancelInvoke();      //if it dies or is deleted it never leaves there is no on trigger empty could count no. entering leaving? TODO
 		isFiring = false;
 	}

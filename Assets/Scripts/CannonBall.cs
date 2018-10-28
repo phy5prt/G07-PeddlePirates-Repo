@@ -11,7 +11,9 @@ public int bowDamageMultiplier = 10;
 
 	private float timeCreated;
 public float timePersist = 2f;
-	
+
+//not sure if this will still work as now only the cannon ball is trigger so can use colliders for impacts
+//so relying on one to be hit the other to say where may not work so may need re coding
 		
 	// Use this for initialization
 	void Start () {

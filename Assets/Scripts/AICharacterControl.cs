@@ -73,7 +73,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 				float posZ = Mathf.Sin(degreesAroundCirc)*circlingRadius;
 				Vector3 posCircular = new Vector3(posX,target.position.y,posZ);
 				Vector3 posAroundTarget = posCircular  + target.position;
-				Debug.Log("x = " + posX + "z= " + posZ + "posAroundTarget= " + posAroundTarget);
+//				Debug.Log("x = " + posX + "z= " + posZ + "posAroundTarget= " + posAroundTarget);
 
 					agent.SetDestination(posAroundTarget);
 	

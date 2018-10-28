@@ -18,7 +18,11 @@ private bool sunk = false;
 
 	// Use this for initialization
 	void Start () {
-	animator = GetComponent<Animator>();
+	//wonder if third person direction it is facing actually decided by one of its colliders
+	//its a hack because there is an animator in both parent and children that i want and get in children searches in the gameobject too
+	//there are two animators in the ship one for foam one for ship
+	//im using the fact it just finds first in hierachy but its a sloppy way of doing it but dont really know good way to do it by which it choses the one with the right avitar
+	animator = GetComponentInChildren<Animator>(); //due to navigation on the ai and not being able to align it with the boat the boat has to be on a -90 degree transform
 	currentHealth = startHealth;
 		
 	}
