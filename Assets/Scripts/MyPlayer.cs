@@ -11,6 +11,10 @@ using UnityEngine.Networking;
 //what in the game soaks up velocity maybe need make the air thick
 //made the wood high friction
 //get drag right
+//if go back to using force could have constant backwards force increases with positive force and max and min velocity so cant constantly accelerate
+//or could just increase resistance so as you reach 200% after 100% you have the force against you so if going 200% 100% any futrther output from you goes against you
+//so if you put 100% force in 75% takes forward but 25% actual siphened off to go in opposite direction until the force you put in 50% goes into forward force 50% backwards and you no longer accelerate
+//because are not adding to velocity 
 //just put the forces on like two tanks tricks
 //think the root motion of animator may have had an effect t
 		//this doesnt seem to provide momentum - this game is fine without - but would be cool
