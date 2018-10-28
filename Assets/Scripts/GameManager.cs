@@ -41,7 +41,8 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 		//not that inefficient really - other solve could be an array of bools each array index represent a transform, randomly chose from true ones somehow
 		//with current code could remake the array each time so it just of the ones whose script is true
 		//a list would be an option too if i new them better an use a foreach or just measure list length and remove items as go
-		
+
+		//part enemy enum is if they target other enemies
 		
 		GameObject SpawnPointsGO  = GameObject.Find("SpawnPoints");
 		SpawnPointsAvialableScripts = SpawnPointsGO.GetComponentsInChildren<spawnpoint>();
@@ -64,7 +65,7 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 	
 	//PlayersShips - get first dibs
 	
-	if(teamPairShipSettings.Length + enemiesShipSettings.Length>spawnPoints.Length){Debug.LogWarning("more ships to be made than spawnlocations");}
+		if(teamPairShipSettings.Length + enemiesShipSettings.Length>spawnPoints.Length){Debug.Log("more ships to be made than spawnlocations");Debug.DebugBreak();}
 
 	foreach(int playerPair in teamPairShipSettings){
 			Transform locationToInstantiate;
@@ -95,15 +96,22 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 	//without creating one so ive just given it the gameObject transform for no other reason than its there // will check it doesnt get through with a debuglog
 	
 	bool foundAvailableSpawn = false;
+
+	//maybe an if here to check there are someavailable
+	//could do 
+	//	for (int i = 0; i< SpawnPointsAvailableScripts.Length; i++){if(SpawnPointsAvialableScripts[i].availableSpawnPoint == true){SPscriptIsCurrentlyAvailable[] = SpawnPointsAvialableScripts[i].availableSpawnPoint}}
+		// // but using a list as wont know how many till done it. then just chose the random location from the tures and if the length of availableSpawnPoints is less than one the dont run
+
+	
 		while(foundAvailableSpawn == false){
 			int random = Random.Range(0,SpawnPointsAvialableScripts.Length-1);
 			if(SpawnPointsAvialableScripts[random].availableSpawnPoint == true){
 				locationToInstantiate = SpawnPointsAvialableScripts[random].gameObject.transform; // note the random number isnt being recalculated so it is same spawnscript as line above
 				SpawnPointsAvialableScripts[random].availableSpawnPoint = false; // make spawn point unavailable to others
-				foundAvailableSpawn = true;}else{Debug.Log ("going to look again because that spawn locatin wasnt available");}
+				foundAvailableSpawn = true;}
 		}
 
-	if(locationToInstantiate == this.transform){Debug.Log("either the  while statement did not asisng spawn location or one spawn location is the same as gamemanage location");}
+	
 	return locationToInstantiate;
 	}
 }

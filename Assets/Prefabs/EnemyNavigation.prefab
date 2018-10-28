@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 54234723668175750}
   - component: {fileID: 114931794978995528}
   - component: {fileID: 114851412328761794}
+  - component: {fileID: 114374901753192880}
   m_Layer: 0
   m_Name: EnemyNavigation
   m_TagString: Untagged
@@ -1615,8 +1616,8 @@ MonoBehaviour:
   forwardMultiplier: 100
   cycPercSpeedLeft: 0
   cycPercSpeedRight: 0
-  torqueModifier: 0
-  torqueMultiplier: 0.5
+  angularVel: 0
+  angVelMultiplier: 0.24
 --- !u!114 &114332348796124018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1634,6 +1635,17 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBall: {x: 0, y: 0.25, z: -1}
+--- !u!114 &114374901753192880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063086394965836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 151a551068271a04996b6da8e4d72bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114554538956606756
 MonoBehaviour:
   m_ObjectHideFlags: 1

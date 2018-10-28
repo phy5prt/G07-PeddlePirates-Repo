@@ -9,11 +9,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 {
     [RequireComponent(typeof (UnityEngine.AI.NavMeshAgent))]
     [RequireComponent(typeof (ThirdPersonCharacter))]
-    public class AICharacterControl : MonoBehaviour
+
+     public class AICharacterControl : MonoBehaviour
     {
         public UnityEngine.AI.NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
         public ThirdPersonCharacter character { get; private set; } // the character we are controlling
-        public Transform target;                                    // target to aim for
+        public Transform target;   //if i feed into this will it update as gameobject moves  (probs method resets it)                               // target to aim for
         public Vector3 relToTargAttckPos = new Vector3(20f,0f,0f);
 
 		[Tooltip("Woody to completely stop AI ramming will need to but a nav mesh avoid object on the ships set the ship to ignore its own which is computationally expensive")]
@@ -48,7 +49,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
      
 
-        private void Update()
+        private void Update()//do i need to run set target method in the update
         {
 		
             if (target != null){
@@ -94,9 +95,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
         }
 
-        public void SetTarget(Transform target)
+        public void SetTarget(Transform target) // call this i think when i need target updating nope this is so can reference the script
         {
             this.target = target;
         }
+
+
     }
 }
