@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour {
 //on scene where set up enemies etc need to remember than cant have more ships than number spawn point so limit it to 21 ships total
 
 //public enum[] enemiesShipSettings;
+
+//public static float timeForPlayerResponse = 4f;
+public int pirateSaysIndex;
+
 public int[] enemiesShipSettings;
 public GameObject enemyShipToSpawn;
 

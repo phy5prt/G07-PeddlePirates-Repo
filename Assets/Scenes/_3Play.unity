@@ -215,6 +215,74 @@ Transform:
   m_Father: {fileID: 679825837}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &252574588
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 252574589}
+  - component: {fileID: 252574591}
+  - component: {fileID: 252574590}
+  m_Layer: 0
+  m_Name: GameInstructionBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &252574589
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 252574588}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1743786401}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &252574590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 252574588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 1, b: 1, a: 0.322}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &252574591
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 252574588}
 --- !u!1 &406989233
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,7 +561,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 777099441}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1851814373}
@@ -501,8 +569,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -9.7, y: -2.1}
+  m_SizeDelta: {x: 182.1, y: 38.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &777099443
 MonoBehaviour:
@@ -690,6 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f62157896e9c54bb11ba3152f13471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pirateSaysIndex: 0
   enemiesShipSettings: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   enemyShipToSpawn: {fileID: 1452595409263392, guid: 1ae21c97bc736124e981aa9ed85e1c03,
     type: 2}
@@ -771,7 +840,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 983045370}
   m_LocalRotation: {x: -0.0052666543, y: 0.7217779, z: 0.6920829, w: 0.005498189}
-  m_LocalPosition: {x: -307.96042, y: -3979.0166, z: 28.691849}
+  m_LocalPosition: {x: 157.96541, y: -2151.2131, z: -115.952354}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -913,7 +982,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 450, y: -2}
+  m_AnchoredPosition: {x: 507, y: -2}
   m_SizeDelta: {x: 11.649872, y: 29.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1210157843
@@ -1110,7 +1179,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1307584897}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1210157842}
@@ -1118,8 +1187,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 21.9, y: 192.8}
+  m_SizeDelta: {x: 627.4, y: 104.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1307584899
 MonoBehaviour:
@@ -1144,16 +1213,20 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HighScores Will Be Here
+  m_Text: 'HighScores and Acheivement
+
+    and game presets for the event
+
+    Will Be Here'
 --- !u!222 &1307584900
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1852,6 +1925,81 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1594070148}
   m_Mesh: {fileID: 4300002, guid: 681e41ee1260343b395ca58745c94870, type: 3}
+--- !u!1 &1743786400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1743786401}
+  - component: {fileID: 1743786403}
+  - component: {fileID: 1743786402}
+  m_Layer: 0
+  m_Name: GameInstruction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1743786401
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1743786400}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalScale: {x: 0.9999997, y: 1.0000001, z: 1.0000001}
+  m_Children:
+  - {fileID: 252574589}
+  m_Father: {fileID: 1851814373}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -7.84, y: -50.34}
+  m_SizeDelta: {x: 185.82, y: 58.18}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1743786402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1743786400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1743786403
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1743786400}
 --- !u!1 &1752537948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,12 +2237,13 @@ RectTransform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 777099442}
+  - {fileID: 1743786401}
   m_Father: {fileID: 1333557673}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -133, y: 155}
+  m_AnchoredPosition: {x: -133, y: 202.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1851814374
@@ -2108,6 +2257,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656c865886359ea468be64af03a6c16a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pirateStrings:
+  - '"Quick to the ships!! Parley is Over!" '
+  - '"The Fuse Is Lit Rally More Enemies & Allies To The Ships Before The Docks Explode!!"'
+  - '"To Your Own Wharfs Parley Is Over The Whole Pirate Island Is Gonna Blow" '
+  - '"Quick Theres A Moment To Spare Sabotage The Enemy!"'
+  - '"Fast As You Can Out Of The Port. Row! Row! Row! She Gonna Blow!!!"'
+  - '"Up The Mast. Get To The Crow''s Nest. How Many Enemies You See?"'
+  - '"How Strong Do They Look?"'
+  - '"You Think They''re On Ourside"'
+  - '"Feeling Strong?"'
+  - '"Call A Truce?"'
+  - '"Few ... I Wanted To Finish My Grog Anyway ... Wait The Gun Powder!! ARRRRRRRRRR!
+    ... G!"'
+  - '"Ha! Cleared The Port! To Battle! To Treasure Wrecks!" '
+  instructionStrings:
+  - Peddle To Row. Row To Set Number Of Players (2 per ship)
+  - Last Chance To Row To Add Additional Players.
+  - Row To Move Your Slider Under The Team You Want To Be In. Play COOP, COOP VS,
+    Or Against AI. (AI selected later)
+  - Set How Hard Your Rivals Have To Row To Reach 100% Speed (If They Go Faster In
+    The Game They Will Exceed The Ships Max Speed! )
+  - Set How Hard You Need To Row To Reach Your Max Speed. (Give It Death, Earn Your
+    Velocity!)
+  - Set AI Number
+  - Set AI Strength & Behaviour
+  - Set AI Allegiance
+  - Set Your Health
+  - If You Made A Mistake Restart The Game Setup Process By Calling A Truce (But We
+    Call It Dieing In Character Creation)
+  - Restarting The Game Settings Process
+  - 'Prepare To Row (Like A Tank Left Rows Fast Ship Turns Right. Hitting. Tip: The
+    Bow Does 10x Damage! ;) SHOUT ARRR NOW!!!'
+  slideOutNow: 0
+  slideInNow: 1
+  slideOutSpeed: 300
+  slideInSpeed: 300
 --- !u!114 &1851814375
 MonoBehaviour:
   m_ObjectHideFlags: 0

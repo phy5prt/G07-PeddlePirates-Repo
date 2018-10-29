@@ -6,15 +6,15 @@ public class ScoreAcheivementPanelText : MonoBehaviour {
 
 //is x the right direction?
 
-public bool slideOutNow = false; //remove once using inputs no input for x 2 minutes slide out
-public bool slideInNow = true;  //remove once using inputs any input slide in
+[SerializeField] bool slideOutNow = false; //remove once using inputs no input for x 2 minutes slide out
+[SerializeField]  bool slideInNow = true;  //remove once using inputs any input slide in
 
 //private Transform startPosition;
 private RectTransform panelRT;
 private Vector3 startRTLocPos;
 
-	public float slideOutSpeed =150f;
-	public float slideInSpeed=300f;
+	[SerializeField] float slideOutSpeed =150f;
+	[SerializeField] float slideInSpeed=300f;
 
 	// Use this for initialization
 	void Start () {
