@@ -679,7 +679,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 813971323}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -607.3999, z: 0.000015258789}
+  m_LocalPosition: {x: 0, y: -642.5451, z: 0.000015258789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -758,6 +758,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f62157896e9c54bb11ba3152f13471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextInstruction: 0
+  pirateInstructionScript: {fileID: 1851814374}
   pirateSaysIndex: 0
   enemiesShipSettings: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   enemyShipToSpawn: {fileID: 1452595409263392, guid: 1ae21c97bc736124e981aa9ed85e1c03,
