@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson;
+using UnityEngine.AI;
 
 //there is a sink animation and some other could run this when die
 //there is break also for when they take half damage
@@ -76,9 +78,20 @@ Debug.Log("SinkShip method triggered");
 	//for the navigator to fall will need to deactivate the collider
 
 
+
+	//disabling ai
+		if(GetComponent<AICharacterControl>() != null){
+
+			GetComponent<NavMeshAgent>().enabled=false;
+			GetComponent<ThirdPersonCharacter>().enabled = false;
+			GetComponent<AICharacterControl>().enabled = false;
+
+		}
 	GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 	GetComponent<Rigidbody>().isKinematic = false;
+
 	Cannon[] cannons = GetComponentsInChildren<Cannon>();
+
 	foreach(Cannon cannon in cannons){cannon.gameObject.SetActive(false);}
 	CancelInvoke();
 

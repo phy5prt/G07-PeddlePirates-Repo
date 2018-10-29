@@ -36,7 +36,9 @@ public float timePersist = 2f;
 	//if change one remember to change both
 	if(coll.tag != "Ship" ){return;}     //is it a ship
 	if(coll.gameObject.GetComponent<Health>() == null){return;} //is the collider one for taking damage
-	if(transform == coll.transform){return;} //is it my collider
+
+
+	if(transform.parent.transform.parent.transform.parent.transform.parent.gameObject.transform == coll.transform){return;}
 
 
 
