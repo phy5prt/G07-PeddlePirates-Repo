@@ -13,8 +13,8 @@ public bool slideInNow = true;  //remove once using inputs any input slide in
 private RectTransform panelRT;
 private Vector3 startRTLocPos;
 
-	public float slideOutSpeed =0.01f;
-	public float slideInSpeed=0.1f;
+	public float slideOutSpeed =150f;
+	public float slideInSpeed=300f;
 
 	// Use this for initialization
 	void Start () {
@@ -26,42 +26,46 @@ private Vector3 startRTLocPos;
 	// Update is called once per frame
 	void Update () {
 
-	if(slideInNow){slideInNow = false; slideOutNow = false;
+
+		if(slideInNow){slideOutNow=false;
 	slideIn(slideInSpeed);}
 
 	if(slideOutNow ==true && slideInNow ==true){slideOutNow = false;} //shouldnt be necessary
 
-		if(slideOutNow){slideOutNow = false;slideOut(slideOutSpeed);}
+		if(slideOutNow){slideOut(slideOutSpeed);}
 	//no input slide out
 
 	//input slide in
-
-
 		
 	}
 
 	private void slideOut(float slideOutSpeed){
 
 		//while(panelRT.localPosition.x>startRTLocPos.x - panelRT.rect.width/panelRT.localScale.x && slideInNow==false){panelRT.localPosition -= new Vector3((Time.deltaTime*slideOutSpeed),0f,0f);}//trying divide by local scale as think its affecting width
-		while(panelRT.localPosition.x>startRTLocPos.x - panelRT.rect.width && slideInNow==false){
+		//while loop doesnt work because does the while then feeds out the change.
 
-		panelRT.localPosition -= new Vector3((Time.deltaTime*slideOutSpeed),0f,0f);}
-		Debug.Log("finished sliding out");
-	slideOutNow=false;
+		if(panelRT.localPosition.x>startRTLocPos.x - panelRT.rect.width*panelRT.localScale.x && slideInNow==false){
+
+		panelRT.localPosition -= new Vector3((Time.deltaTime*slideOutSpeed),0f,0f);
+		//Debug.Log("finished sliding out");
+
+		}else {slideInNow = false; slideOutNow = false;}
+
+	
 
 	}
 
 	private void slideIn(float slideInSpeed){
 
-		while(panelRT.localPosition.x<startRTLocPos.x){
+		if(panelRT.localPosition.x<startRTLocPos.x){
 
-		panelRT.localPosition += new Vector3((Time.deltaTime*slideInSpeed),0f,0f);}
+		panelRT.localPosition += new Vector3((Time.deltaTime*slideInSpeed),0f,0f);
+		//Debug.Log("finished sliding In");
 
-		Debug.Log("finished sliding In");
+		//someDebugs();
 
-		someDebugs();
-
-		}
+	}else{slideInNow = false;}
+	}
 
 
 
