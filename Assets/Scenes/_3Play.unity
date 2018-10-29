@@ -621,7 +621,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 983045370}
   m_LocalRotation: {x: 0.12958989, y: -0.8389499, z: -0.4768942, w: -0.22790672}
-  m_LocalPosition: {x: -98.86655, y: -456.25732, z: 187.46841}
+  m_LocalPosition: {x: 62.262794, y: -112.80288, z: 71.86034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1211,6 +1211,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1545174066 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1408045223435170, guid: 4f41c9f1eec0a8247a486eb7c703a71d,
+    type: 2}
+  m_PrefabInternal: {fileID: 884558518}
+--- !u!114 &1545174067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1545174066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb26e9762dc110e45a1ecf4e8f218d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShipsCount: 0
+  ShipsDestroyed: 0
+  ShipsActive: 0
+  aIShips: 0
+  aIShipsSunk: 0
+  aIShipsActive: 0
+  playerShips: 0
+  playerShipsSunk: 0
+  playerShipsActive: 0
+  ShipsGOs: []
 --- !u!1 &1594070148
 GameObject:
   m_ObjectHideFlags: 0
