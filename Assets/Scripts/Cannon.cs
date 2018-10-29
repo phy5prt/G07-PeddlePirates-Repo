@@ -4,16 +4,24 @@ using UnityEngine;
 
 //remember to find out how to acknowledge the ship asset
 
+//code doesnt work because does not fire in the trajectory of the local position
+//maybe use transform.forward to make sure cannon ball fires in right direction
+//or just trajectory = transform right or left depending on a bool for left or right cannon
 
+// cannon ball vector minus the cannon vector would result in the direction vector then could just multiply
+//or try using transform point
+//or use transform left right and just alter it
 
 public class Cannon : MonoBehaviour {
 
 public GameObject cannonBall;
 public bool forceFire = false;
+private bool switchWas = false;
 public float ShotsPS = 5f;
 public float cyclePercWeapons = 0f;
 public float powerOfCannonBall = 150f;
-public Vector3 trajectoryCannonBall = new Vector3(0f,0.25f,1f);
+public Vector3 trajectoryCannonBallWorldSpace = new Vector3(1000f,2500f,1000f); // need to depend on boat direction so relative to cannon
+private Vector3 trajectoryCannonBall = new Vector3(); //make it local
 private bool isFiring = false;
 
 
@@ -38,13 +46,18 @@ private bool isFiring = false;
 	//then have a button so they can change it to and from weapons and velocity
 	//do this in another script
 
-
+	trajectoryCannonBall = transform.TransformDirection(trajectoryCannonBallWorldSpace); //if knew how to do a reference think wouldnt need to update
 	ShotsPS = 1f + 2f*cyclePercWeapons;
 
 	//need to be on enter collider bool on on exit bool off
 
 
-		if(forceFire && Time.timeSinceLevelLoad%5f==0){Firing();}//just for testing	
+		if(forceFire == true && (switchWas != forceFire)){
+		switchWas = forceFire;
+		InvokeRepeating("Firing",0f,0.5f);
+		}
+		if(forceFire == false && (switchWas != forceFire)){switchWas=forceFire;CancelInvoke();}
+		//just for testing
 
 	
 	}
@@ -55,7 +68,8 @@ private bool isFiring = false;
 			//cannonBall = GetComponent<GameObject>();
 		//cannon position transform
 		Transform cannonPosition = GetComponentInParent<Transform>().gameObject.transform;
-		GameObject cannonBallFired = Instantiate(cannonBall,cannonPosition.position,Quaternion.identity, gameObject.transform );
+		GameObject cannonBallFired = Instantiate(cannonBall,cannonPosition.position,Quaternion.identity, gameObject.transform);
+
 	//	cannonBallFired.transform.parent = gameObject.transform.parent; // works but unneccesary
 
 	//not necessary at moment but for if want to make balls do more damage if cycling to use weapons not movement
@@ -64,7 +78,7 @@ private bool isFiring = false;
 
 
 
-	cannonBallFired.GetComponent<Rigidbody>().AddForce(trajectoryCannonBall*powerOfCannonBall, ForceMode.Impulse);
+	cannonBallFired.GetComponent<Rigidbody>().AddForce(trajectoryCannonBall*powerOfCannonBall, ForceMode.Impulse); //only fires in fixed world direction not local direction
 	}
 
 
@@ -104,6 +118,17 @@ private bool isFiring = false;
 		isFiring = false;
 	}
 
+	//code i could use 
+
+	/*
+	GameObject newProjectile = projectilePool.GetPooledObject();
+        newProjectile.transform.position = transform.position + transform.up *1f;
+        newProjectile.transform.rotation = transform.rotation;
+        newProjectile.SetActive(true);
+        newProjectile.GetComponent<Rigidbody2D>().AddForce(transform.up * projectileSpeed);
+     
+        coolDown = Time.time + attackSpeed;
+        */
 
 	}
 

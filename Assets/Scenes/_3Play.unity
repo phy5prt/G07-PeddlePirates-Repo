@@ -543,7 +543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesShipSettings: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  enemyShipToSpawn: {fileID: 1731869201898592, guid: a1184176bf2463344acb5c3c58438100,
+  enemyShipToSpawn: {fileID: 1452595409263392, guid: 1ae21c97bc736124e981aa9ed85e1c03,
     type: 2}
   teamPairShipSettings: 00000000
   playerShipToSpawn: {fileID: 1931563330244622, guid: 645816732edf72d4fa742d47458ad14b,
@@ -620,8 +620,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 983045370}
-  m_LocalRotation: {x: -0.003226363, y: -0.9665986, z: 0.012180913, w: -0.25598532}
-  m_LocalPosition: {x: -180.50427, y: 4.825518, z: 274.19528}
+  m_LocalRotation: {x: 0.12958989, y: -0.8389499, z: -0.4768942, w: -0.22790672}
+  m_LocalPosition: {x: -98.86655, y: -456.25732, z: 187.46841}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

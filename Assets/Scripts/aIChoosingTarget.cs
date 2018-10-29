@@ -68,14 +68,16 @@ public bool justHumans = true;
 			bool isHuman; 
 			if(potentialTarget.GetComponent<ThirdPersonCharacter>() == null){isHuman=true;}else{isHuman=false;} // not sure if can test for component like this
 
-			if((justHumans == false) || (justHumans == isHuman)){ //because if not human and not just humans that ok too this checks if targetting ai
+			if((justHumans == false) || (justHumans == isHuman)){
+
+					if(potentialTarget.tag == "Ship"){ //because if not human and not just humans that ok too this checks if targetting ai
 					float distanceAwayThisTarget;
 					distanceAwayThisTarget = Vector3.Distance(potentialTarget.transform.position,this.transform.position);
 			//calculate distance
 					if(distanceAwayThisTarget<distanceClosestTarget){                    //if here added a fudge fact so need to be distanceAwayThisTarget+10<distanceclosestTarget may stop the potential issue of getting stuck between two targets or changing to soon?!
 						distanceClosestTarget = distanceAwayThisTarget; 
 						attackThis = potentialTarget.gameObject.transform;}
-		}}}
+		}}}}
 
 		//could have this check how far away the current target is of the ai from that script fed into method and then unless significant difference or that target dead it
 		//wont change the target so that the ships are more committed or at least will chase for some time and hard to lose.

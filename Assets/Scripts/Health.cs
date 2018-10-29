@@ -77,6 +77,9 @@ Debug.Log("SinkShip method triggered");
 	//cannons still shoot so they need destroying or script disabling
 	//for the navigator to fall will need to deactivate the collider
 
+	//think its colliding with navmesh and so sitting on the water once collider turned off it falls or if flicked on and off it falls
+	//so need to set collision matric
+	//could just make it not collide with navmesh as fixing y anyway?
 
 
 	//disabling ai
@@ -87,14 +90,23 @@ Debug.Log("SinkShip method triggered");
 			GetComponent<AICharacterControl>().enabled = false;
 
 		}
+		//shouldnt have to disable them maybe through them disable the rigidbody
+		/*
+	GetComponent<SphereCollider>().enabled = false;
+	GetComponent<CapsuleCollider>().enabled = false; 
+	*/
+
+		gameObject.layer = 10; //perfect!
+
 	GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-	GetComponent<Rigidbody>().isKinematic = false;
+	GetComponent<Rigidbody>().isKinematic = false; //doesnt seem to remember the gravity
+	GetComponent<Rigidbody>().useGravity = true;
 
 	Cannon[] cannons = GetComponentsInChildren<Cannon>();
 
 	foreach(Cannon cannon in cannons){cannon.gameObject.SetActive(false);}
 	CancelInvoke();
-
+		
 	}
 
 
