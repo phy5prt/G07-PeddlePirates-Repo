@@ -7,6 +7,12 @@ using UnityStandardAssets.Characters.ThirdPerson;
 //so labeled
 //so health on top level
 
+//ai now finds enemies and fires, ive fixed the cannons and some are still shooting funny and health not decromented but may be due to collider.root now they 
+//share a parent. they dance a bit could be caused by colliders or nav mesh or targetting, so will need to start with targetting (select on the navigator and it 
+//shows you the target), if targetting happening because of find targets code may just need to put bigger delay, priority for most recent target - could also be ai's
+// syncing with each other causing reciprical movements as try and get to optimum distance from each other.  - either way worth testing if can find new targets without 
+//the invoke repeat and if can make it into a singular script
+
 //check ai still updates target location on its own when fed target rather than gameobject being dropped in its public inspector box
 
 

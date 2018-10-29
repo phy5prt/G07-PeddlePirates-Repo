@@ -44,7 +44,7 @@ private bool sunk = false;
 
 			currentHealth -= damage;
 
-			Debug.Log( " Health is " + currentHealth);
+			Debug.Log( " Health is " + currentHealth + " I am " + name);
 
 	
 	}
@@ -74,6 +74,7 @@ Debug.Log("SinkShip method triggered");
 	//or because of its control could try turning these things off
 	//cannons still shoot so they need destroying or script disabling
 	//for the navigator to fall will need to deactivate the collider
+
 
 	GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 	GetComponent<Rigidbody>().isKinematic = false;
