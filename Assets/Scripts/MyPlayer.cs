@@ -131,4 +131,12 @@ public override void OnStartLocalPlayer()
 				//need to do this for first child and then get compents in childrens Transform to get all children
 	//for(int i =0; i < this.transform.childCount; i++){this.transform.GetChild(i).gameObject.SetActive(true);}}
 }
+public void gettingMySettings(thisPlayerPairSettings cyclePair){
+
+
+
+
+
+}
+
 }

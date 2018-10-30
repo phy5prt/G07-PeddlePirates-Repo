@@ -30,7 +30,11 @@ public int[] enemiesShipSettings;
 public GameObject enemyShipToSpawn;
 
 //public enum[] teamPairShipSettings;
+
+	//will become an array of thisPlayerPairSettings[] // and instantiate
+
 public int[] teamPairShipSettings;
+
 public GameObject playerShipToSpawn;
 private Transform[] spawnPoints;
 private spawnpoint[] SpawnPointsAvialableScripts;
