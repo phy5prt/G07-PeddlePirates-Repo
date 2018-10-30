@@ -73,8 +73,9 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 
 		if(nextInstruction){
 			nextInstruction = false; 
+			if(pirateSaysIndex<pirateInstructionScript.pirateStrings.Length){pirateSaysIndex++;}else{pirateSaysIndex=0;}; 
 			pirateInstructionScript.updatePirateText();
-			pirateSaysIndex++; }
+			 }
 		
 	}
 
