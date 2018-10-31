@@ -15,7 +15,7 @@ using UnityEngine;
 
 public class PlayerSetupManager : MonoBehaviour {
 
-private thisPlayerPairSettings[] shipPlayerSettingsAr;
+public thisPlayerPairSettings[] shipPlayerSettingsAr;
 
 //in future may want to set max's per bike
 //this would mean a child and parent could have different maxes
@@ -31,7 +31,8 @@ private thisPlayerPairSettings bluPShip;
 	// Use this for initialization
 	void Start () {
 
-	}
+		settingUpPlayerSettingAr ();
+		}
 	
 	// Update is called once per frame
 	void Update () {
@@ -40,12 +41,27 @@ private thisPlayerPairSettings bluPShip;
 
 	void HowManyBikePairs ()
 	{
+		
+
+	}
+
+	void settingUpPlayerSettingAr ()
+	{
 		redPShip = new thisPlayerPairSettings {};
 		yelPShip = new thisPlayerPairSettings {};
 		grePShip = new thisPlayerPairSettings {};
 		bluPShip = new thisPlayerPairSettings {};
 
-		shipPlayerSettingsAr = new thisPlayerPairSettings[] {redPShip,yelPShip,grePShip,bluPShip};
+		redPShip.SetShipPairName = " MondleBrot's Wives ";
+		yelPShip.SetShipPairName = " Brownian's Movement ";
+		grePShip.SetShipPairName = " Marie's Glow ";
+		bluPShip.SetShipPairName = " Dabloon 's Good Booty! ";
 
+		redPShip.setShipPairColor = "RED";
+		yelPShip.setShipPairColor = "YELLOW";
+		grePShip.setShipPairColor = "GREEN";
+		bluPShip.setShipPairColor = "BLUE";
+
+		shipPlayerSettingsAr = new thisPlayerPairSettings[] {redPShip,yelPShip,grePShip,bluPShip};
 	}
 }

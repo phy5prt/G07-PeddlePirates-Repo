@@ -7,6 +7,10 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	// Use this for initialization
 
 	private bool werePlaying = false;
+	private string shipPairColor;
+	private float volt100Perc = 100f;
+	private string shipPairName = "no name yet";
+
 
 	void Start () {
 		
@@ -23,5 +27,24 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	public void setWerePlaying(bool YN){
 	werePlaying = YN;
 	}
+	public string getShipPairColor(){
+	return shipPairColor;
+	}
+	public void setShipPairColor(string shipPTColor){
+	shipPairColor = shipPTColor;
+	}
 
+	public float GetVolt100Perc(){
+	return volt100Perc;
+	}
+	public void SetVolt100Perc(float MPercVolt){
+	volt100Perc = MPercVolt;
+	}
+
+	public string GetShipPairName(){
+		return shipPairName;
+	}
+	public void SetShipPairName(string shipName){
+	shipPairName = shipName;
+	}
 }
