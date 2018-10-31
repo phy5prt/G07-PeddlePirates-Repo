@@ -25,7 +25,7 @@ public float theRandomNumber;
 [SerializeField] float tRNCeiling = 120f;
 
 [Range( 0f,1f)]
-	[SerializeField] float startingPlace = 0.6f;
+	[SerializeField] float startingPlace = 50f;
 
 [Range( 0f,1000f)]
 	[SerializeField] float sensitivityToRateOfUpdate = 10; // to balance Time.delta time too 
@@ -38,7 +38,7 @@ private float	rNAddedRangeLow;
 private float	rNAddedRangeHigh;
 	// Use this for initialization
 	void Start () {
-	theRandomNumber = startingPlace;	
+
 	}
 	
 	// Update is called once per frame
