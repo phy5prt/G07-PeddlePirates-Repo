@@ -140,7 +140,7 @@ private Vector3 startScaleArrow;
 						if(gizmoSittingPositions[i].transform.position.x  > gizmoRT.transform.position.x && (gizmoSittingPositions[i].transform.position.x )<currentSmallestPositionalDifference){
 							currentSmallestPositionalDifference = gizmoSittingPositions[i].transform.position.x;
 									indexForMostLeftPositionRightOfMe = i;}}
-					Debug.Log("I'm a " + indexForMostLeftPositionRightOfMe + " gizmoSittingPositions[indexForMostLeftPositionRightOfMe].localPosition.x is " + gizmoSittingPositions[indexForMostLeftPositionRightOfMe].transform.position.x + " mine currently is " + gizmoRT.transform.position.x + " next line is change position ");
+					
 					gizmoRT.transform.position = new Vector3 (gizmoSittingPositions[indexForMostLeftPositionRightOfMe].transform.position.x, gizmoRT.transform.position.y, gizmoRT.transform.position.z); }
 			
 		}

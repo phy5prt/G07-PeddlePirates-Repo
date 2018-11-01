@@ -590,7 +590,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 290895422}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000054676122}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 553219169}
@@ -1030,7 +1030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &553219169
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1492,7 +1492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 45.744934, y: 105.47003}
+  m_AnchoredPosition: {x: 45.745117, y: 105.470215}
   m_SizeDelta: {x: -653.60986, y: -482.53998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &789077385
@@ -1612,7 +1612,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6, y: 270.53}
+  m_AnchoredPosition: {x: -6, y: 270.5298}
   m_SizeDelta: {x: -425.9, y: -529.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &810489870
@@ -1888,7 +1888,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 983045370}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 266.3503, y: -1597.6908, z: 76.54407}
+  m_LocalPosition: {x: 55.97162, y: -2141.4648, z: 144.82623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 691248108}
@@ -2029,6 +2029,10 @@ Prefab:
       propertyPath: runArrowTimer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1676806473988198, guid: 696754b01201d7a45bd580e7bf38088b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 696754b01201d7a45bd580e7bf38088b, type: 2}
   m_IsPrefabParent: 0
@@ -2164,6 +2168,10 @@ Prefab:
       propertyPath: gizmoRT
       value: 
       objectReference: {fileID: 1038827646}
+    - target: {fileID: 1676806473988198, guid: 696754b01201d7a45bd580e7bf38088b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114521574115514762, guid: 696754b01201d7a45bd580e7bf38088b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 696754b01201d7a45bd580e7bf38088b, type: 2}
@@ -2543,6 +2551,10 @@ Prefab:
       propertyPath: runArrowTimer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1676806473988198, guid: 696754b01201d7a45bd580e7bf38088b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 696754b01201d7a45bd580e7bf38088b, type: 2}
   m_IsPrefabParent: 0
@@ -2671,6 +2683,10 @@ Prefab:
     - target: {fileID: 114521574115514762, guid: 696754b01201d7a45bd580e7bf38088b,
         type: 2}
       propertyPath: runArrowTimer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1676806473988198, guid: 696754b01201d7a45bd580e7bf38088b, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4376,7 +4392,7 @@ Prefab:
     - target: {fileID: 224988743438839846, guid: 92cb3aa1caa505143a2f61067155cfbc,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -54.499084
+      value: -54.499023
       objectReference: {fileID: 0}
     - target: {fileID: 224878624043929400, guid: 92cb3aa1caa505143a2f61067155cfbc,
         type: 2}
