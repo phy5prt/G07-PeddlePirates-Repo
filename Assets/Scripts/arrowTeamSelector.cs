@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class arrowTeamSelector : MonoBehaviour {
 
-[SerializeField] float totVoltTriggerMove = 100;
+	[SerializeField] float totVoltTriggerMove = 100;
 [SerializeField] float totVoltThisPeriodRight = 0;
 
 public float voltInLeft;  //this will become set to the arduino input from the red port left e.g.
@@ -22,14 +22,14 @@ private Image arrowImage;
 
 [SerializeField] float endTime;
 
-[SerializeField] float time = Time.time; //not need just to help me calibrate
+
 
 [SerializeField] float arrowChoosingTime = 5;
 [SerializeField] bool runArrowTimer;
 private Vector3 startScaleArrow;
 
-public RectTransform[] gizmoSittingPositions; //should code this better
-public RectTransform gizmoRT;
+public GameObject[] gizmoSittingPositions; //should code this better
+public GameObject gizmoRT;
 
 	// Use this for initialization
 	void Start () {
@@ -46,7 +46,7 @@ public RectTransform gizmoRT;
 	
 	// Update is called once per frame
 	void Update () {
-	time = Time.time;
+
 
 
 	if(runArrowTimer){arrowCountDownNow();}
@@ -58,7 +58,7 @@ public RectTransform gizmoRT;
 
 
 
-	public void startArrowTimer(float arrowChoosingTime){
+	public void startArrowTimer(){
 		totVoltThisPeriodRight = 0;
 		startTime = Time.time;
 		endTime = startTime+arrowChoosingTime;
@@ -80,7 +80,7 @@ public RectTransform gizmoRT;
 			runArrowTimer=false;
 			numberPositionMovesLeft--;
 			moveTeamSelectGizmo();
-			if(numberPositionMovesLeft>0){startArrowTimer(arrowChoosingTime);}	else{}} //set team // if dont move set bool inactive for their ship
+			if(numberPositionMovesLeft>0){startArrowTimer();}	else{}} //set team // if dont move set bool inactive for their ship
 
 	}
 
@@ -111,30 +111,31 @@ public RectTransform gizmoRT;
 
 		if (totVoltThisPeriodRight < -totVoltTriggerMove) {
 
-			if(Mathf.Abs(gizmoRT.localPosition.x)> Mathf.Abs(gizmoSittingPositions[0].localPosition.x) ){
+			if(gizmoRT.transform.position.x> gizmoSittingPositions[0].transform.position.x ){
 			int indexForMostRightPositionLeftOfMe = -1;
 			float currentSmallestPositionalDifference = 10000000f; 
 			for(int i = 0; i<3; i++){
-					if(Mathf.Abs(gizmoSittingPositions[i].localPosition.x) <  Mathf.Abs(gizmoRT.localPosition.x) && Mathf.Abs(gizmoRT.localPosition.x-gizmoSittingPositions[i].localPosition.x )<currentSmallestPositionalDifference){
-						currentSmallestPositionalDifference = Mathf.Abs(gizmoRT.localPosition.x -gizmoSittingPositions[i].localPosition.x);
+					if(gizmoSittingPositions[i].transform.position.x < gizmoRT.transform.position.x && Mathf.Abs(gizmoRT.transform.position.x-gizmoSittingPositions[i].transform.position.x )<currentSmallestPositionalDifference){
+						currentSmallestPositionalDifference = Mathf.Abs(gizmoRT.transform.position.x -gizmoSittingPositions[i].transform.position.x);
 						indexForMostRightPositionLeftOfMe = i;}}
-				gizmoRT.localPosition = new Vector3 (gizmoSittingPositions[indexForMostRightPositionLeftOfMe].localPosition.x, gizmoRT.localPosition.y, gizmoRT.localPosition.z); }
+				gizmoRT.transform.position = new Vector3 (gizmoSittingPositions[indexForMostRightPositionLeftOfMe].transform.position.x, gizmoRT.transform.position.y, gizmoRT.transform.position.z); }
 			
 		}
 		else
 			if (totVoltThisPeriodRight > totVoltTriggerMove) {
-			Debug.Log("should move right");
-				if(Mathf.Abs(gizmoRT.localPosition.x)< Mathf.Abs(gizmoSittingPositions[3].localPosition.x )){
-					Debug.Log("Im not in the most right position");
+		
+				
+				if(gizmoRT.transform.position.x< gizmoSittingPositions[3].transform.position.x ){
+
 					int indexForMostLeftPositionRightOfMe = -1;
 					float currentSmallestPositionalDifference = 10000000f; 
 							for(int i = 0; i<4; i++){
-						Debug.Log("i is " +i+ " this if statement is " + (Mathf.Abs(gizmoSittingPositions[i].localPosition.x)  > Mathf.Abs(gizmoRT.localPosition.x) && Mathf.Abs(gizmoRT.localPosition.x -gizmoSittingPositions[i].localPosition.x )<currentSmallestPositionalDifference) );
-						if(Mathf.Abs(gizmoSittingPositions[i].localPosition.x)  > Mathf.Abs(gizmoRT.localPosition.x) && Mathf.Abs(gizmoRT.localPosition.x -gizmoSittingPositions[i].localPosition.x )<currentSmallestPositionalDifference){
-							currentSmallestPositionalDifference = Mathf.Abs(gizmoRT.localPosition.x -gizmoSittingPositions[i].localPosition.x);
+						
+						if(gizmoSittingPositions[i].transform.position.x  > gizmoRT.transform.position.x && Mathf.Abs(gizmoRT.transform.position.x -gizmoSittingPositions[i].transform.position.x )<currentSmallestPositionalDifference){
+							currentSmallestPositionalDifference = Mathf.Abs(gizmoRT.transform.position.x -gizmoSittingPositions[i].transform.position.x);
 									indexForMostLeftPositionRightOfMe = i;}}
-					Debug.Log("indexForMostLeftPositionRightOfMe is " + indexForMostLeftPositionRightOfMe + " gizmoSittingPositions[indexForMostLeftPositionRightOfMe].localPosition.x is " + gizmoSittingPositions[indexForMostLeftPositionRightOfMe].localPosition.x + " mine currently is " + gizmoRT.localPosition.x + " next line is change position ");
-					gizmoRT.localPosition = new Vector3 (gizmoSittingPositions[indexForMostLeftPositionRightOfMe].localPosition.x, gizmoRT.localPosition.y, gizmoRT.localPosition.z); }
+					Debug.Log("indexForMostLeftPositionRightOfMe is " + indexForMostLeftPositionRightOfMe + " gizmoSittingPositions[indexForMostLeftPositionRightOfMe].localPosition.x is " + gizmoSittingPositions[indexForMostLeftPositionRightOfMe].transform.position.x + " mine currently is " + gizmoRT.transform.position.x + " next line is change position ");
+					gizmoRT.transform.position = new Vector3 (gizmoSittingPositions[indexForMostLeftPositionRightOfMe].transform.position.x, gizmoRT.transform.position.y, gizmoRT.transform.position.z); }
 			
 		}
 
