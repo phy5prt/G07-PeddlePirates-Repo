@@ -4,13 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+//was working seems upset now changed the location to the bars it should be their herachy positin
+//maybe something isnt reseting
+//no idea why but this is the case
+//actually works when all triggered may be due to sharing value!? maybe
+
+
 public class arrowTeamSelector : MonoBehaviour {
 
-	[SerializeField] float totVoltTriggerMove = 100;
+[SerializeField] float totVoltTriggerMove = 100;
 [SerializeField] float totVoltThisPeriodRight = 0;
 
-public float voltInLeft;  //this will become set to the arduino input from the red port left e.g.
-public float voltInRight; //
+	[SerializeField] float voltInLeft = 0;  //this will become set to the arduino input from the red port left e.g.
+	[SerializeField] float voltInRight = 0; //
 
 private Text textTimer;
 [SerializeField] float currentTimerTime;
@@ -28,8 +34,8 @@ private Image arrowImage;
 [SerializeField] bool runArrowTimer;
 private Vector3 startScaleArrow;
 
-public GameObject[] gizmoSittingPositions; //should code this better
-public GameObject gizmoRT;
+[SerializeField] GameObject[] gizmoSittingPositions; //should code this better
+[SerializeField] GameObject gizmoRT;
 
 	// Use this for initialization
 	void Start () {
@@ -113,10 +119,10 @@ public GameObject gizmoRT;
 
 			if(gizmoRT.transform.position.x> gizmoSittingPositions[0].transform.position.x ){
 			int indexForMostRightPositionLeftOfMe = -1;
-			float currentSmallestPositionalDifference = 10000000f; 
+			float currentSmallestPositionalDifference = -10000000f; 
 			for(int i = 0; i<3; i++){
-					if(gizmoSittingPositions[i].transform.position.x < gizmoRT.transform.position.x && Mathf.Abs(gizmoRT.transform.position.x-gizmoSittingPositions[i].transform.position.x )<currentSmallestPositionalDifference){
-						currentSmallestPositionalDifference = Mathf.Abs(gizmoRT.transform.position.x -gizmoSittingPositions[i].transform.position.x);
+					if(gizmoSittingPositions[i].transform.position.x < gizmoRT.transform.position.x && (gizmoSittingPositions[i].transform.position.x )>currentSmallestPositionalDifference){
+						currentSmallestPositionalDifference = gizmoSittingPositions[i].transform.position.x;
 						indexForMostRightPositionLeftOfMe = i;}}
 				gizmoRT.transform.position = new Vector3 (gizmoSittingPositions[indexForMostRightPositionLeftOfMe].transform.position.x, gizmoRT.transform.position.y, gizmoRT.transform.position.z); }
 			
@@ -131,10 +137,10 @@ public GameObject gizmoRT;
 					float currentSmallestPositionalDifference = 10000000f; 
 							for(int i = 0; i<4; i++){
 						
-						if(gizmoSittingPositions[i].transform.position.x  > gizmoRT.transform.position.x && Mathf.Abs(gizmoRT.transform.position.x -gizmoSittingPositions[i].transform.position.x )<currentSmallestPositionalDifference){
-							currentSmallestPositionalDifference = Mathf.Abs(gizmoRT.transform.position.x -gizmoSittingPositions[i].transform.position.x);
+						if(gizmoSittingPositions[i].transform.position.x  > gizmoRT.transform.position.x && (gizmoSittingPositions[i].transform.position.x )<currentSmallestPositionalDifference){
+							currentSmallestPositionalDifference = gizmoSittingPositions[i].transform.position.x;
 									indexForMostLeftPositionRightOfMe = i;}}
-					Debug.Log("indexForMostLeftPositionRightOfMe is " + indexForMostLeftPositionRightOfMe + " gizmoSittingPositions[indexForMostLeftPositionRightOfMe].localPosition.x is " + gizmoSittingPositions[indexForMostLeftPositionRightOfMe].transform.position.x + " mine currently is " + gizmoRT.transform.position.x + " next line is change position ");
+					Debug.Log("I'm a " + indexForMostLeftPositionRightOfMe + " gizmoSittingPositions[indexForMostLeftPositionRightOfMe].localPosition.x is " + gizmoSittingPositions[indexForMostLeftPositionRightOfMe].transform.position.x + " mine currently is " + gizmoRT.transform.position.x + " next line is change position ");
 					gizmoRT.transform.position = new Vector3 (gizmoSittingPositions[indexForMostLeftPositionRightOfMe].transform.position.x, gizmoRT.transform.position.y, gizmoRT.transform.position.z); }
 			
 		}
