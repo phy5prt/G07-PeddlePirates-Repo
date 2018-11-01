@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class arrowTeamSelector : MonoBehaviour {
 
-[SerializeField] float totVoltTriggerBool = 100;
+[SerializeField] float totVoltTriggerMove = 100;
 [SerializeField] float totVoltThisPeriodRight = 0;
 
 public float voltInLeft;  //this will become set to the arduino input from the red port left e.g.
@@ -18,7 +18,7 @@ private Text textTimer;
 private Image arrowImage;
 [SerializeField] int numberPositionMovesLeft = 6; //there and back
 
-[SerializeField] bool runStageTimer;
+
 
 [SerializeField] float endTime;
 
@@ -26,10 +26,10 @@ private Image arrowImage;
 
 [SerializeField] float arrowChoosingTime = 5;
 [SerializeField] bool runArrowTimer;
-private Vector3 startScale;
+private Vector3 startScaleArrow;
 
 public Transform[] gizmoSittingPositions; //should code this better
-
+private Vector3 gizmoPosition;
 	// Use this for initialization
 	void Start () {
 
@@ -38,7 +38,8 @@ public Transform[] gizmoSittingPositions; //should code this better
 
 	arrowImage = GetComponentInChildren<Image>();
 	arrowImage.color = Color.red;//should get first
-	startScale =	arrowImage.gameObject.GetComponent<RectTransform>().localScale;
+	startScaleArrow =	arrowImage.gameObject.GetComponent<RectTransform>().localScale;
+	gizmoPosition = GetComponent<RectTransform>().localPosition;
 	textTimer = GetComponentInChildren<Text>();
 
 	}
@@ -78,7 +79,7 @@ public Transform[] gizmoSittingPositions; //should code this better
 		if(Time.time>endTime){
 			runArrowTimer=false;
 			numberPositionMovesLeft--;
-			moveArrow();
+			moveTeamSelectGizmo();
 			if(numberPositionMovesLeft>0){startArrowTimer(arrowChoosingTime);}	else{}} //set team // if dont move set bool inactive for their ship
 
 	}
@@ -87,31 +88,50 @@ public Transform[] gizmoSittingPositions; //should code this better
 	void setArrowScaleColor ()
 	{
 		totVoltThisPeriodRight += voltInRight - voltInLeft;
-		if (totVoltThisPeriodRight < -totVoltTriggerBool) {
+		if (totVoltThisPeriodRight < -totVoltTriggerMove) {
 			arrowImage.color = Color.green;
-			arrowImage.gameObject.GetComponent<RectTransform> ().localScale = new Vector3 (-1 * startScale.x, startScale.y, startScale.z);
+			arrowImage.gameObject.GetComponent<RectTransform> ().localScale = new Vector3 (-1 * startScaleArrow.x, startScaleArrow.y, startScaleArrow.z);
 		}
 		else
-			if (totVoltThisPeriodRight > totVoltTriggerBool) {
+			if (totVoltThisPeriodRight > totVoltTriggerMove) {
 				arrowImage.color = Color.green;
-				arrowImage.gameObject.GetComponent<RectTransform> ().localScale = startScale;
+				arrowImage.gameObject.GetComponent<RectTransform> ().localScale = startScaleArrow;
 			}
 			else {
-				arrowImage.gameObject.GetComponent<RectTransform> ().localScale = new Vector3 ((startScale.x * totVoltThisPeriodRight / totVoltTriggerBool), startScale.y, startScale.z);
+				arrowImage.gameObject.GetComponent<RectTransform> ().localScale = new Vector3 ((startScaleArrow.x * totVoltThisPeriodRight / totVoltTriggerMove), startScaleArrow.y, startScaleArrow.z);
 			}
 	}
 
-	private void moveArrow(){
+	private void moveTeamSelectGizmo(){
 
-		if (totVoltThisPeriodRight < -totVoltTriggerBool) {
+		if (totVoltThisPeriodRight < -totVoltTriggerMove) {
+
+			if(gizmoPosition.x> gizmoSittingPositions[0].localPosition.x ){
+			int indexForMostRightPositionLeftOfMe = -1;
+			float currentSmallestPositionalDifference = 10000000f; 
+			for(int i = 0; i<3; i++){
+					if(gizmoSittingPositions[i].localPosition.x  < gizmoPosition.x && Mathf.Abs(gizmoPosition.x -gizmoSittingPositions[i].localPosition.x )<currentSmallestPositionalDifference){
+						currentSmallestPositionalDifference = gizmoPosition.x -gizmoSittingPositions[i].localPosition.x;
+						indexForMostRightPositionLeftOfMe = i;}}
+				gizmoPosition = new Vector3 (gizmoSittingPositions[indexForMostRightPositionLeftOfMe].localPosition.x, gizmoPosition.y, gizmoPosition.z); }
 			
 		}
 		else
-			if (totVoltThisPeriodRight > totVoltTriggerBool) {
+			if (totVoltThisPeriodRight > totVoltTriggerMove) {
+				if(gizmoPosition.x< gizmoSittingPositions[3].localPosition.x ){
+					int indexForMostLeftPositionRightOfMe = -1;
+					float currentSmallestPositionalDifference = 10000000f; 
+							for(int i = 0; i<4; i++){
+								if(gizmoSittingPositions[i].localPosition.x  > gizmoPosition.x && Mathf.Abs(gizmoPosition.x -gizmoSittingPositions[i].localPosition.x )<currentSmallestPositionalDifference){
+									currentSmallestPositionalDifference = gizmoPosition.x -gizmoSittingPositions[i].localPosition.x;
+									indexForMostLeftPositionRightOfMe = i;}}
+										gizmoPosition = new Vector3 (gizmoSittingPositions[indexForMostLeftPositionRightOfMe].localPosition.x, gizmoPosition.y, gizmoPosition.z); }
+			
+		}
 
 
 	}
-}}
+}
 
 
 
