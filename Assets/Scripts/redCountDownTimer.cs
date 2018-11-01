@@ -16,7 +16,7 @@ private Text textTimer;
 [SerializeField] float time = Time.time; //not need just to help me calibrate
 
 
-[SerializeField] bool runArrowTimer;
+
 
 	// Use this for initialization
 	void Start () {
@@ -31,7 +31,7 @@ private Text textTimer;
 	time = Time.time;
 
 	if(runStageTimer){stageCountDownNow();}
-	if(runArrowTimer){arrowCountDownNow();}
+
 			
 	}
 
@@ -53,19 +53,5 @@ private Text textTimer;
 
 
 
-	public void startArrowTimer(float setArrowTimerTime){
-		startTime = Time.time;
-		endTime = startTime+setArrowTimerTime;
-	runArrowTimer = true;
 
-
-	}
-
-	private void arrowCountDownNow(){
-
-
-		currentTimerTime = endTime - Time.time;
-		if(currentTimerTime<0){textTimer.text = "";}else{textTimer.text = (currentTimerTime).ToString("0.0");}
-		if(Time.time>endTime){runArrowTimer=false;}
-	}
 }
