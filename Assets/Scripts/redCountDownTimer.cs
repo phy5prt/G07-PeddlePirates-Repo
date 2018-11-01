@@ -13,7 +13,7 @@ private Text textTimer;
 
 [SerializeField] float endTime;
 
-[SerializeField] float time = Time.time; //not need just to help me calibrate
+//not need just to help me calibrate
 
 
 
@@ -28,7 +28,7 @@ private Text textTimer;
 	
 	// Update is called once per frame
 	void Update () {
-	time = Time.time;
+
 
 	if(runStageTimer){stageCountDownNow();}
 
