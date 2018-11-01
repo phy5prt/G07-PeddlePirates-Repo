@@ -16,7 +16,7 @@ private Text textTimer;
 [SerializeField] float currentTimerTime;
 [SerializeField] float startTime;
 private Image arrowImage;
-[SerializeField] int numberPositionMovesLeft = 6; //there and back
+[SerializeField] int numberPositionMovesLeft = 6; //there and back //only runs once so can alter directly
 
 
 
@@ -28,8 +28,9 @@ private Image arrowImage;
 [SerializeField] bool runArrowTimer;
 private Vector3 startScaleArrow;
 
-public Transform[] gizmoSittingPositions; //should code this better
-private Vector3 gizmoPosition;
+public RectTransform[] gizmoSittingPositions; //should code this better
+public RectTransform gizmoRT;
+
 	// Use this for initialization
 	void Start () {
 
@@ -39,7 +40,6 @@ private Vector3 gizmoPosition;
 	arrowImage = GetComponentInChildren<Image>();
 	arrowImage.color = Color.red;//should get first
 	startScaleArrow =	arrowImage.gameObject.GetComponent<RectTransform>().localScale;
-	gizmoPosition = GetComponent<RectTransform>().localPosition;
 	textTimer = GetComponentInChildren<Text>();
 
 	}
@@ -58,10 +58,10 @@ private Vector3 gizmoPosition;
 
 
 
-	public void startArrowTimer(float setArrowTimerTime){
+	public void startArrowTimer(float arrowChoosingTime){
 		totVoltThisPeriodRight = 0;
 		startTime = Time.time;
-		endTime = startTime+setArrowTimerTime;
+		endTime = startTime+arrowChoosingTime;
 	runArrowTimer = true;
 
 
@@ -104,28 +104,37 @@ private Vector3 gizmoPosition;
 
 	private void moveTeamSelectGizmo(){
 
+	//code looks a bit funny because x actually decrease left to right in the hierachy object dont know why
+
+
+	Debug.Log("run move teams select gizmo");
+
 		if (totVoltThisPeriodRight < -totVoltTriggerMove) {
 
-			if(gizmoPosition.x> gizmoSittingPositions[0].localPosition.x ){
+			if(Mathf.Abs(gizmoRT.localPosition.x)> Mathf.Abs(gizmoSittingPositions[0].localPosition.x) ){
 			int indexForMostRightPositionLeftOfMe = -1;
 			float currentSmallestPositionalDifference = 10000000f; 
 			for(int i = 0; i<3; i++){
-					if(gizmoSittingPositions[i].localPosition.x  < gizmoPosition.x && Mathf.Abs(gizmoPosition.x -gizmoSittingPositions[i].localPosition.x )<currentSmallestPositionalDifference){
-						currentSmallestPositionalDifference = gizmoPosition.x -gizmoSittingPositions[i].localPosition.x;
+					if(Mathf.Abs(gizmoSittingPositions[i].localPosition.x) <  Mathf.Abs(gizmoRT.localPosition.x) && Mathf.Abs(gizmoRT.localPosition.x-gizmoSittingPositions[i].localPosition.x )<currentSmallestPositionalDifference){
+						currentSmallestPositionalDifference = Mathf.Abs(gizmoRT.localPosition.x -gizmoSittingPositions[i].localPosition.x);
 						indexForMostRightPositionLeftOfMe = i;}}
-				gizmoPosition = new Vector3 (gizmoSittingPositions[indexForMostRightPositionLeftOfMe].localPosition.x, gizmoPosition.y, gizmoPosition.z); }
+				gizmoRT.localPosition = new Vector3 (gizmoSittingPositions[indexForMostRightPositionLeftOfMe].localPosition.x, gizmoRT.localPosition.y, gizmoRT.localPosition.z); }
 			
 		}
 		else
 			if (totVoltThisPeriodRight > totVoltTriggerMove) {
-				if(gizmoPosition.x< gizmoSittingPositions[3].localPosition.x ){
+			Debug.Log("should move right");
+				if(Mathf.Abs(gizmoRT.localPosition.x)< Mathf.Abs(gizmoSittingPositions[3].localPosition.x )){
+					Debug.Log("Im not in the most right position");
 					int indexForMostLeftPositionRightOfMe = -1;
 					float currentSmallestPositionalDifference = 10000000f; 
 							for(int i = 0; i<4; i++){
-								if(gizmoSittingPositions[i].localPosition.x  > gizmoPosition.x && Mathf.Abs(gizmoPosition.x -gizmoSittingPositions[i].localPosition.x )<currentSmallestPositionalDifference){
-									currentSmallestPositionalDifference = gizmoPosition.x -gizmoSittingPositions[i].localPosition.x;
+						Debug.Log("i is " +i+ " this if statement is " + (Mathf.Abs(gizmoSittingPositions[i].localPosition.x)  > Mathf.Abs(gizmoRT.localPosition.x) && Mathf.Abs(gizmoRT.localPosition.x -gizmoSittingPositions[i].localPosition.x )<currentSmallestPositionalDifference) );
+						if(Mathf.Abs(gizmoSittingPositions[i].localPosition.x)  > Mathf.Abs(gizmoRT.localPosition.x) && Mathf.Abs(gizmoRT.localPosition.x -gizmoSittingPositions[i].localPosition.x )<currentSmallestPositionalDifference){
+							currentSmallestPositionalDifference = Mathf.Abs(gizmoRT.localPosition.x -gizmoSittingPositions[i].localPosition.x);
 									indexForMostLeftPositionRightOfMe = i;}}
-										gizmoPosition = new Vector3 (gizmoSittingPositions[indexForMostLeftPositionRightOfMe].localPosition.x, gizmoPosition.y, gizmoPosition.z); }
+					Debug.Log("indexForMostLeftPositionRightOfMe is " + indexForMostLeftPositionRightOfMe + " gizmoSittingPositions[indexForMostLeftPositionRightOfMe].localPosition.x is " + gizmoSittingPositions[indexForMostLeftPositionRightOfMe].localPosition.x + " mine currently is " + gizmoRT.localPosition.x + " next line is change position ");
+					gizmoRT.localPosition = new Vector3 (gizmoSittingPositions[indexForMostLeftPositionRightOfMe].localPosition.x, gizmoRT.localPosition.y, gizmoRT.localPosition.z); }
 			
 		}
 
