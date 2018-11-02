@@ -55,63 +55,54 @@ public float bluRightVolt;
 [SerializeField] int stage = 0;
 
 //move the match mechanics to own script and object?
-private float rateMatchReturnsToStart = 5;
+[SerializeField] float rateMatchReturnsToStart = 75f;
 private float matchPosDeg = 0f;
-private float matchTurnDegreesPerDeltaTime = 6f; //a circle in a minute assuming the person cycle out put creates a float of one per second)
-private float matchDegreeStart = 2550f;                      // 90f; due to scaling using different numbers but leaving this here so know intended behaviour
-private float matchDegreesStrike = 2305;                  //350f;
+[SerializeField] float matchTurnDegreesPerDeltaTime = 60f; //a circle in a minute assuming the person cycle out put creates a float of one per second)
+	private float matchDegreeStart = 0f ;              //2550f        // 90f; due to scaling using different numbers but leaving this here so know intended behaviour
+	private float matchDegreesStrike = 240f;         //2305         //350f;
 private float minVoltDefineActivePedaling = 1f; //minimum volts in to register bike use
 private GameObject matchObj;
 
 private bool strikeMatch =false;
 private float timeMatchStruck = 0f;
 
+private Quaternion startRotationPosMatch;
+
+private GameObject	stageCountDownImageGO;
+private GameObject	chooseTeamStageGO;
+
+[SerializeField] float stage1Time = 10f;
 
 	// Use this for initialization
 	void Start () {
 
-	matchObj = GameObject.Find("match");    //when restructure try do so so dont have to do this
+	matchObj = GameObject.Find("Match").gameObject;    //when restructure try do so so dont have to do this
+	startRotationPosMatch =	matchObj.transform.rotation;
 	matchPosDeg = matchDegreeStart;
+
+
+	stageCountDownImageGO = transform.Find("stageCountDownImage").gameObject;
+	stageCountDownImageGO.SetActive(false);
+	chooseTeamStageGO = transform.Find("chooseTeamStage").gameObject;
+	chooseTeamStageGO.SetActive(false);
+
 	settingUpPlayerSettingAr ();
 
 		}
+
+
+
+	
+
 	
 	// Update is called once per frame
 	void Update () {
 
 
-	if(stage == 0){
-
-			Debug.Log (" before matchPosDeg = " + matchPosDeg);
-
-			if((redLeftVolt > minVoltDefineActivePedaling && redLeftVolt > minVoltDefineActivePedaling) || 
-			(yelLeftVolt > minVoltDefineActivePedaling && yelLeftVolt > minVoltDefineActivePedaling) || 
-			(greLeftVolt > minVoltDefineActivePedaling && greLeftVolt > minVoltDefineActivePedaling) || 
-			(bluLeftVolt > minVoltDefineActivePedaling && bluLeftVolt > minVoltDefineActivePedaling) ){
-
-				matchPosDeg += (redLeftVolt + redRightVolt + yelLeftVolt + yelRightVolt + greRightVolt + greLeftVolt + bluLeftVolt + bluRightVolt)* matchTurnDegreesPerDeltaTime*Time.deltaTime;
-			}else if (matchPosDeg > matchDegreeStart ){matchPosDeg -= rateMatchReturnsToStart*Time.deltaTime;}
-
-		if(matchPosDeg>matchDegreesStrike){matchPosDeg = matchDegreesStrike;} else if (matchPosDeg<matchDegreeStart){matchPosDeg = matchDegreeStart;}
-
-			Debug.Log(" before matchObj.transform.eulerAngles.Set = " + matchObj.transform.eulerAngles + " setting z to matchPosDeg which is = " + matchPosDeg);
-			//matchObj.transform.eulerAngles.Set = new Vector3 (matchObj.transform.eulerAngles.x, matchObj.transform.eulerAngles.x ,matchPosDeg); //euler angles?
-			matchObj.transform.eulerAngles.Set(matchObj.transform.eulerAngles.x, matchObj.transform.eulerAngles.x ,matchPosDeg); //euler angles?
-			Debug.Log(" after matchObj.transform.eulerAngles.Set = " + matchObj.transform.eulerAngles);
-
-
-		if(matchPosDeg == matchDegreesStrike){if (strikeMatch == false ){ strikeMatch = true; timeMatchStruck = Time.timeSinceLevelLoad;}    //the code make match wait 2 seconds in lit position
-			else if (strikeMatch == true && Time.timeSinceLevelLoad > timeMatchStruck + 2f){
-				stage = 1;
-					matchObj.SetActive(false);
-					//startCountDownAndPowderKegAnimation();//Todo
-					initiateStage1();}}else{strikeMatch = false;}
-
-
-				
-	
-
-
+	if(stage == 0){ // when ready make this a method in another class that returns the stage int it adds 1 if it is time to move on
+		stage = stage0Method ();}else 
+	if (stage == 1){
+		stage = stage1Method();
 	}
 
 
@@ -145,8 +136,63 @@ private float timeMatchStruck = 0f;
 	}
 
 	// this is the select players who are playing stage
+
+	private int stage0Method (){
+
+		//issue with this if is that if a pair is cycling 3 singles can still contribut  but not sure it is a problem 
+		//could make them ifs in the if
+		if ((redLeftVolt > minVoltDefineActivePedaling && redLeftVolt > minVoltDefineActivePedaling) || (yelLeftVolt > minVoltDefineActivePedaling && yelLeftVolt > minVoltDefineActivePedaling) || (greLeftVolt > minVoltDefineActivePedaling && greLeftVolt > minVoltDefineActivePedaling) || (bluLeftVolt > minVoltDefineActivePedaling && bluLeftVolt > minVoltDefineActivePedaling)) {
+			matchPosDeg += (redLeftVolt + redRightVolt + yelLeftVolt + yelRightVolt + greRightVolt + greLeftVolt + bluLeftVolt + bluRightVolt) * matchTurnDegreesPerDeltaTime * Time.deltaTime;
+		}
+		else
+			if (matchPosDeg > matchDegreeStart) {
+				matchPosDeg -= rateMatchReturnsToStart * matchTurnDegreesPerDeltaTime * Time.deltaTime;
+			}
+		if (matchPosDeg > matchDegreesStrike) {
+			matchPosDeg = matchDegreesStrike;
+		}
+		else
+			if (matchPosDeg < matchDegreeStart) {
+				matchPosDeg = matchDegreeStart;
+			}
+		//Debug.Log(" before matchObj.transform.eulerAngles.Set = " + matchObj.transform.eulerAngles + " setting z to matchPosDeg which is = " + matchPosDeg);
+		//matchObj.transform.eulerAngles = new Vector3 (matchObj.transform.eulerAngles.x, matchObj.transform.eulerAngles.x ,matchPosDeg); //euler angles works
+		matchObj.transform.rotation = startRotationPosMatch;
+		matchObj.transform.Rotate (Vector3.back * matchPosDeg);
+		//Debug.Log(" after matchObj.transform.eulerAngles.Set = " + matchObj.transform.eulerAngles);
+		if (matchPosDeg == matchDegreesStrike) {
+			if (strikeMatch == false) {
+				strikeMatch = true;
+				timeMatchStruck = Time.timeSinceLevelLoad;
+			}
+			//the code make match wait 2 seconds in lit position
+			else
+				if (strikeMatch == true && Time.timeSinceLevelLoad > timeMatchStruck + 2f) {
+					stage = 1;
+					matchObj.SetActive (false);
+					//startCountDownAndPowderKegAnimation();//Todo
+					initiateStage1();
+				}
+		}
+		else {
+			strikeMatch = false;
+		}
+		return stage;
+	}
+
+
 	private void initiateStage1(){
 
-	Debug.Log("I want to run stage1 but dont know what it is yet");
+	stageCountDownImageGO.SetActive(true);
+	stageCountDownImageGO.GetComponent<redCountDownTimer>().startStageTimer(stage1Time);
+
 	}
+
+	private int stage1Method(){
+
+
+
+	return stage;
+	}
+
 }

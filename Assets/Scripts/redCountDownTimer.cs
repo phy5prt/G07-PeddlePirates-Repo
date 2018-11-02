@@ -31,7 +31,7 @@ private bool runStageTimer;
 	// Update is called once per frame
 	void Update () {
 
-		if(delMethodtrigger){delMethodtrigger=false; startStageTimer();} //delete this when ready to trigger through code rather than inspector
+		
 
 	if(runStageTimer){stageCountDownNow();}
 
@@ -40,8 +40,9 @@ private bool runStageTimer;
 
 
 
-	public void startStageTimer(){
+	public void startStageTimer(float countDownFrom){ //will there be conflict if double declared
 	startTime = Time.time;
+	setStageTimerTime = countDownFrom;
 	endTime = startTime+setStageTimerTime;
 	runStageTimer = true;
 
