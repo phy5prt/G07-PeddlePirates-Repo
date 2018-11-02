@@ -72,8 +72,13 @@ private GameObject	stageCountDownImageGO;
 private GameObject	chooseTeamStageGO;
 
 [SerializeField] float stage1Time = 10f;
+private float stage1EndTime = 1000f;
 
 	// Use this for initialization
+
+
+private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and off not individually assigning because they using the static can individually assign to the thisPlayerPairSettingPair static instance themselves
+
 	void Start () {
 
 	matchObj = GameObject.Find("Match").gameObject;    //when restructure try do so so dont have to do this
@@ -85,6 +90,10 @@ private GameObject	chooseTeamStageGO;
 	stageCountDownImageGO.SetActive(false);
 	chooseTeamStageGO = transform.Find("chooseTeamStage").gameObject;
 	chooseTeamStageGO.SetActive(false);
+
+	currentlySelectedsGOs = GetComponentsInChildren<thisPairWantsAship> (true);
+	foreach(thisPairWantsAship gizmo in currentlySelectedsGOs){gizmo.gameObject.SetActive(false);}
+
 
 	settingUpPlayerSettingAr ();
 
@@ -101,8 +110,11 @@ private GameObject	chooseTeamStageGO;
 
 	if(stage == 0){ // when ready make this a method in another class that returns the stage int it adds 1 if it is time to move on
 		stage = stage0Method ();}else 
-	if (stage == 1){
-		stage = stage1Method();
+	if (stage == 1 && Time.timeSinceLevelLoad > stage1EndTime){
+		stage = stage1();}else
+	if (stage == 2){
+
+
 	}
 
 
@@ -185,14 +197,16 @@ private GameObject	chooseTeamStageGO;
 
 	stageCountDownImageGO.SetActive(true);
 	stageCountDownImageGO.GetComponent<redCountDownTimer>().startStageTimer(stage1Time);
-
+	foreach(thisPairWantsAship gizmo in currentlySelectedsGOs){gizmo.gameObject.SetActive(true);}
+	stage1EndTime = Time.timeSinceLevelLoad + stage1Time;
 	}
 
-	private int stage1Method(){
-
-
-
-	return stage;
+	private int stage1(){
+		foreach(thisPairWantsAship gizmo in currentlySelectedsGOs){gizmo.gameObject.SetActive(false);}
+	//in their code the enabled selectors will have set the static instances so check which are enabled if zero ...
+	//check static instances playerSettings to see if they are enabled // if not run the reset show an explosion
+	//if more than zero just deactivate the gizmos that are not selected
+	return stage = 2;
 	}
 
 }
