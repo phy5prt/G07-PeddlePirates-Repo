@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class redCountDownTimer : MonoBehaviour {
 
 private Text textTimer;
-[SerializeField] float currentTimerTime;
-[SerializeField] float startTime;
+private float currentTimerTime;
+private float startTime;
 [SerializeField] Image timerImage;
-[SerializeField] bool runStageTimer;
+private bool runStageTimer;
+[SerializeField] bool delMethodtrigger = false;
+[SerializeField] float	setStageTimerTime = 10f;
 
 [SerializeField] float endTime;
 
@@ -29,15 +31,18 @@ private Text textTimer;
 	// Update is called once per frame
 	void Update () {
 
+		if(delMethodtrigger){delMethodtrigger=false; startStageTimer();} //delete this when ready to trigger through code rather than inspector
 
 	if(runStageTimer){stageCountDownNow();}
 
 			
 	}
 
-	public void startStageTimer(float setStageTimerTime){
-		startTime = Time.time;
-		endTime = startTime+setStageTimerTime;
+
+
+	public void startStageTimer(){
+	startTime = Time.time;
+	endTime = startTime+setStageTimerTime;
 	runStageTimer = true;
 
 

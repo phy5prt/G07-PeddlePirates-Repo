@@ -25,7 +25,8 @@ private Text textToBeRelativeTo;
 //private int txt2bRel2Size;
 	public int txt2bRel2Size;
 [SerializeField] float fontSizeDifference =2;
-private string currentText;
+
+[SerializeField] string currentText;
 	// Use this for initialization
 	void Start () {
 
@@ -39,7 +40,9 @@ private string currentText;
 	void Update () {
 
 	//check if text has changed if it has best fits the text, if the best fit is too big resizes
+
 	if(currentText!=myText.text){
+
 	Debug.Log("txts dont match");
 			currentText = myText.text;
 			Debug.Log("setting txts to match");

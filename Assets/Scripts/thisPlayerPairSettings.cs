@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//should this be a public static class?
+// no but the four instances of it should be!
+
 public class thisPlayerPairSettings : MonoBehaviour {
 
 	// Use this for initialization
@@ -10,6 +13,16 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	private string shipPairColor;
 	private float volt100Perc = 100f;
 	private string shipPairName = "no name yet";
+
+
+	/// 
+	/// 
+	/// so the shipModel will get its colour volt max etc and strip them off this static
+	//it will also get the (address, so instantiate, or pass an array number for which arduino volt static to call on? arduino changes the static)
+	private GameObject myLeftVolt;     //i think gameObject because storing the address (could be the comm port number) of where to find the thing really
+	private GameObject myRightVolt;
+
+	//public static float testVoltStatic; // accessible without an instance
 
 
 	void Start () {
@@ -47,4 +60,19 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	public void SetShipPairName(string shipName){
 	shipPairName = shipName;
 	}
+
+	public GameObject GetmyLeftVolt(){
+		return myLeftVolt;
+	}
+	public void SetmyLeftVolt(GameObject myLVolt){
+		myLeftVolt =  myLVolt;
+	}
+
+	public GameObject GetmyRightVolt(){
+		return myRightVolt;
+	}
+	public void SetmyRightVolt(GameObject myRVolt){
+		myRightVolt =  myRVolt;
+	}
+
 }
