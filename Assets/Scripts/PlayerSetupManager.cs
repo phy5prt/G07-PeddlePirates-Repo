@@ -17,6 +17,13 @@ using UnityEngine.UI;
 //going to make a player override class
 //  Player : myPlayerSetup overidestart
 
+//https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html
+//https://unity3d.com/learn/tutorials/topics/scripting/coroutines
+//return yield = coroutinestart(method (time)) -- is this the same as run the method over the amount of frames it needs then return the result
+//maybe every satge should be a coroutine rather than a method.
+//try this at refactor stage i currently want minimal product
+
+
 public class PlayerSetupManager : MonoBehaviour {
 
 public thisPlayerPairSettings[] shipPlayerSettingsAr;
@@ -52,7 +59,8 @@ public float greRightVolt;
 public float bluLeftVolt;
 public float bluRightVolt;
 
-[SerializeField] int stage = 0;
+//can i make this and this whole script static?
+[SerializeField] static int stage = 0;
 
 //move the match mechanics to own script and object?
 [SerializeField] float rateMatchReturnsToStart = 75f;
@@ -70,30 +78,50 @@ private Quaternion startRotationPosMatch;
 
 private GameObject	stageCountDownImageGO;
 private GameObject	chooseTeamStageGO;
+private GameObject setCrewsAndShrinkLeft;
+private MXSBCtagSloppy[] maxSetRivalss;
+private arrowTeamSelector[] arrowTeamSelectGizmos;
 
 [SerializeField] float stage1Time = 10f;
 private float stage1EndTime = 1000f;
+
+[SerializeField] float stage2Time = 10f;
+private float stage2EndTime = 1000f;
+
+
+[SerializeField] float stage2ShrinkTime = 0.7f;
 
 	// Use this for initialization
 
 
 private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and off not individually assigning because they using the static can individually assign to the thisPlayerPairSettingPair static instance themselves
 
-	void Start () {
+[SerializeField] int numberPositionMovesStage2 = 6;
+[SerializeField] float arrowJumpChoiceTimeStage2 = 3f; 
+
+
+
+					void Start () {
 
 	matchObj = GameObject.Find("Match").gameObject;    //when restructure try do so so dont have to do this
 	startRotationPosMatch =	matchObj.transform.rotation;
 	matchPosDeg = matchDegreeStart;
 
+	setCrewsAndShrinkLeft = GetComponentInChildren<shrinkLeft>().gameObject;
 
 	stageCountDownImageGO = transform.Find("stageCountDownImage").gameObject;
 	stageCountDownImageGO.SetActive(false);
-	chooseTeamStageGO = transform.Find("chooseTeamStage").gameObject;
-	chooseTeamStageGO.SetActive(false);
+		chooseTeamStageGO = transform.Find("chooseTeamStage").gameObject;
+	chooseTeamStageGO.transform.GetChild(0).gameObject.SetActive(false);
 
 	currentlySelectedsGOs = GetComponentsInChildren<thisPairWantsAship> (true);
 	foreach(thisPairWantsAship gizmo in currentlySelectedsGOs){gizmo.gameObject.SetActive(false);}
 
+
+		maxSetRivalss = GetComponentsInChildren<MXSBCtagSloppy>();
+		foreach(MXSBCtagSloppy maxSetter in maxSetRivalss){maxSetter.gameObject.SetActive(false);}
+		arrowTeamSelectGizmos = GetComponentsInChildren<arrowTeamSelector>();
+		foreach(arrowTeamSelector teamSelector in arrowTeamSelectGizmos){teamSelector.gameObject.SetActive(false);}
 
 	settingUpPlayerSettingAr ();
 
@@ -107,12 +135,24 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 	// Update is called once per frame
 	void Update () {
 
+	//stage 0 is do people want to play
+	//stage 1 is everyone who wants to play select
+	//stage 2 chose team 
+
+
+
 
 	if(stage == 0){ // when ready make this a method in another class that returns the stage int it adds 1 if it is time to move on
 		stage = stage0Method ();}else 
-	if (stage == 1 && Time.timeSinceLevelLoad > stage1EndTime){
-		stage = stage1();}else
-	if (stage == 2){
+	if (stage == 1 && Time.timeSinceLevelLoad > stage1EndTime){ //this is begging for a coroutine or something that says runs this and when this done run this or run this and we knoew it takes this so after this amoutn of time do this
+		//stage = initiateShrinkStage2();}else
+			initiateShrinkStage2(stage2ShrinkTime);
+			Invoke("setupStage2AfterShrink",stage2ShrinkTime);
+			//need to be run in a coroutine and only once
+
+
+			}else
+	if (stage == 2){initiateStage3();
 
 
 	}
@@ -153,7 +193,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 		//issue with this if is that if a pair is cycling 3 singles can still contribut  but not sure it is a problem 
 		//could make them ifs in the if
-		if ((redLeftVolt > minVoltDefineActivePedaling && redLeftVolt > minVoltDefineActivePedaling) || (yelLeftVolt > minVoltDefineActivePedaling && yelLeftVolt > minVoltDefineActivePedaling) || (greLeftVolt > minVoltDefineActivePedaling && greLeftVolt > minVoltDefineActivePedaling) || (bluLeftVolt > minVoltDefineActivePedaling && bluLeftVolt > minVoltDefineActivePedaling)) {
+		if ((redLeftVolt > minVoltDefineActivePedaling && redRightVolt > minVoltDefineActivePedaling) || (yelLeftVolt > minVoltDefineActivePedaling && yelRightVolt > minVoltDefineActivePedaling) || (greLeftVolt > minVoltDefineActivePedaling && greRightVolt > minVoltDefineActivePedaling) || (bluLeftVolt > minVoltDefineActivePedaling && bluRightVolt > minVoltDefineActivePedaling)) {
 			matchPosDeg += (redLeftVolt + redRightVolt + yelLeftVolt + yelRightVolt + greRightVolt + greLeftVolt + bluLeftVolt + bluRightVolt) * matchTurnDegreesPerDeltaTime * Time.deltaTime;
 		}
 		else
@@ -179,7 +219,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 			}
 			//the code make match wait 2 seconds in lit position
 			else
-				if (strikeMatch == true && Time.timeSinceLevelLoad > timeMatchStruck + 2f) {
+				if (strikeMatch == true && Time.timeSinceLevelLoad > timeMatchStruck + 1f) {
 					stage = 1;
 					matchObj.SetActive (false);
 					//startCountDownAndPowderKegAnimation();//Todo
@@ -201,12 +241,49 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 	stage1EndTime = Time.timeSinceLevelLoad + stage1Time;
 	}
 
-	private int stage1(){
+	private void initiateShrinkStage2(float theShrinkTime){			//startShrinking triggers its own arrows and bars
 		foreach(thisPairWantsAship gizmo in currentlySelectedsGOs){gizmo.gameObject.SetActive(false);}
+		//this triggers stage 2
 	//in their code the enabled selectors will have set the static instances so check which are enabled if zero ...
+
 	//check static instances playerSettings to see if they are enabled // if not run the reset show an explosion
+
 	//if more than zero just deactivate the gizmos that are not selected
-	return stage = 2;
+
+		setCrewsAndShrinkLeft.GetComponent<shrinkLeft>().startShrinking(theShrinkTime); 
+
 	}
 
+	private void setupStage2AfterShrink(){
+
+
+	if(stage!=1){return;} // wont need if using coroutine to just run it once
+
+	chooseTeamStageGO.transform.GetChild(0).gameObject.SetActive(true);
+	foreach(arrowTeamSelector teamSelector in arrowTeamSelectGizmos){teamSelector.gameObject.SetActive(true);}
+	foreach(arrowTeamSelector teamSelector in arrowTeamSelectGizmos){teamSelector.runThisArrowTimer(numberPositionMovesStage2,arrowJumpChoiceTimeStage2);}
+
+	stage2Time = numberPositionMovesStage2*arrowJumpChoiceTimeStage2 + 1f; //1f just incase lose some time in processing // seems go a little long maybe -1 on the stages but not sure why
+
+	stageCountDownImageGO.SetActive(true);
+	stageCountDownImageGO.GetComponent<redCountDownTimer>().startStageTimer(stage2Time);
+	stage2EndTime = Time.timeSinceLevelLoad + stage2Time;
+
+	stage = 2;
+	}
+
+
+
+	private void initiateStage3(){	
+
+		//moving the gizmos	 - they move themselves
+		//they set themselves so just need to wait
+	
+		//or reset if they dies in set up by not chooseing a team show rest
+	if(Time.timeSinceLevelLoad> stage2EndTime){
+			foreach(arrowTeamSelector teamSelector in arrowTeamSelectGizmos){teamSelector.gameObject.SetActive(false);}
+			foreach(MXSBCtagSloppy maxSetter in maxSetRivalss){maxSetter.gameObject.SetActive(true);}
+		stage=3; 
+		}
+		}
 }

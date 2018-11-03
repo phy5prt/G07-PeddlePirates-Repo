@@ -22,7 +22,7 @@ private Text textTimer;
 [SerializeField] float currentTimerTime;
 [SerializeField] float startTime;
 private Image arrowImage;
-[SerializeField] int numberPositionMovesLeft = 6; //there and back //only runs once so can alter directly
+private int numberPositionMovesRemaining = 6; //there and back //only runs once so can alter directly
 
 
 
@@ -30,8 +30,8 @@ private Image arrowImage;
 
 
 
-[SerializeField] float arrowChoosingTime = 5;
-[SerializeField] bool runArrowTimer;
+private float arrowJumpChoiceTime = 5;
+private bool runArrowTimer;
 private Vector3 startScaleArrow;
 
 [SerializeField] GameObject[] gizmoSittingPositions; //should code this better
@@ -59,6 +59,13 @@ private Vector3 startScaleArrow;
 			
 	}
 
+	public void runThisArrowTimer(int numberOfJumps, float countDownPerJump){
+
+	numberPositionMovesRemaining = numberOfJumps;
+	arrowJumpChoiceTime = countDownPerJump;
+	runArrowTimer = true;
+	}
+
 
 
 
@@ -66,8 +73,8 @@ private Vector3 startScaleArrow;
 
 	public void startArrowTimer(){
 		totVoltThisPeriodRight = 0;
-		startTime = Time.time;
-		endTime = startTime+arrowChoosingTime;
+		startTime = Time.timeSinceLevelLoad;
+		endTime = startTime+arrowJumpChoiceTime;
 	runArrowTimer = true;
 
 
@@ -84,9 +91,9 @@ private Vector3 startScaleArrow;
 
 		if(Time.time>endTime){
 			runArrowTimer=false;
-			numberPositionMovesLeft--;
+			numberPositionMovesRemaining--;
 			moveTeamSelectGizmo();
-			if(numberPositionMovesLeft>0){startArrowTimer();}	else{}} //set team // if dont move set bool inactive for their ship
+			if(numberPositionMovesRemaining>0){startArrowTimer();}	else{}} //set team // if dont move set bool inactive for their ship
 
 	}
 
