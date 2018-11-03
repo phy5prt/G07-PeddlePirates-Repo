@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetVolt: {fileID: 0}
+  GetVolt: {fileID: 696185420}
   voltCurrent: 0
   voltPerc: 0
   voltMax: 100
@@ -1284,7 +1284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetVolt: {fileID: 0}
+  GetVolt: {fileID: 696185420}
   voltCurrent: 0
   voltPerc: 0
   voltMax: 100
@@ -1966,7 +1966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetVolt: {fileID: 0}
+  GetVolt: {fileID: 696185420}
   voltCurrent: 0
   voltPerc: 0
   voltMax: 100
@@ -2176,7 +2176,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &313333861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2718,7 +2718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &386100073
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3773,7 +3773,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &561085186
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5479,8 +5479,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 813971323}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -599.86, z: -0.008095223}
+  m_LocalRotation: {x: 0.779198, y: -0.002820528, z: -0.0035065005, w: -0.62676173}
+  m_LocalPosition: {x: 0.22279951, y: -2176.3264, z: 0.386036}
   m_LocalScale: {x: 0.002084202, y: 0.0023809534, z: 1}
   m_Children: []
   m_Father: {fileID: 679825837}
@@ -5628,7 +5628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &892341970
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6205,7 +6205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1038827646
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7911,8 +7911,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipPlayerSettingsAr: []
-  redLeftVolt: 1
-  redRightVolt: 1
+  redLeftVolt: 10
+  redRightVolt: 10
   yelLeftVolt: 0
   yelRightVolt: 0
   greLeftVolt: 0
@@ -11620,7 +11620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetVolt: {fileID: 0}
+  GetVolt: {fileID: 696185420}
   voltCurrent: 0
   voltPerc: 0
   voltMax: 100

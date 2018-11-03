@@ -9,6 +9,7 @@ using UnityEngine.UI;
 //no idea why but this is the case
 //actually works when all triggered may be due to sharing value!? maybe
 
+//something is wrong with the code doesnt always make the jump
 
 public class arrowTeamSelector : MonoBehaviour {
 
@@ -93,8 +94,9 @@ private Vector3 startScaleArrow;
 			runArrowTimer=false;
 			numberPositionMovesRemaining--;
 			moveTeamSelectGizmo();
-			if(numberPositionMovesRemaining>0){startArrowTimer();}	else{}} //set team // if dont move set bool inactive for their ship
+			if(numberPositionMovesRemaining>=0){startArrowTimer();}	else{}} //set team //if enabled but didnt chose a team put up team name and colour didnt get to warf in time and unenable them
 
+			// team names "The ARRR ARRRMAARRRRDAAAARRR", "The fleet Fleet" "The Cod Sqod" "The fancy flottila " or " th''ard t' sa' arg's'y"
 	}
 
 

@@ -13,6 +13,8 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	private string shipPairColor;
 	private float volt100Perc = 100f;
 	private string shipPairName = "no name yet";
+	private int teamNumber;
+	private string teamName;
 
 
 	/// 
@@ -75,4 +77,21 @@ public class thisPlayerPairSettings : MonoBehaviour {
 		myRightVolt =  myRVolt;
 	}
 
+
+
+
+
+	public int GetTeamNumber(){
+		return teamNumber;
+	}
+	public void SetTeamNumber(float thisTeamNumber){
+	teamNumber = thisTeamNumber;
+	}
+
+	public string GetTeamName(){
+		return teamName;
+	}
+	public void SetTeamName(float thisTeamName){
+	teamName = thisTeamName;
+	}
 }
