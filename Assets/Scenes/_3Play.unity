@@ -904,7 +904,6 @@ GameObject:
   m_Component:
   - component: {fileID: 89818065}
   - component: {fileID: 89818069}
-  - component: {fileID: 89818068}
   - component: {fileID: 89818067}
   - component: {fileID: 89818066}
   m_Layer: 0
@@ -979,32 +978,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d56f8ee5c7d7b4d89b00342420c3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myRunTime: 20
   GetVoltL: {fileID: 0}
   GetVoltR: {fileID: 0}
-  voltCurrentL: 0
-  voltCurrentR: 0
-  pairVoltCurrent: 20
   voltPerc: 1
-  voltMax: 100
-  proportion200Bar: 0
-  CurrentHighestVolt: {fileID: 1687820325}
-  CurrentVoltOutput: {fileID: 115235901}
---- !u!114 &89818068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114998530516984460, guid: 92cb3aa1caa505143a2f61067155cfbc,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 89818064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GetVolt: {fileID: 696185420}
-  voltCurrent: 0
-  voltPerc: 0
   voltMax: 100
   proportion200Bar: 0
   CurrentHighestVolt: {fileID: 1687820325}
@@ -1186,7 +1162,6 @@ GameObject:
   m_Component:
   - component: {fileID: 110268884}
   - component: {fileID: 110268888}
-  - component: {fileID: 110268887}
   - component: {fileID: 110268886}
   - component: {fileID: 110268885}
   m_Layer: 0
@@ -1261,32 +1236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d56f8ee5c7d7b4d89b00342420c3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myRunTime: 20
   GetVoltL: {fileID: 696185420}
   GetVoltR: {fileID: 696185420}
-  voltCurrentL: 0
-  voltCurrentR: 0
-  pairVoltCurrent: 20
   voltPerc: 1
-  voltMax: 100
-  proportion200Bar: 0
-  CurrentHighestVolt: {fileID: 806934847}
-  CurrentVoltOutput: {fileID: 811210501}
---- !u!114 &110268887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114833086145461592, guid: 92cb3aa1caa505143a2f61067155cfbc,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 110268883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GetVolt: {fileID: 696185420}
-  voltCurrent: 0
-  voltPerc: 0
   voltMax: 100
   proportion200Bar: 0
   CurrentHighestVolt: {fileID: 806934847}
@@ -1868,7 +1820,6 @@ GameObject:
   m_Component:
   - component: {fileID: 253421287}
   - component: {fileID: 253421291}
-  - component: {fileID: 253421290}
   - component: {fileID: 253421289}
   - component: {fileID: 253421288}
   m_Layer: 0
@@ -1943,32 +1894,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d56f8ee5c7d7b4d89b00342420c3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myRunTime: 20
-  GetVoltL: {fileID: 0}
-  GetVoltR: {fileID: 0}
-  voltCurrentL: 0
-  voltCurrentR: 0
-  pairVoltCurrent: 20
+  GetVoltL: {fileID: 696185420}
+  GetVoltR: {fileID: 696185420}
   voltPerc: 1
-  voltMax: 100
-  proportion200Bar: 0
-  CurrentHighestVolt: {fileID: 1944078600}
-  CurrentVoltOutput: {fileID: 857977956}
---- !u!114 &253421290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114952291866795128, guid: 92cb3aa1caa505143a2f61067155cfbc,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 253421286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GetVolt: {fileID: 696185420}
-  voltCurrent: 0
-  voltPerc: 0
   voltMax: 100
   proportion200Bar: 0
   CurrentHighestVolt: {fileID: 1944078600}
@@ -2176,7 +2104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &313333861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3773,7 +3701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &561085186
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4082,6 +4010,7 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   voltMax: 100
+  percBar: {fileID: 0}
   proportion200Bar: 0
   CurrentHighestVolt: {fileID: 422878827}
   CurrentVoltOutput: {fileID: 748087963}
@@ -5042,6 +4971,7 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   voltMax: 100
+  percBar: {fileID: 0}
   proportion200Bar: 0
   CurrentHighestVolt: {fileID: 251788525}
   CurrentVoltOutput: {fileID: 3539041}
@@ -5628,7 +5558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &892341970
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6205,7 +6135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1038827646
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6698,6 +6628,7 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   voltMax: 100
+  percBar: {fileID: 0}
   proportion200Bar: 0
   CurrentHighestVolt: {fileID: 357693515}
   CurrentVoltOutput: {fileID: 557758287}
@@ -8984,6 +8915,7 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   voltMax: 100
+  percBar: {fileID: 0}
   proportion200Bar: 0
   CurrentHighestVolt: {fileID: 376170508}
   CurrentVoltOutput: {fileID: 2007496421}
@@ -9497,6 +9429,7 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   voltMax: 100
+  percBar: {fileID: 0}
   proportion200Bar: 0
   CurrentHighestVolt: {fileID: 212004957}
   CurrentVoltOutput: {fileID: 26598759}
@@ -9925,6 +9858,7 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   voltMax: 100
+  percBar: {fileID: 0}
   proportion200Bar: 0
   CurrentHighestVolt: {fileID: 1006944255}
   CurrentVoltOutput: {fileID: 1297970987}
@@ -10283,6 +10217,7 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   voltMax: 100
+  percBar: {fileID: 0}
   proportion200Bar: 0
   CurrentHighestVolt: {fileID: 1288886888}
   CurrentVoltOutput: {fileID: 1628790494}
@@ -10796,6 +10731,7 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   voltMax: 100
+  percBar: {fileID: 0}
   proportion200Bar: 0
   CurrentHighestVolt: {fileID: 1285730389}
   CurrentVoltOutput: {fileID: 573039731}
@@ -11522,7 +11458,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2026576183}
   - component: {fileID: 2026576187}
-  - component: {fileID: 2026576186}
   - component: {fileID: 2026576185}
   - component: {fileID: 2026576184}
   m_Layer: 0
@@ -11597,32 +11532,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d56f8ee5c7d7b4d89b00342420c3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myRunTime: 20
-  GetVoltL: {fileID: 0}
-  GetVoltR: {fileID: 0}
-  voltCurrentL: 0
-  voltCurrentR: 0
-  pairVoltCurrent: 20
+  GetVoltL: {fileID: 696185420}
+  GetVoltR: {fileID: 696185420}
   voltPerc: 1
-  voltMax: 100
-  proportion200Bar: 0
-  CurrentHighestVolt: {fileID: 1956603112}
-  CurrentVoltOutput: {fileID: 2121518585}
---- !u!114 &2026576186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114113943608076880, guid: 92cb3aa1caa505143a2f61067155cfbc,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2026576182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GetVolt: {fileID: 696185420}
-  voltCurrent: 0
-  voltPerc: 0
   voltMax: 100
   proportion200Bar: 0
   CurrentHighestVolt: {fileID: 1956603112}

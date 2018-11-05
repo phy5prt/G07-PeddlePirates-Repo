@@ -86,7 +86,7 @@ private Vector3 startScaleArrow;
 
 	setArrowScaleColor ();
 		
-		currentTimerTime = endTime - Time.time;
+		currentTimerTime = endTime - Time.timeSinceLevelLoad;
 
 		if(currentTimerTime<0){textTimer.text = "";}else{textTimer.text = (currentTimerTime).ToString("0.0");}
 
