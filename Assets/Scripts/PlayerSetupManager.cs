@@ -41,7 +41,7 @@ public static thisPlayerPairSettings redPShip;
 public static thisPlayerPairSettings yelPShip;
 public static thisPlayerPairSettings grePShip;
 public static thisPlayerPairSettings bluPShip;
-
+private bool[] someoneIsAlreadyGoingToSetMyMax = {false,false,false,false};
 
 
 //should these be statics as want anything to be able to call them?
@@ -79,8 +79,9 @@ private Quaternion startRotationPosMatch;
 private GameObject	stageCountDownImageGO;
 private GameObject	chooseTeamStageGO;
 private GameObject setCrewsAndShrinkLeft;
-private MXSBCtagSloppy[] maxSetRivalss;
+private MXSBCtagSloppy[] maxSetRivalssGOTagSC;
 private arrowTeamSelector[] arrowTeamSelectGizmos;
+private pairSetRivalMaxBar[] pairSetRivalMaxes;
 
 [SerializeField] float stage1Time = 10f;
 private float stage1EndTime = 1000f;
@@ -118,10 +119,12 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 	foreach(thisPairWantsAship gizmo in currentlySelectedsGOs){gizmo.gameObject.SetActive(false);}
 
 
-		maxSetRivalss = GetComponentsInChildren<MXSBCtagSloppy>();
-		foreach(MXSBCtagSloppy maxSetter in maxSetRivalss){maxSetter.gameObject.SetActive(false);}
+		maxSetRivalssGOTagSC = GetComponentsInChildren<MXSBCtagSloppy>();
+		foreach(MXSBCtagSloppy maxSetter in maxSetRivalssGOTagSC){maxSetter.gameObject.SetActive(false);}
 		arrowTeamSelectGizmos = GetComponentsInChildren<arrowTeamSelector>();
 		foreach(arrowTeamSelector teamSelector in arrowTeamSelectGizmos){teamSelector.gameObject.SetActive(false);}
+
+		pairSetRivalMaxes =  GetComponentsInChildren<pairSetRivalMaxBar>();
 
 	settingUpPlayerSettingAr ();
 
@@ -276,13 +279,61 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 	private void initiateStage3(){	
 
+
+			//i could send the method an index or which player prefs to use
+
 		//moving the gizmos	 - they move themselves
 		//they set themselves so just need to wait
 	
 		//or reset if they dies in set up by not chooseing a team show rest
 	if(Time.timeSinceLevelLoad> stage2EndTime){
 			foreach(arrowTeamSelector teamSelector in arrowTeamSelectGizmos){teamSelector.gameObject.SetActive(false);}
-			foreach(MXSBCtagSloppy maxSetter in maxSetRivalss){maxSetter.gameObject.SetActive(true);}
+			foreach(MXSBCtagSloppy maxSetter in maxSetRivalssGOTagSC){maxSetter.gameObject.SetActive(true);}
+
+			//this loop prioritizes setting for an enemy then for yourself then if you must for an ally, however would be better if when you set who you will be assigning the max to then
+			//it assigns them back to you, so more likely that you would end up being assigned yourself if run out of enemies
+			//also if more allies than enemies would be nice if instead of setting for an ally which you will be tempted to let off lightly but instead you joint contributed to an enemy
+			//this system would have you just peddle to set everyone elses maxes except your own and if you are the only player then you set your own
+
+			//this all risk infinite loop if we dont hit the breaks 
+
+			for(int i=0; i<4; i++ ){someoneIsAlreadyGoingToSetMyMax[i]= shipPlayerSettingsAr[i].getWerePlaying();}
+
+			for(int i = 0; i<4; i++){
+			if(pairSetRivalMaxes[i].gameObject.activeInHierarchy != false){
+
+			int checkArrayAt=0;
+			int numberChecked = 0;
+
+					for(int j = i; j< 4; j++){
+						numberChecked ++;
+						if(numberChecked <6){
+
+													if(j+1>= 4){checkArrayAt = 0; j = 0;}else{checkArrayAt = j+1;}    //should plus one so not do zero twice
+
+
+													if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==j){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[i]);		someoneIsAlreadyGoingToSetMyMax[i] = true; break;}		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
+														else if(someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false &&  																												//thearray has already excluded non players
+																shipPlayerSettingsAr[checkArrayAt].GetTeamNumber()!=shipPlayerSettingsAr[i].GetTeamNumber())																			//make sure on opposing team
+
+																{pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; break;		}						//assign rival
+																													
+															
+
+						}else{if(j+1>= 4){checkArrayAt = 0; j = 0;}else{checkArrayAt = j+1;}    //should plus one so not do zero twice
+
+
+						if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; break;}		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
+														
+			}
+			} 
+
+			}
+
+		
+			  
+
+
 		stage=3; 
 		}
 		}
