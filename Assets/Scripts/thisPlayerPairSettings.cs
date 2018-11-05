@@ -84,14 +84,14 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	public int GetTeamNumber(){
 		return teamNumber;
 	}
-	public void SetTeamNumber(float thisTeamNumber){
+	public void SetTeamNumber(int thisTeamNumber){
 	teamNumber = thisTeamNumber;
 	}
 
 	public string GetTeamName(){
 		return teamName;
 	}
-	public void SetTeamName(float thisTeamName){
+	public void SetTeamName(string thisTeamName){
 	teamName = thisTeamName;
 	}
 }

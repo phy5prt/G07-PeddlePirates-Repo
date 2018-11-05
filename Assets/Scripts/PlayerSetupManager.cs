@@ -305,7 +305,14 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 			int checkArrayAt=0;
 			int numberChecked = 0;
 
+					// to avoid dirty infinite looping maybe checkArray at should = i+j+1 and if that is > 4 the checkedArray = i+j+1 -4, 
+					//and if j = 4 if j and have an if j4-8 you run the same loop and select an ally if get to 8 and found nothing it will just run ahead but do a debug.
+
+
 					for(int j = i; j< 4; j++){
+
+				
+
 						numberChecked ++;
 						if(numberChecked <6){
 
@@ -321,9 +328,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 															
 
 						}else{if(j+1>= 4){checkArrayAt = 0; j = 0;}else{checkArrayAt = j+1;}    //should plus one so not do zero twice
-
-
-						if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; break;}		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
+											if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; break;}		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
 														
 			}
 			} 
@@ -335,6 +340,6 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 
 		stage=3; 
-		}
+		}}
 		}
 }
