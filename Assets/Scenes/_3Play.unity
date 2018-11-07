@@ -4006,14 +4006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetVolt: {fileID: 696185420}
-  voltCurrent: 0
-  voltPerc: 0
-  voltMax: 100
-  percBar: {fileID: 0}
-  proportion200Bar: 0
-  CurrentHighestVolt: {fileID: 422878827}
-  CurrentVoltOutput: {fileID: 748087963}
 --- !u!222 &644612312
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4247,12 +4239,12 @@ Terrain:
   m_Enabled: 1
   serializedVersion: 3
   m_TerrainData: {fileID: 15600000, guid: a51cae823669b324f9a381c1b44b5b9e, type: 2}
-  m_TreeDistance: 2000
-  m_TreeBillboardDistance: 50
-  m_TreeCrossFadeLength: 5
+  m_TreeDistance: 617
+  m_TreeBillboardDistance: 5
+  m_TreeCrossFadeLength: 0
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
-  m_DetailObjectDensity: 1
+  m_DetailObjectDistance: 250
+  m_DetailObjectDensity: 0.05
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
@@ -4967,14 +4959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetVolt: {fileID: 696185420}
-  voltCurrent: 0
-  voltPerc: 0
-  voltMax: 100
-  percBar: {fileID: 0}
-  proportion200Bar: 0
-  CurrentHighestVolt: {fileID: 251788525}
-  CurrentVoltOutput: {fileID: 3539041}
 --- !u!222 &790845080
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5535,7 +5519,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1408045223435170, guid: 4f41c9f1eec0a8247a486eb7c703a71d, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f41c9f1eec0a8247a486eb7c703a71d, type: 2}
@@ -5662,7 +5646,7 @@ MonoBehaviour:
   enemiesShipSettings: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   enemyShipToSpawn: {fileID: 1452595409263392, guid: 1ae21c97bc736124e981aa9ed85e1c03,
     type: 2}
-  teamPairShipSettings: 00000000
+  teamPairShipSettings: 
   playerShipToSpawn: {fileID: 1931563330244622, guid: 645816732edf72d4fa742d47458ad14b,
     type: 2}
 --- !u!4 &950664865
@@ -5848,8 +5832,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 983045370}
-  m_LocalRotation: {x: 0.20714283, y: 0.7038743, z: 0.2276912, w: -0.6401638}
-  m_LocalPosition: {x: 645.5083, y: -274.20807, z: 235.14265}
+  m_LocalRotation: {x: 0.3986899, y: 0.49322638, z: 0.27158943, w: -0.7238876}
+  m_LocalPosition: {x: 480.86328, y: -476.85757, z: 339.72406}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 691248108}
@@ -6624,14 +6608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetVolt: {fileID: 696185420}
-  voltCurrent: 0
-  voltPerc: 0
-  voltMax: 100
-  percBar: {fileID: 0}
-  proportion200Bar: 0
-  CurrentHighestVolt: {fileID: 357693515}
-  CurrentVoltOutput: {fileID: 557758287}
 --- !u!222 &1145351476
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7708,7 +7684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1333557673
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8911,14 +8887,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetVolt: {fileID: 696185420}
-  voltCurrent: 0
-  voltPerc: 0
-  voltMax: 100
-  percBar: {fileID: 0}
-  proportion200Bar: 0
-  CurrentHighestVolt: {fileID: 376170508}
-  CurrentVoltOutput: {fileID: 2007496421}
 --- !u!222 &1542987973
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9425,14 +9393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetVolt: {fileID: 696185420}
-  voltCurrent: 0
-  voltPerc: 0
-  voltMax: 100
-  percBar: {fileID: 0}
-  proportion200Bar: 0
-  CurrentHighestVolt: {fileID: 212004957}
-  CurrentVoltOutput: {fileID: 26598759}
 --- !u!222 &1618584174
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9854,14 +9814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetVolt: {fileID: 696185420}
-  voltCurrent: 0
-  voltPerc: 0
-  voltMax: 100
-  percBar: {fileID: 0}
-  proportion200Bar: 0
-  CurrentHighestVolt: {fileID: 1006944255}
-  CurrentVoltOutput: {fileID: 1297970987}
 --- !u!222 &1685144401
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10213,14 +10165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetVolt: {fileID: 696185420}
-  voltCurrent: 0
-  voltPerc: 0
-  voltMax: 100
-  percBar: {fileID: 0}
-  proportion200Bar: 0
-  CurrentHighestVolt: {fileID: 1288886888}
-  CurrentVoltOutput: {fileID: 1628790494}
 --- !u!222 &1740638941
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10334,7 +10278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1752537949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10355,7 +10299,7 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 1931563330244622, guid: 645816732edf72d4fa742d47458ad14b,
+  m_PlayerPrefab: {fileID: 1787419668699666, guid: 0579e306aa52c41498b1a88d0a6fe355,
     type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 1
@@ -10727,14 +10671,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ce307f9c1455c4eb1cb97385c648ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetVolt: {fileID: 696185420}
-  voltCurrent: 0
-  voltPerc: 0
-  voltMax: 100
-  percBar: {fileID: 0}
-  proportion200Bar: 0
-  CurrentHighestVolt: {fileID: 1285730389}
-  CurrentVoltOutput: {fileID: 573039731}
 --- !u!222 &1841052145
 CanvasRenderer:
   m_ObjectHideFlags: 0
