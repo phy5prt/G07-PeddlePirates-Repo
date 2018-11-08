@@ -124,7 +124,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 		arrowTeamSelectGizmos = GetComponentsInChildren<arrowTeamSelector>();
 		foreach(arrowTeamSelector teamSelector in arrowTeamSelectGizmos){teamSelector.gameObject.SetActive(false);}
 
-		pairSetRivalMaxes =  GetComponentsInChildren<pairSetRivalMaxBar>();
+		pairSetRivalMaxes =  gameObject.GetComponentsInChildren<pairSetRivalMaxBar>(true);
 
 	settingUpPlayerSettingAr ();
 
@@ -297,9 +297,11 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 			//this all risk infinite loop if we dont hit the breaks 
 
-			for(int i=0; i<4; i++ ){someoneIsAlreadyGoingToSetMyMax[i]= shipPlayerSettingsAr[i].getWerePlaying();}
+			for(int i=0; i<4; i++ ){someoneIsAlreadyGoingToSetMyMax[i]= !shipPlayerSettingsAr[i].getWerePlaying();}
 
+		
 			for(int i = 0; i<4; i++){
+	
 			if(pairSetRivalMaxes[i].gameObject.activeInHierarchy != false){
 
 			int checkArrayAt=0;
@@ -310,7 +312,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 
 					for(int j = i; j< 4; j++){
-
+					Debug.Log("start loop j check " + j);
 				
 
 						numberChecked ++;
@@ -318,17 +320,17 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 													if(j+1>= 4){checkArrayAt = 0; j = 0;}else{checkArrayAt = j+1;}    //should plus one so not do zero twice
 
-
-													if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==j){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[i]);		someoneIsAlreadyGoingToSetMyMax[i] = true; break;}		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
+													Debug.Log("check array at "  +checkArrayAt);
+							if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==j){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[i]);		someoneIsAlreadyGoingToSetMyMax[i] = true; Debug.Log("setting as myself"); break; }		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
 														else if(someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false &&  																												//thearray has already excluded non players
 																shipPlayerSettingsAr[checkArrayAt].GetTeamNumber()!=shipPlayerSettingsAr[i].GetTeamNumber())																			//make sure on opposing team
 
-																{pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; break;		}						//assign rival
+							{pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; Debug.Log("setting as enemy"); break;		}						//assign rival
 																													
 															
 
 						}else{if(j+1>= 4){checkArrayAt = 0; j = 0;}else{checkArrayAt = j+1;}    //should plus one so not do zero twice
-											if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; break;}		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
+						if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; Debug.Log("setting as my team mate"); break;}		//set my rival as my team mate// only works if i have put them in the array in same  order found the gizmos
 														
 			}
 			} 

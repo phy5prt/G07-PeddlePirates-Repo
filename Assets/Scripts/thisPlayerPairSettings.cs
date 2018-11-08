@@ -9,7 +9,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 
 	// Use this for initialization
 
-	private bool werePlaying = false;
+	private bool werePlaying = true; //will need to be false in future
 	private string shipPairColor;
 	private float volt100Perc = 100f;
 	private string shipPairName = "no name yet";
@@ -40,12 +40,14 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	return werePlaying;
 	}
 	public void setWerePlaying(bool YN){
+	Debug.Log(shipPairColor + "set were playing as " + YN);
 	werePlaying = YN;
 	}
 	public string getShipPairColor(){
 	return shipPairColor;
 	}
 	public void setShipPairColor(string shipPTColor){
+	Debug.Log(shipPairColor + " is now our color ");
 	shipPairColor = shipPTColor;
 	}
 
@@ -53,6 +55,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	return volt100Perc;
 	}
 	public void SetVolt100Perc(float MPercVolt){
+	Debug.Log(shipPairColor + " our volt maz is " + volt100Perc);
 	volt100Perc = MPercVolt;
 	}
 
@@ -60,6 +63,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 		return shipPairName;
 	}
 	public void SetShipPairName(string shipName){
+	Debug.Log(shipPairColor + " our name is now " + shipName);
 	shipPairName = shipName;
 	}
 

@@ -38,11 +38,13 @@ private Vector3 startScaleArrow;
 [SerializeField] GameObject[] gizmoSittingPositions; //should code this better
 [SerializeField] GameObject gizmoRT;
 
+private PlayerSetupManager PSM; //replace this with the direct addresses to statics of the input comms later
+private int selectedTeamNumber;
 	// Use this for initialization
 	void Start () {
 
 
-
+	PSM = GameObject.Find("PlayerStartSetUp").GetComponent<PlayerSetupManager>();
 
 	arrowImage = GetComponentInChildren<Image>();
 	arrowImage.color = Color.red;//should get first
@@ -94,7 +96,7 @@ private Vector3 startScaleArrow;
 			runArrowTimer=false;
 			numberPositionMovesRemaining--;
 			moveTeamSelectGizmo();
-			if(numberPositionMovesRemaining>=0){startArrowTimer();}	else{}} //set team //if enabled but didnt chose a team put up team name and colour didnt get to warf in time and unenable them
+			if(numberPositionMovesRemaining>=0){startArrowTimer();}	else{setTeam();}} //set team //if enabled but didnt chose a team put up team name and colour didnt get to warf in time and unenable them
 
 			// team names "The ARRR ARRRMAARRRRDAAAARRR", "The fleet Fleet" "The Cod Sqod" "The fancy flottila " or " th''ard t' sa' arg's'y"
 	}
@@ -122,7 +124,7 @@ private Vector3 startScaleArrow;
 	//code looks a bit funny because x actually decrease left to right in the hierachy object dont know why
 
 
-	Debug.Log("run move teams select gizmo");
+//	Debug.Log("run move teams select gizmo");
 
 		if (totVoltThisPeriodRight < -totVoltTriggerMove) {
 
@@ -155,8 +157,14 @@ private Vector3 startScaleArrow;
 		}
 
 
+		}
+		private void setTeam(){
+		for(int i =0; i<4;i++){if(gizmoRT.transform.position.x == gizmoSittingPositions[i].transform.position.x){selectedTeamNumber = i+1; break;}}
+		foreach(thisPlayerPairSettings thisPlayerPSettings in PSM.shipPlayerSettingsAr){if(thisPlayerPSettings.getShipPairColor() == tag ){thisPlayerPSettings.SetTeamNumber(selectedTeamNumber);}}
+		Debug.Log(tag + " tried to set their thisPlayerSetting team to " + selectedTeamNumber);
+		}
 	}
-}
+
 
 
 
