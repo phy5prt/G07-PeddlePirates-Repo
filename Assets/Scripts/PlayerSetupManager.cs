@@ -23,6 +23,8 @@ using UnityEngine.UI;
 //maybe every satge should be a coroutine rather than a method.
 //try this at refactor stage i currently want minimal product
 
+//later need a screen that summarizes teams, players and the maxes, and gives chance to get out - use the slide out menu holding high scores
+// so can see setting mirrored
 
 public class PlayerSetupManager : MonoBehaviour {
 
@@ -88,6 +90,9 @@ private float stage1EndTime = 1000f;
 
 [SerializeField] float stage2Time = 10f;
 private float stage2EndTime = 1000f;
+
+[SerializeField] float  stage3Time = 10f;
+private float stage3EndTime = 1000f;
 
 
 [SerializeField] float stage2ShrinkTime = 0.7f;
@@ -158,7 +163,8 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 	if (stage == 2){initiateStage3();
 
 
-	}
+	}else
+	if(stage==3 && Time.timeSinceLevelLoad> stage3EndTime){setupCompleteStartGame();};
 
 
 			
@@ -289,6 +295,12 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 	
 		//or reset if they dies in set up by not chooseing a team show rest
 	if(Time.timeSinceLevelLoad> stage2EndTime){
+
+			stageCountDownImageGO.SetActive(true);
+			stageCountDownImageGO.GetComponent<redCountDownTimer>().startStageTimer(stage3Time);
+			stage3EndTime = Time.timeSinceLevelLoad + stage3Time;
+
+
 			foreach(arrowTeamSelector teamSelector in arrowTeamSelectGizmos){teamSelector.gameObject.SetActive(false);}
 			foreach(MXSBCtagSloppy maxSetter in maxSetRivalssGOTagSC){maxSetter.gameObject.SetActive(true);}
 
@@ -314,7 +326,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 
 					for(int j = i; j< 4; j++){ //changed j to -1 because it added as it circles
-						Debug.Log(gameObject.tag + " start loop j " + j);
+					//	Debug.Log(gameObject.tag + " start loop j " + j);
 				
 
 						numberChecked ++;
@@ -324,20 +336,20 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 
 													//this code never actually triggers the else if sets it to itself first dont know why it doesnt work. 
-													Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);
-							if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==checkArrayAt){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; Debug.Log(gameObject.tag + " setting as myself"); break; }		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
+					//								Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);
+							if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==checkArrayAt){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as myself");*/ break; }		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
 
 
 														else if(someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false &&  																												//thearray has already excluded non players
 																shipPlayerSettingsAr[checkArrayAt].GetTeamNumber()!=shipPlayerSettingsAr[i].GetTeamNumber())																			//make sure on opposing team
 
-							{pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; Debug.Log(gameObject.tag + " setting as enemy"); break;		}						//assign rival
+							{pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as enemy");*/ break;		}						//assign rival
 																													
 															
 
 						}else if (numberChecked <8){if(j+1>= 4){checkArrayAt = 0; j = -1;}else{checkArrayAt = j+1;} 
-						Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);   //should plus one so not do zero twice
-						if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; Debug.Log(gameObject.tag + " setting as my team mate"); break;}		//set my rival as my team mate// only works if i have put them in the array in same  order found the gizmos
+					//	Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);   //should plus one so not do zero twice
+						if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as my team mate");*/ break;}		//set my rival as my team mate// only works if i have put them in the array in same  order found the gizmos
 														
 						}else{Debug.Log(gameObject.tag + " not been given a rival or self or team mate so returning" + " availablilty aray reads " +someoneIsAlreadyGoingToSetMyMax[0]+someoneIsAlreadyGoingToSetMyMax[1]+someoneIsAlreadyGoingToSetMyMax[2]+someoneIsAlreadyGoingToSetMyMax[3]); return;} // ha ha this is where my error occurs
 			} 
@@ -350,5 +362,12 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 		stage=3; 
 		}}
+		}
+
+		private void setupCompleteStartGame(){
+
+
+		//probably just run GameManager from here as all info should be in statics, then turn off the setup
+
 		}
 }
