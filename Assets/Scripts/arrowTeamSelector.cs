@@ -165,7 +165,7 @@ private int selectedTeamNumber;
 		for(int i =0; i<4;i++){
 		//works if it connects which doesnt seem to do for first position
 		//will try rounding	
-			if(Mathf.Round(gizmoRT.transform.position.x) == Mathf.Round(gizmoSittingPositions[i].transform.position.x)){selectedTeamNumber = i+1; Debug.Log(" set my team number selection "); break;}}
+			if(Mathf.Round(gizmoRT.transform.position.x) == Mathf.Round(gizmoSittingPositions[i].transform.position.x)){selectedTeamNumber = i+1;  break;}}
 
 		foreach(thisPlayerPairSettings thisPlayerPSettings in PSM.shipPlayerSettingsAr){if(thisPlayerPSettings.getShipPairColor() == tag ){thisPlayerPSettings.SetTeamNumber(selectedTeamNumber);}}
 

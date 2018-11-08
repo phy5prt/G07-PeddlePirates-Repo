@@ -4,7 +4,7 @@ using UnityEngine;
 
 //should this be a public static class?
 // no but the four instances of it should be!
-
+//where i set the team number i need to set the team name (not ship name team name)
 public class thisPlayerPairSettings : MonoBehaviour {
 
 	// Use this for initialization
@@ -90,12 +90,17 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	}
 	public void SetTeamNumber(int thisTeamNumber){
 	teamNumber = thisTeamNumber;
+	Debug.Log(shipPairColor + " our team number is now " + teamNumber);
+	
 	}
 
 	public string GetTeamName(){
 		return teamName;
 	}
 	public void SetTeamName(string thisTeamName){
+
+		
+
 	teamName = thisTeamName;
 	}
 }
