@@ -47,15 +47,15 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	return shipPairColor;
 	}
 	public void setShipPairColor(string shipPTColor){
-	Debug.Log(shipPairColor + " is now our color ");
 	shipPairColor = shipPTColor;
+	Debug.Log(shipPairColor + " is now our color ");
 	}
 
 	public float GetVolt100Perc(){
 	return volt100Perc;
 	}
 	public void SetVolt100Perc(float MPercVolt){
-	Debug.Log(shipPairColor + " our volt maz is " + volt100Perc);
+	Debug.Log(shipPairColor + " our volt max is " + volt100Perc);
 	volt100Perc = MPercVolt;
 	}
 

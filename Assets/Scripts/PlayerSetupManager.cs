@@ -172,11 +172,13 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 	void settingUpPlayerSettingAr ()
 	{
+	/* */ //code seems to need this block but not sure why as can use the dot to find what looking for
 		redPShip = new thisPlayerPairSettings {};
 		yelPShip = new thisPlayerPairSettings {};
 		grePShip = new thisPlayerPairSettings {};
 		bluPShip = new thisPlayerPairSettings {};
 
+	
 		redPShip.SetShipPairName(" MondleBrot's Wives ");
 		yelPShip.SetShipPairName(" Brownian's Movement ");
 		grePShip.SetShipPairName(" Marie's Glow ");
@@ -321,7 +323,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 													if(j+1>= 4){checkArrayAt = 0; j = 0;}else{checkArrayAt = j+1;}    //should plus one so not do zero twice
 
 													Debug.Log("check array at "  +checkArrayAt);
-							if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==j){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[i]);		someoneIsAlreadyGoingToSetMyMax[i] = true; Debug.Log("setting as myself"); break; }		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
+							if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==checkArrayAt){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[i]);		someoneIsAlreadyGoingToSetMyMax[i] = true; Debug.Log("setting as myself"); break; }		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
 														else if(someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false &&  																												//thearray has already excluded non players
 																shipPlayerSettingsAr[checkArrayAt].GetTeamNumber()!=shipPlayerSettingsAr[i].GetTeamNumber())																			//make sure on opposing team
 

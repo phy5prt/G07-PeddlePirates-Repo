@@ -11,6 +11,9 @@ using UnityEngine.UI;
 
 //something is wrong with the code doesnt always make the jump
 
+//is it running off two timers so does it not move empty its resevoir of needs this much to jump then when resevoir tested not jump
+//write a list of what happens what order
+
 public class arrowTeamSelector : MonoBehaviour {
 
 [SerializeField] float totVoltTriggerMove = 100;
@@ -92,7 +95,7 @@ private int selectedTeamNumber;
 
 		if(currentTimerTime<0){textTimer.text = "";}else{textTimer.text = (currentTimerTime).ToString("0.0");}
 
-		if(Time.time>endTime){
+		if(Time.timeSinceLevelLoad>endTime){
 			runArrowTimer=false;
 			numberPositionMovesRemaining--;
 			moveTeamSelectGizmo();
@@ -159,9 +162,13 @@ private int selectedTeamNumber;
 
 		}
 		private void setTeam(){
-		for(int i =0; i<4;i++){if(gizmoRT.transform.position.x == gizmoSittingPositions[i].transform.position.x){selectedTeamNumber = i+1; break;}}
+		for(int i =0; i<4;i++){
+		//works if it connects which doesnt seem to do for first position
+		//will try rounding	
+			if(Mathf.Round(gizmoRT.transform.position.x) == Mathf.Round(gizmoSittingPositions[i].transform.position.x)){selectedTeamNumber = i+1; Debug.Log(" set my team number selection "); break;}}
+
 		foreach(thisPlayerPairSettings thisPlayerPSettings in PSM.shipPlayerSettingsAr){if(thisPlayerPSettings.getShipPairColor() == tag ){thisPlayerPSettings.SetTeamNumber(selectedTeamNumber);}}
-		Debug.Log(tag + " tried to set their thisPlayerSetting team to " + selectedTeamNumber);
+
 		}
 	}
 
