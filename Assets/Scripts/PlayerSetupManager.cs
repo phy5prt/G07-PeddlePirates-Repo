@@ -41,7 +41,7 @@ public static thisPlayerPairSettings redPShip;
 public static thisPlayerPairSettings yelPShip;
 public static thisPlayerPairSettings grePShip;
 public static thisPlayerPairSettings bluPShip;
-private bool[] someoneIsAlreadyGoingToSetMyMax = {false,false,false,false};
+private bool[] someoneIsAlreadyGoingToSetMyMax = {false,false,false,false}; // make it part of player settings
 
 
 //should these be statics as want anything to be able to call them?
@@ -313,28 +313,33 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 					//and if j = 4 if j and have an if j4-8 you run the same loop and select an ally if get to 8 and found nothing it will just run ahead but do a debug.
 
 
-					for(int j = i; j< 4; j++){
-					Debug.Log("start loop j check " + j);
+					for(int j = i; j< 4; j++){ //changed j to -1 because it added as it circles
+						Debug.Log(gameObject.tag + " start loop j " + j);
 				
 
 						numberChecked ++;
-						if(numberChecked <6){
+						if(numberChecked <4){
 
-													if(j+1>= 4){checkArrayAt = 0; j = 0;}else{checkArrayAt = j+1;}    //should plus one so not do zero twice
+													if(j+1>= 4){checkArrayAt = 0; j = -1;}else{checkArrayAt = j+1;}    //should plus one so not do zero twice
 
-													Debug.Log("check array at "  +checkArrayAt);
-							if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==checkArrayAt){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[i]);		someoneIsAlreadyGoingToSetMyMax[i] = true; Debug.Log("setting as myself"); break; }		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
+
+													//this code never actually triggers the else if sets it to itself first dont know why it doesnt work. 
+													Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);
+							if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==checkArrayAt){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; Debug.Log(gameObject.tag + " setting as myself"); break; }		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
+
+
 														else if(someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false &&  																												//thearray has already excluded non players
 																shipPlayerSettingsAr[checkArrayAt].GetTeamNumber()!=shipPlayerSettingsAr[i].GetTeamNumber())																			//make sure on opposing team
 
-							{pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; Debug.Log("setting as enemy"); break;		}						//assign rival
+							{pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; Debug.Log(gameObject.tag + " setting as enemy"); break;		}						//assign rival
 																													
 															
 
-						}else{if(j+1>= 4){checkArrayAt = 0; j = 0;}else{checkArrayAt = j+1;}    //should plus one so not do zero twice
-						if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; Debug.Log("setting as my team mate"); break;}		//set my rival as my team mate// only works if i have put them in the array in same  order found the gizmos
+						}else if (numberChecked <8){if(j+1>= 4){checkArrayAt = 0; j = -1;}else{checkArrayAt = j+1;} 
+						Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);   //should plus one so not do zero twice
+						if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; Debug.Log(gameObject.tag + " setting as my team mate"); break;}		//set my rival as my team mate// only works if i have put them in the array in same  order found the gizmos
 														
-			}
+						}else{Debug.Log(gameObject.tag + " not been given a rival or self or team mate so returning" + " availablilty aray reads " +someoneIsAlreadyGoingToSetMyMax[0]+someoneIsAlreadyGoingToSetMyMax[1]+someoneIsAlreadyGoingToSetMyMax[2]+someoneIsAlreadyGoingToSetMyMax[3]); return;} // ha ha this is where my error occurs
 			} 
 
 			}
