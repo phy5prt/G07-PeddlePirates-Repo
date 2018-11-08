@@ -42,7 +42,7 @@ private Vector3 startScaleArrow;
 [SerializeField] GameObject gizmoRT;
 
 private PlayerSetupManager PSM; //replace this with the direct addresses to statics of the input comms later
-private int selectedTeamNumber;
+private int selectedTeamNumber = -1; //little bit hacky how do i do a for loop that runs an if that if nothing found does an else
 	// Use this for initialization
 	void Start () {
 
@@ -166,6 +166,8 @@ private int selectedTeamNumber;
 		//works if it connects which doesnt seem to do for first position
 		//will try rounding	
 			if(Mathf.Round(gizmoRT.transform.position.x) == Mathf.Round(gizmoSittingPositions[i].transform.position.x)){selectedTeamNumber = i+1;  break;}}
+			Debug.Log("selected team number is " + selectedTeamNumber);
+		if(selectedTeamNumber == -1){foreach(thisPlayerPairSettings thisPlayerPSettings in PSM.shipPlayerSettingsAr){if(thisPlayerPSettings.getShipPairColor() == tag ){thisPlayerPSettings.setWerePlaying(false);Debug.Log(" disabling " + tag);}}}
 
 		foreach(thisPlayerPairSettings thisPlayerPSettings in PSM.shipPlayerSettingsAr){if(thisPlayerPSettings.getShipPairColor() == tag ){thisPlayerPSettings.SetTeamNumber(selectedTeamNumber);}}
 

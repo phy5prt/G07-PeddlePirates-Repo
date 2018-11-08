@@ -407,8 +407,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totVoltTriggerMove: 100
   totVoltThisPeriodRight: 0
-  voltInLeft: 1
-  voltInRight: 5
+  voltInLeft: 5
+  voltInRight: 0
   currentTimerTime: 0
   startTime: 0
   endTime: 0
@@ -2126,8 +2126,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totVoltTriggerMove: 100
   totVoltThisPeriodRight: 0
-  voltInLeft: 1
-  voltInRight: 5
+  voltInLeft: 5
+  voltInRight: 0
   currentTimerTime: 0
   startTime: 0
   endTime: 0
@@ -5621,9 +5621,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f62157896e9c54bb11ba3152f13471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextInstruction: 0
-  pirateInstructionScript: {fileID: 1851814374}
-  pirateSaysIndex: 0
   enemiesShipSettings: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   enemyShipToSpawn: {fileID: 1452595409263392, guid: 1ae21c97bc736124e981aa9ed85e1c03,
     type: 2}
@@ -7798,6 +7795,7 @@ MonoBehaviour:
   matchTurnDegreesPerDeltaTime: 6
   stage1Time: 5
   stage2Time: 5
+  stage3Time: 10
   stage2ShrinkTime: 0.7
   numberPositionMovesStage2: 6
   arrowJumpChoiceTimeStage2: 3
@@ -7865,7 +7863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totVoltTriggerMove: 100
   totVoltThisPeriodRight: 0
-  voltInLeft: 1
+  voltInLeft: 0
   voltInRight: 5
   currentTimerTime: 0
   startTime: 0
@@ -9563,7 +9561,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Team's Warfs
+  m_Text: Teams' Warfs
 --- !u!222 &1657767988
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10662,8 +10660,6 @@ MonoBehaviour:
   - 'Restarting The Game Settings Process                                                                                                                                                  '
   - 'Prepare To Row (Like A Tank Left Rows Fast Ship Turns Right. Hitting. Tip: The
     Bow Does 10x Damage! ;) SHOUT ARRR NOW!!!                 '
-  slideOutNow: 0
-  slideInNow: 1
   slideOutSpeed: 600
   slideInSpeed: 600
 --- !u!114 &1851814375

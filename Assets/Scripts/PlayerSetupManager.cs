@@ -84,6 +84,8 @@ private GameObject setCrewsAndShrinkLeft;
 private MXSBCtagSloppy[] maxSetRivalssGOTagSC;
 private arrowTeamSelector[] arrowTeamSelectGizmos;
 private pairSetRivalMaxBar[] pairSetRivalMaxes;
+private PirateInstruction switchInstructionTexts;
+private selectorPBGizmo[] gizmoAr;
 
 [SerializeField] float stage1Time = 10f;
 private float stage1EndTime = 1000f;
@@ -114,6 +116,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 	matchPosDeg = matchDegreeStart;
 
 	setCrewsAndShrinkLeft = GetComponentInChildren<shrinkLeft>().gameObject;
+	gizmoAr = setCrewsAndShrinkLeft.GetComponentsInChildren<selectorPBGizmo>();	
 
 	stageCountDownImageGO = transform.Find("stageCountDownImage").gameObject;
 	stageCountDownImageGO.SetActive(false);
@@ -123,13 +126,14 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 	currentlySelectedsGOs = GetComponentsInChildren<thisPairWantsAship> (true);
 	foreach(thisPairWantsAship gizmo in currentlySelectedsGOs){gizmo.gameObject.SetActive(false);}
 
-
+		switchInstructionTexts = GetComponentInChildren<PirateInstruction>();
 		maxSetRivalssGOTagSC = GetComponentsInChildren<MXSBCtagSloppy>();
 		foreach(MXSBCtagSloppy maxSetter in maxSetRivalssGOTagSC){maxSetter.gameObject.SetActive(false);}
 		arrowTeamSelectGizmos = GetComponentsInChildren<arrowTeamSelector>();
 		foreach(arrowTeamSelector teamSelector in arrowTeamSelectGizmos){teamSelector.gameObject.SetActive(false);}
 
 		pairSetRivalMaxes =  gameObject.GetComponentsInChildren<pairSetRivalMaxBar>(true);
+
 
 	settingUpPlayerSettingAr ();
 
@@ -235,6 +239,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 					matchObj.SetActive (false);
 					//startCountDownAndPowderKegAnimation();//Todo
 					initiateStage1();
+					switchInstructionTexts.updatePirateText(1);
 				}
 		}
 		else {
@@ -253,6 +258,8 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 	}
 
 	private void initiateShrinkStage2(float theShrinkTime){			//startShrinking triggers its own arrows and bars
+		checkThereIsAtLeastAPlayerPair();
+		switchInstructionTexts.updatePirateText(2);
 		foreach(thisPairWantsAship gizmo in currentlySelectedsGOs){gizmo.gameObject.SetActive(false);}
 		//this triggers stage 2
 	//in their code the enabled selectors will have set the static instances so check which are enabled if zero ...
@@ -293,8 +300,30 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 		//moving the gizmos	 - they move themselves
 		//they set themselves so just need to wait
 	
-		//or reset if they dies in set up by not chooseing a team show rest
+		//or reset if they die in set up by not choosing a team show rest
 	if(Time.timeSinceLevelLoad> stage2EndTime){
+
+			checkThereIsAtLeastAPlayerPair();
+	//another example where if i used a list things would be good here if i made a list and checked if that number war already in it
+
+
+	//calculates if more than one team 
+	//could just get the shiparray and count if greater than zero
+			int[] teamNumberHasTeam = {0,0,0,0};
+			foreach(thisPlayerPairSettings playerWithTeam in shipPlayerSettingsAr){
+				if(playerWithTeam.getWerePlaying()==true){
+				Debug.Log(" should always be over zero "+ playerWithTeam.GetTeamNumber());
+				teamNumberHasTeam[playerWithTeam.GetTeamNumber()-1]=1;}}
+
+			int numberOfTeams = 0;
+			foreach(int thisInt in teamNumberHasTeam){numberOfTeams += thisInt;}
+			if(numberOfTeams>1){switchInstructionTexts.updatePirateText(3);}
+			else{switchInstructionTexts.updatePirateText(4);}
+
+
+
+
+
 
 			stageCountDownImageGO.SetActive(true);
 			stageCountDownImageGO.GetComponent<redCountDownTimer>().startStageTimer(stage3Time);
@@ -351,7 +380,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 					//	Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);   //should plus one so not do zero twice
 						if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as my team mate");*/ break;}		//set my rival as my team mate// only works if i have put them in the array in same  order found the gizmos
 														
-						}else{Debug.Log(gameObject.tag + " not been given a rival or self or team mate so returning" + " availablilty aray reads " +someoneIsAlreadyGoingToSetMyMax[0]+someoneIsAlreadyGoingToSetMyMax[1]+someoneIsAlreadyGoingToSetMyMax[2]+someoneIsAlreadyGoingToSetMyMax[3]); return;} // ha ha this is where my error occurs
+						}else{Debug.Log(gameObject.tag + " not been given a rival or self or team mate so returning" + " availablilty aray reads " +someoneIsAlreadyGoingToSetMyMax[0]+someoneIsAlreadyGoingToSetMyMax[1]+someoneIsAlreadyGoingToSetMyMax[2]+someoneIsAlreadyGoingToSetMyMax[3]); return;} // ha ha this is where my error occurs, hmm it triggers when only one player!
 			} 
 
 			}
@@ -368,6 +397,27 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 
 		//probably just run GameManager from here as all info should be in statics, then turn off the setup
+
+		}
+		private void checkThereIsAtLeastAPlayerPair(){
+
+		int countPlayerPair = 0;
+
+		foreach(thisPlayerPairSettings playerPair in shipPlayerSettingsAr){if (playerPair.getWerePlaying() == false)
+		{foreach(selectorPBGizmo gizmoSc in gizmoAr){if(gizmoSc.gameObject.tag == playerPair.getShipPairColor()){gizmoSc.gameObject.SetActive(false);}}}else{countPlayerPair++;}
+
+		}
+		if(countPlayerPair<1){resetSetUp();}
+
+		}
+
+		private void resetSetUp(){//todo
+
+
+		//speed up fuse animation
+		//set text to something like too slow your not gonna make it
+		//do an explosion bubble
+		//reset everything ... will have to come through and see whats changed
 
 		}
 }

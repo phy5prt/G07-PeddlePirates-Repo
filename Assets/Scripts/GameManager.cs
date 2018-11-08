@@ -17,14 +17,12 @@ public class GameManager : MonoBehaviour {
 //public enum[] enemiesShipSettings;
 
 //public static float timeForPlayerResponse = 4f;
-[SerializeField] bool nextInstruction = false; //temp later will be triggered by player in put and timer
 
-//should use this but isnt working so doing it the sloppy way
-	//pirateInstructionScript = transform.Find("PanelPirateInstruction").GetComponent<PirateInstruction>();
-//private PirateInstruction pirateInstructionScript;
-	public PirateInstruction pirateInstructionScript;
 
-public int pirateSaysIndex;
+
+	
+
+
 
 public int[] enemiesShipSettings;
 public GameObject enemyShipToSpawn;
@@ -75,11 +73,7 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 	// Update is called once per frame
 	void Update () {
 
-		if(nextInstruction){
-			nextInstruction = false; 
-			if(pirateSaysIndex<pirateInstructionScript.pirateStrings.Length){pirateSaysIndex++;}else{pirateSaysIndex=0;}; 
-			pirateInstructionScript.updatePirateText();
-			 }
+		
 		
 	}
 
