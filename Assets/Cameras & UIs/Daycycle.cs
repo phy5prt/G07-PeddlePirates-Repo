@@ -7,7 +7,7 @@ public class Daycycle : MonoBehaviour {
 
 //[Tooltip ("Number of minutes per second that pass, try 60")]
 //public float timeScale = 60f;
-public float minutesPerDay = 1f;
+private float minutesPerDay = GameManager.dayLength/60;
 private Quaternion startRotation;
 
 

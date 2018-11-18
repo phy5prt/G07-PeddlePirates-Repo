@@ -5,9 +5,15 @@ using UnityEngine;
 //should this be a public static class?
 // no but the four instances of it should be!
 //where i set the team number i need to set the team name (not ship name team name)
+//need structs for the fixed info i think this would be nice
+//should change everything to get set
+
 public class thisPlayerPairSettings : MonoBehaviour {
 
 	// Use this for initialization
+	private bool bikePairSetAsAvailableOnEventSetup = false;
+
+	//later add health and inputVoltMultiplier as things for the event setting page
 
 	private bool werePlaying = true; //will need to be false in future
 	private string shipPairColor;
@@ -35,6 +41,17 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	void Update () {
 		
 	}
+	//shouldnt all these be static?
+
+	public bool getBikePairSetAsAvailableOnEventSetup(){
+		return bikePairSetAsAvailableOnEventSetup;
+	}
+	public void setBikePairSetAsAvailableOnEventSetup(bool YN){
+			bikePairSetAsAvailableOnEventSetup = YN;
+	}
+
+
+
 
 	public bool getWerePlaying(){
 	return werePlaying;

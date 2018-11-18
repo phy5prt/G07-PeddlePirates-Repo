@@ -21,7 +21,7 @@ public class usePairSelectable : MonoBehaviour {
 	void Start () {
 	sliderMax = transform.parent.parent.gameObject.GetComponentInChildren<showSliderValue>();
 		myToggle = GetComponent<Toggle>();
-		myToggle.onValueChanged.AddListener(delegate {sliderMax.ValueChangedcheck(); });
+		myToggle.onValueChanged.AddListener(delegate {ValueChangedCheck(); });
 		myToggle.interactable = false;
 
 		foundBikeIndicators = transform.parent.gameObject.GetComponentsInChildren<FoundBikeIndicator>();
@@ -46,5 +46,11 @@ public class usePairSelectable : MonoBehaviour {
 	if(myToggle.interactable == false){myToggle.isOn = false;}
 	}
 
+	private void ValueChangedCheck(){
 
+		sliderMax.ValueChangedcheck();
+		foreach(thisPlayerPairSettings pairSetting in GameManager.shipPlayerSettingsAr){
+		if(tag == pairSetting.getShipPairColor()){pairSetting.setBikePairSetAsAvailableOnEventSetup(myToggle.isOn);}}
+
+	}
 }

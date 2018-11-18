@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class showSliderValue : MonoBehaviour {
+public class showSliderValue : MonoBehaviour { //needs renaming
 
 	private Slider aISlider;
 	private Text numberAITxt;
@@ -34,7 +34,12 @@ public class showSliderValue : MonoBehaviour {
 
 	aISlider.maxValue = numberSpawnPoints - numberOfPlayerPairs;
 	numberAITxt.text = aISlider.value.ToString();
+		GameManager.numberAIs = (int) aISlider.value; //messy especially as later want to allocate more complex info 
 
+		//doing this here instead of just updating when i hit the buttton 
+		//seems wastyeful however if want to do it when i hit the buttom would need both be static, 
+		//which seems fine as only one of each but trying to refrain from statics as supposedly its bad practice 
+		//though not sure why as disadvantages listed are the features im using it for
 	}
 
 

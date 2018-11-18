@@ -1,10 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+// I can't run this in start // how do i initialise it // if no instance redPShip like when I had it in thisPlayerPairSettings how can i store it
+//so i need it to persist
+//but can still make everything static so easy to access as this just means instances all share the value
 
 public class GameManager : MonoBehaviour {
-	
 
+//does gameManager need to be on an object or if use statics methods and variables can it be independant
+
+	//gameManager is going to holdsettings info
+	//gameManager is going to handle arduino inputs
+	//gameManager is going to initate and end game stages,
+
+    //gameManager not going to spawn but instead instruct the spawner instead playersettings doing it directly
+    //gameManager willset the game time before draw
 
 	//need to carry this colour to the ship sails
 	//maybe game manager could create per pair ppl a player enum holding numbers which gives to what instantiates
@@ -22,10 +34,15 @@ public class GameManager : MonoBehaviour {
 	
 
 
-
-public int[] enemiesShipSettings;
+//spawning settings
+public static int numberAIs;
+public static int[] enemiesShipSettings; //this is only an int array because later will be a struct array of settings for 
 public GameObject enemyShipToSpawn;
 
+public static int numberDays = 3;
+public static int dayLength = 120; 
+public static int gameLength {get{return numberDays*dayLength;}} //does th 
+	
 //public enum[] teamPairShipSettings;
 
 	//will become an array of thisPlayerPairSettings[] // and instantiate
@@ -36,6 +53,57 @@ public GameObject playerShipToSpawn;
 private Transform[] spawnPoints;
 private spawnpoint[] SpawnPointsAvialableScripts;
 
+//inputs
+public static thisPlayerPairSettings redPShip;
+public static thisPlayerPairSettings yelPShip;
+public static thisPlayerPairSettings grePShip;
+public static thisPlayerPairSettings bluPShip;
+
+public static thisPlayerPairSettings[]  shipPlayerSettingsAr =  {redPShip,yelPShip,grePShip,bluPShip};
+
+private void Start(){
+		settingUpPlayerSettingAr ();
+
+}
+
+
+private void settingUpPlayerSettingAr ()  //dont think i can run without an instance as without an instance dont think i can store values
+	{
+	 //code seems to need this block but not sure why as can use the dot to find what looking for
+		redPShip = new thisPlayerPairSettings {};
+		yelPShip = new thisPlayerPairSettings {};
+		grePShip = new thisPlayerPairSettings {};
+		bluPShip = new thisPlayerPairSettings {};
+
+	
+		redPShip.SetShipPairName(" MondleBrot's Wives ");
+		yelPShip.SetShipPairName(" Brownian's Movement ");
+		grePShip.SetShipPairName(" Marie's Glow ");
+		bluPShip.SetShipPairName(" Dabloon 's Good Booty! ");
+
+		redPShip.setShipPairColor("RED");
+		yelPShip.setShipPairColor("YELLOW");
+		grePShip.setShipPairColor("GREEN");
+		bluPShip.setShipPairColor("BLUE");
+
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+public void startGameScene(){
+
+SceneManager.LoadScene(2);
+
+}
 
 
 
@@ -79,7 +147,9 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 	public void spawnPlayersAndEnemies(){
 	
 	//PlayersShips - get first dibs
-	
+		enemiesShipSettings = new int[numberAIs];//this will be changed when passing more info but for now
+
+
 		if(teamPairShipSettings.Length + enemiesShipSettings.Length>spawnPoints.Length){Debug.Log("more ships to be made than spawnlocations");Debug.DebugBreak();}
 
 	foreach(int playerPair in teamPairShipSettings){

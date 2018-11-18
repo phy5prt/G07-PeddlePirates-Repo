@@ -9,9 +9,7 @@ using UnityEngine.UI;
 //no need number players just have a ship per colour, it gets assigned a layer and ones allocated get put in player array and created // use colour to border their screen partician they
 //dont need where they are in array
 
-//or do teams need their own class - that overloads player?
-//move some of the setting up to gamemanager maybe as some will be set in the event set up scene
-//Or not ...?
+
 
 
 //going to make a player override class
@@ -34,21 +32,16 @@ public thisPlayerPairSettings[] shipPlayerSettingsAr;
 //this would mean a child and parent could have different maxes
 //there could be an option for set your own max's
 
-//theyre static but only accessible through PlayerSetupManager which is good because dont need instance "playerSetupManager" so dont need to find it.
-//however would be beter as part of maybe the game manager script for example as that will always be active.
-//so later take the storage element of working with thisPlayerPairSettings and give to game manager or the Arduino object
 
 
-public static thisPlayerPairSettings redPShip;
-public static thisPlayerPairSettings yelPShip;
-public static thisPlayerPairSettings grePShip;
-public static thisPlayerPairSettings bluPShip;
+
+
+
 private bool[] someoneIsAlreadyGoingToSetMyMax = {false,false,false,false}; // make it part of player settings
 
 
-//should these be statics as want anything to be able to call them?
-//for now use these but i suspect later the arduino will be static and we will call the arduino static for each one of these values and 
-//not here but gamemanager in the event setup will determine which thisplayersetting instance that is created as a static receives which
+//below will be replaced with GameManager.RedShip.GetLeftVolts etc 
+
 public float redLeftVolt;
 public float redRightVolt;
 
@@ -107,7 +100,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 [SerializeField] int numberPositionMovesStage2 = 6;
 [SerializeField] float arrowJumpChoiceTimeStage2 = 3f; 
 
-private GameManager gM;
+private GameManager gM; //later make it so everything runs straight from class using statics rather than instance
 
 					void Start () {
 
@@ -137,7 +130,7 @@ private GameManager gM;
 		pairSetRivalMaxes =  gameObject.GetComponentsInChildren<pairSetRivalMaxBar>(true);
 
 
-	settingUpPlayerSettingAr ();
+
 
 		}
 
@@ -182,27 +175,7 @@ private GameManager gM;
 
 	}
 
-	void settingUpPlayerSettingAr ()
-	{
-	/* */ //code seems to need this block but not sure why as can use the dot to find what looking for
-		redPShip = new thisPlayerPairSettings {};
-		yelPShip = new thisPlayerPairSettings {};
-		grePShip = new thisPlayerPairSettings {};
-		bluPShip = new thisPlayerPairSettings {};
 
-	
-		redPShip.SetShipPairName(" MondleBrot's Wives ");
-		yelPShip.SetShipPairName(" Brownian's Movement ");
-		grePShip.SetShipPairName(" Marie's Glow ");
-		bluPShip.SetShipPairName(" Dabloon 's Good Booty! ");
-
-		redPShip.setShipPairColor("RED");
-		yelPShip.setShipPairColor("YELLOW");
-		grePShip.setShipPairColor("GREEN");
-		bluPShip.setShipPairColor("BLUE");
-
-		shipPlayerSettingsAr = new thisPlayerPairSettings[] {redPShip,yelPShip,grePShip,bluPShip};
-	}
 
 	// this is the select players who are playing stage
 
@@ -399,7 +372,7 @@ private GameManager gM;
 		//should all this be on spawner and gm just hold info
 		gM.prepareToSpawn();
 		gM.spawnPlayersAndEnemies();
-		this.enabled = false();
+		this.gameObject.SetActive(false);
 
 		//probably just run GameManager from here as all info should be in statics, then turn off the setup
 
