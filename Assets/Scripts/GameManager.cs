@@ -56,17 +56,21 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 		//a list would be an option too if i new them better an use a foreach or just measure list length and remove items as go
 
 		//part enemy enum is if they target other enemies
-		
-		GameObject SpawnPointsGO  = GameObject.Find("SpawnPoints");
+
+
+		//needs taking out of start and changing to on scene load and specify scene
+		/* temp commented out re comment in asap
+			GameObject SpawnPointsGO  = GameObject.Find("SpawnPoints");
 		SpawnPointsAvialableScripts = SpawnPointsGO.GetComponentsInChildren<spawnpoint>();
 		spawnPoints = new Transform[SpawnPointsGO.transform.childCount]; // may not be necessary
 		for(int i = 0; i<spawnPoints.Length; i++){spawnPoints[i] = SpawnPointsAvialableScripts[i].gameObject.transform;}
+
 		//foreach(spawnpoint thisSpawnPoint in SpawnPointsChildrensScript){spawnPoint[i]thisSpawnPoint.gameObject.transform;} // should this just be 
 		
 
 		spawnPlayersAndEnemies(); 
 
-
+		*/
 
 	}
 	
