@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 	
-	//Later replace ints with enum have used int arrays just to ease transistion to enum later
-	//enum array of player pairs and each one assigned a ship and instantiated to a place and the ships enum set to = enum of player
-	//enum will need to include which inputs to get info from the max speed value set and colour of player and health  at start
-	//should make clear in first scene which colour who so know which ship controlling
+
+
 	//need to carry this colour to the ship sails
 	//maybe game manager could create per pair ppl a player enum holding numbers which gives to what instantiates
 	//later options to numEnemies with health, ramming behaviour, speed and make an enum
@@ -18,7 +16,8 @@ public class GameManager : MonoBehaviour {
 
 //public static float timeForPlayerResponse = 4f;
 
-
+//currently most this code could be on the spawner
+//should game manager just hold setting info
 
 	
 
@@ -40,7 +39,7 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 
 
 
-	void Start () { //change to on scene load game scene
+	public void prepareToSpawn () { //change to on scene load game scene
 		
 		// this is a massive hack because get componenent in children includes parents and dont want it to, dont want it to because i intend to disable childred
 		//as i use them so i dont spawn two things in same place if i deactivated parent would deactivate all children too
@@ -59,8 +58,8 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 
 
 		//needs taking out of start and changing to on scene load and specify scene
-		/* temp commented out re comment in asap
-			GameObject SpawnPointsGO  = GameObject.Find("SpawnPoints");
+	
+		GameObject SpawnPointsGO  = GameObject.Find("SpawnPoints");
 		SpawnPointsAvialableScripts = SpawnPointsGO.GetComponentsInChildren<spawnpoint>();
 		spawnPoints = new Transform[SpawnPointsGO.transform.childCount]; // may not be necessary
 		for(int i = 0; i<spawnPoints.Length; i++){spawnPoints[i] = SpawnPointsAvialableScripts[i].gameObject.transform;}
@@ -68,22 +67,16 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 		//foreach(spawnpoint thisSpawnPoint in SpawnPointsChildrensScript){spawnPoint[i]thisSpawnPoint.gameObject.transform;} // should this just be 
 		
 
-		spawnPlayersAndEnemies(); 
 
-		*/
+
+
 
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-		
-		
-	}
 
 
 	
-	private void spawnPlayersAndEnemies(){
+	public void spawnPlayersAndEnemies(){
 	
 	//PlayersShips - get first dibs
 	

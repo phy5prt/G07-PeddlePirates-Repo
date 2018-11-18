@@ -107,9 +107,11 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 [SerializeField] int numberPositionMovesStage2 = 6;
 [SerializeField] float arrowJumpChoiceTimeStage2 = 3f; 
 
-
+private GameManager gM;
 
 					void Start () {
+
+	gM = transform.parent.gameObject.GetComponent<GameManager>();
 
 	matchObj = GameObject.Find("Match").gameObject;    //when restructure try do so so dont have to do this
 	startRotationPosMatch =	matchObj.transform.rotation;
@@ -394,7 +396,10 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 		}
 
 		private void setupCompleteStartGame(){
-
+		//should all this be on spawner and gm just hold info
+		gM.prepareToSpawn();
+		gM.spawnPlayersAndEnemies();
+		this.enabled = false();
 
 		//probably just run GameManager from here as all info should be in statics, then turn off the setup
 

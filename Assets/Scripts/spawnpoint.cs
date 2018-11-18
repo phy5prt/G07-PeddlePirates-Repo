@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class spawnpoint : MonoBehaviour {
 
-public bool availableSpawnPoint = true;
+public bool availableSpawnPoint = true; //make get set
 	// Use this for initialization
 	void Start () {
 		

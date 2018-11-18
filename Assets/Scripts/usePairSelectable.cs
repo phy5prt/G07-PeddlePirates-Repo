@@ -14,11 +14,14 @@ public class usePairSelectable : MonoBehaviour {
 
 	// Use this for initialization
 
-	private Toggle myToggle;
+	public Toggle myToggle;
 	private FoundBikeIndicator[] foundBikeIndicators;
+	private showSliderValue sliderMax;
 
 	void Start () {
+	sliderMax = transform.parent.parent.gameObject.GetComponentInChildren<showSliderValue>();
 		myToggle = GetComponent<Toggle>();
+		myToggle.onValueChanged.AddListener(delegate {sliderMax.ValueChangedcheck(); });
 		myToggle.interactable = false;
 
 		foundBikeIndicators = transform.parent.gameObject.GetComponentsInChildren<FoundBikeIndicator>();
@@ -31,6 +34,8 @@ public class usePairSelectable : MonoBehaviour {
 	}
 
 	private void checkIfBikePairFound(){ //this could be triggered by the value change event in the toggles
+
+
 	bool bothHaveFoundABike = true;
 		
 	foreach(FoundBikeIndicator foundBikeIndicator in foundBikeIndicators){if(foundBikeIndicator.iDetectedABike == false){bothHaveFoundABike = false; break;}}
@@ -40,4 +45,6 @@ public class usePairSelectable : MonoBehaviour {
 
 	if(myToggle.interactable == false){myToggle.isOn = false;}
 	}
+
+
 }
