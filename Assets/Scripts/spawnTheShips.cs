@@ -44,8 +44,10 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 	public void spawnPlayersAndEnemies(){
 
 	//PlayersShips - get first dibs
-		GameManager.enemiesShipSettings = new int[GameManager.numberAIs];//this will be changed when passing more info but for now
 
+
+		GameManager.enemiesShipSettings = new int[GameManager.numberAIs];//this will be changed when passing more info but for now
+		Debug.Log(" making enemy ship int array its length is " + GameManager.enemiesShipSettings.Length);
 
 
 
@@ -58,13 +60,13 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 					//could the code actually have its object as part of it and make a version of the script and it creates own ship
 					GameObject playerShip = Instantiate (playerShipToSpawn, locationToInstantiate);
 					playerShip.GetComponent<MyPlayer>().applyPlayerSettingsToShip(playerPair);
-			}
+			}}
 			
 			
 			
 	
-	}
 
+	Debug.Log("instantiating enemies");
 		foreach(int enemyShip in GameManager.enemiesShipSettings){
 			Transform locationToInstantiate;
 			locationToInstantiate = LocationToinstantiate();
@@ -76,6 +78,9 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 			//Ship.GetComponentInChildren<>(). Some Script maybe player set their public variable by enum = //enum colour, max speed, ram setting, health drop setting etc
 			
 	}
+
+	Debug.Log("finished spawning");
+
 	}
 	
 	private Transform LocationToinstantiate(){

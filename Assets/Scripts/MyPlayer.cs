@@ -44,6 +44,7 @@ public float angularVel = 0f;
 
 private Health health;
 
+private bool shipBeenSetUp = false; //feel shouldnt need this
 
 //public Vector3 leftCycVelAngle = new Vector3(1,0,-1); //because cyclist on the left is controlling rowwers on the left that make the boat go right 
 //public Vector3 rightCycVelAngle = new Vector3(1,0,1); 
@@ -63,13 +64,14 @@ private Health health;
 	}
 
 	public void applyPlayerSettingsToShip(thisPlayerPairSettings shipsPlayerPairSettings){
+		Debug.Log("instantiated player about to received their this player pair settings");
 		ourShipsPlayerPairSettings = shipsPlayerPairSettings;
 
 		//set color
 		//set team number () - public so spawner can read it - and apply it to physics collision matrix sorting layers
 		ourVolt100PercMax = ourShipsPlayerPairSettings.GetVolt100Perc();
 
-
+		shipBeenSetUp = true;
 
 
 	}
@@ -81,7 +83,7 @@ private Health health;
 	void FixedUpdate () {
 
 
-	if(!isLocalPlayer){return;} // needs removing but cant till got allocated screens
+	if(!isLocalPlayer && shipBeenSetUp == true){return;} // needs removing but cant till got allocated screens
 	if(health.currentHealth < 0){return;}   
 
     //could retag local player as local player but this may retag them for enemy too

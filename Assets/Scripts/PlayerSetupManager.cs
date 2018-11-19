@@ -321,7 +321,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 
 													//this code never actually triggers the else if sets it to itself first dont know why it doesnt work. 
-					//								Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);
+												Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);
 							if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==checkArrayAt){pairSetRivalMaxes[i].runSetMaxFor(GameManager.shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as myself");*/ break; }		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
 
 
@@ -333,7 +333,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 															
 
 						}else if (numberChecked <8){if(j+1>= 4){checkArrayAt = 0; j = -1;}else{checkArrayAt = j+1;} 
-					//	Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);   //should plus one so not do zero twice
+						Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);   //should plus one so not do zero twice
 						if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(GameManager.shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as my team mate");*/ break;}		//set my rival as my team mate// only works if i have put them in the array in same  order found the gizmos
 														
 						}else{Debug.Log(gameObject.tag + " not been given a rival or self or team mate so returning" + " availablilty aray reads " +someoneIsAlreadyGoingToSetMyMax[0]+someoneIsAlreadyGoingToSetMyMax[1]+someoneIsAlreadyGoingToSetMyMax[2]+someoneIsAlreadyGoingToSetMyMax[3]); return;} // ha ha this is where my error occurs, hmm it triggers when only one player!
@@ -353,6 +353,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 			GameManager.startGame();
 
+			Debug.Log(" about to set playersetup GO false ");
 			this.gameObject.SetActive(false);
 
 			//probably just run GameManager from here as all info should be in statics, then turn off the setup

@@ -2551,8 +2551,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totVoltTriggerMove: 100
   totVoltThisPeriodRight: 0
-  voltInLeft: 5
-  voltInRight: 0
   currentTimerTime: 0
   startTime: 0
   endTime: 0
@@ -4042,8 +4040,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totVoltTriggerMove: 100
   totVoltThisPeriodRight: 0
-  voltInLeft: 0
-  voltInRight: 5
   currentTimerTime: 0
   startTime: 0
   endTime: 0
@@ -6224,8 +6220,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 983045370}
-  m_LocalRotation: {x: -0.23332281, y: 0.47654238, z: 0.13281606, w: 0.83715457}
-  m_LocalPosition: {x: 168.4224, y: 7.033011, z: 301.5483}
+  m_LocalRotation: {x: -0.4358923, y: 0.111549385, z: 0.054546997, w: 0.89139175}
+  m_LocalPosition: {x: 226.27763, y: -554.915, z: -231.31671}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 691248108}
@@ -8866,8 +8862,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totVoltTriggerMove: 100
   totVoltThisPeriodRight: 0
-  voltInLeft: 5
-  voltInRight: 0
   currentTimerTime: 0
   startTime: 0
   endTime: 0
@@ -9130,7 +9124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c299af93cb7e6c42999d0c8ed2dd401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamPairShipSettings: 
   playerShipToSpawn: {fileID: 1787419668699666, guid: 0579e306aa52c41498b1a88d0a6fe355,
     type: 2}
   enemyShipToSpawn: {fileID: 1452595409263392, guid: 1ae21c97bc736124e981aa9ed85e1c03,
@@ -11843,8 +11836,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totVoltTriggerMove: 100
   totVoltThisPeriodRight: 0
-  voltInLeft: 0
-  voltInRight: 5
   currentTimerTime: 0
   startTime: 0
   endTime: 0

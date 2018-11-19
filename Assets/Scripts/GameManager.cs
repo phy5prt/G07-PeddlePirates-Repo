@@ -167,6 +167,7 @@ public static void startGame(){
 //if they win before time up will need to 
 //cancel coroutine and run the method, but think that happens anyway
 
+Debug.Log("finding spawn points and tell the script to spawn players and enemies");
 GameObject.Find("SpawnPoints").GetComponent<spawnTheShips>().spawnPlayersAndEnemies();
 
 }
