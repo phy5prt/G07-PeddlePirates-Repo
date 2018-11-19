@@ -19,8 +19,6 @@ public class arrowTeamSelector : MonoBehaviour {
 [SerializeField] float totVoltTriggerMove = 100;
 [SerializeField] float totVoltThisPeriodRight = 0;
 
-	[SerializeField] float voltInLeft = 0;  //this will become set to the arduino input from the red port left e.g.
-	[SerializeField] float voltInRight = 0; //
 
 private Text textTimer;
 [SerializeField] float currentTimerTime;
@@ -32,6 +30,7 @@ private int numberPositionMovesRemaining = 6; //there and back //only runs once 
 
 [SerializeField] float endTime;
 
+private thisPlayerPairSettings myThisPlayerPairSettings;
 
 
 private float arrowJumpChoiceTime = 5;
@@ -41,13 +40,13 @@ private Vector3 startScaleArrow;
 [SerializeField] GameObject[] gizmoSittingPositions; //should code this better
 [SerializeField] GameObject gizmoRT;
 
-private PlayerSetupManager PSM; //replace this with the direct addresses to statics of the input comms later
+
 private int selectedTeamNumber = -1; //little bit hacky how do i do a for loop that runs an if that if nothing found does an else
 	// Use this for initialization
 	void Start () {
 
 
-	PSM = GameObject.Find("PlayerStartSetUp").GetComponent<PlayerSetupManager>();
+foreach(thisPlayerPairSettings playerPairSettings in GameManager.shipPlayerSettingsAr){if(tag == playerPairSettings.getShipPairColor()){myThisPlayerPairSettings = playerPairSettings;}}
 
 	arrowImage = GetComponentInChildren<Image>();
 	arrowImage.color = Color.red;//should get first
@@ -107,7 +106,8 @@ private int selectedTeamNumber = -1; //little bit hacky how do i do a for loop t
 
 	void setArrowScaleColor ()
 	{
-		totVoltThisPeriodRight += voltInRight - voltInLeft;
+
+		totVoltThisPeriodRight += myThisPlayerPairSettings.GetmyRightVolt() - myThisPlayerPairSettings.GetmyLeftVolt();
 		if (totVoltThisPeriodRight < -totVoltTriggerMove) {
 			arrowImage.color = Color.green;
 			arrowImage.gameObject.GetComponent<RectTransform> ().localScale = new Vector3 (-1 * startScaleArrow.x, startScaleArrow.y, startScaleArrow.z);
@@ -167,9 +167,9 @@ private int selectedTeamNumber = -1; //little bit hacky how do i do a for loop t
 		//will try rounding	
 			if(Mathf.Round(gizmoRT.transform.position.x) == Mathf.Round(gizmoSittingPositions[i].transform.position.x)){selectedTeamNumber = i+1;  break;}}
 			Debug.Log("selected team number is " + selectedTeamNumber);
-		if(selectedTeamNumber == -1){foreach(thisPlayerPairSettings thisPlayerPSettings in PSM.shipPlayerSettingsAr){if(thisPlayerPSettings.getShipPairColor() == tag ){thisPlayerPSettings.setWerePlaying(false);Debug.Log(" disabling " + tag);}}}
+		if(selectedTeamNumber == -1){foreach(thisPlayerPairSettings thisPlayerPSettings in GameManager.shipPlayerSettingsAr){if(thisPlayerPSettings.getShipPairColor() == tag ){thisPlayerPSettings.setWerePlaying(false);Debug.Log(" disabling " + tag);}}}
 
-		foreach(thisPlayerPairSettings thisPlayerPSettings in PSM.shipPlayerSettingsAr){if(thisPlayerPSettings.getShipPairColor() == tag ){thisPlayerPSettings.SetTeamNumber(selectedTeamNumber);}}
+		foreach(thisPlayerPairSettings thisPlayerPSettings in GameManager.shipPlayerSettingsAr){if(thisPlayerPSettings.getShipPairColor() == tag ){thisPlayerPSettings.SetTeamNumber(selectedTeamNumber);}}
 
 		}
 	}

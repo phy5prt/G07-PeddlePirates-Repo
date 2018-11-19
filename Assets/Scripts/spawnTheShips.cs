@@ -11,7 +11,7 @@ public class spawnTheShips : MonoBehaviour {
 
 	//will become an array of thisPlayerPairSettings[] // and instantiate
 
-public int[] teamPairShipSettings;
+
 
 public GameObject playerShipToSpawn;
 public GameObject enemyShipToSpawn;
@@ -23,9 +23,9 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 	// Use this for initialization
 	void Start () {
 
-		GameObject SpawnPointsGO  = GameObject.Find("SpawnPoints");
-		SpawnPointsAvialableScripts = SpawnPointsGO.GetComponentsInChildren<spawnpoint>();
-		spawnPoints = new Transform[SpawnPointsGO.transform.childCount]; // may not be necessary
+
+		SpawnPointsAvialableScripts = GetComponentsInChildren<spawnpoint>();
+		spawnPoints = new Transform[transform.childCount]; // may not be necessary
 		for(int i = 0; i<spawnPoints.Length; i++){spawnPoints[i] = SpawnPointsAvialableScripts[i].gameObject.transform;}
 
 		//foreach(spawnpoint thisSpawnPoint in SpawnPointsChildrensScript){spawnPoint[i]thisSpawnPoint.gameObject.transform;} // should this just be 
@@ -47,13 +47,18 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 		GameManager.enemiesShipSettings = new int[GameManager.numberAIs];//this will be changed when passing more info but for now
 
 
-		if(teamPairShipSettings.Length + GameManager.enemiesShipSettings.Length>spawnPoints.Length){Debug.Log("more ships to be made than spawnlocations");Debug.DebugBreak();}
 
-	foreach(int playerPair in teamPairShipSettings){
-			Transform locationToInstantiate;
-			locationToInstantiate = LocationToinstantiate();
-			Instantiate (playerShipToSpawn, locationToInstantiate);
-			
+
+		foreach(thisPlayerPairSettings playerPair in GameManager.shipPlayerSettingsAr){
+				if(playerPair.getWerePlaying()){
+					Transform locationToInstantiate;
+					locationToInstantiate = LocationToinstantiate();
+
+					//now should player ship have a struct required when its being instantiated
+					//could the code actually have its object as part of it and make a version of the script and it creates own ship
+					GameObject playerShip = Instantiate (playerShipToSpawn, locationToInstantiate);
+					playerShip.GetComponent<MyPlayer>().applyPlayerSettingsToShip(playerPair);
+			}
 			
 			
 			

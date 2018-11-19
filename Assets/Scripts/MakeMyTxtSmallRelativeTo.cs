@@ -43,9 +43,9 @@ private Text textToBeRelativeTo;
 
 	if(currentText!=myText.text){
 
-	Debug.Log("txts dont match");
+//	Debug.Log("txts dont match");
 			currentText = myText.text;
-			Debug.Log("setting txts to match");
+//			Debug.Log("setting txts to match");
 			ReizeTextRelatively();
 
 	}
@@ -62,11 +62,11 @@ private Text textToBeRelativeTo;
 		//this will be overcome because game manager can be set to apply the index0 text instead of it being preloaded
 
 		txt2bRel2Size = textToBeRelativeTo.cachedTextGenerator.fontSizeUsedForBestFit;
-		Debug.Log("I think pirate instruction is this size = " + txt2bRel2Size + " my font size is " + myText.fontSize + " best fit size is " + myText.cachedTextGenerator.fontSizeUsedForBestFit); //is this using the font size from the best fit
+//		Debug.Log("I think pirate instruction is this size = " + txt2bRel2Size + " my font size is " + myText.fontSize + " best fit size is " + myText.cachedTextGenerator.fontSizeUsedForBestFit); //is this using the font size from the best fit
 		//if(txt2bRel2Size - fontSizeDifference < myText.fontSize){
 		if(txt2bRel2Size - fontSizeDifference < myText.cachedTextGenerator.fontSizeUsedForBestFit){
 
-		Debug.Log("Reseting my font size and turning off best fit because .... txt2bRel2Size - fontSizeDifference + 1 = " +(txt2bRel2Size - fontSizeDifference + 1) + " and thats less than my font size -2. My font size is " + myText.fontSize);
+//		Debug.Log("Reseting my font size and turning off best fit because .... txt2bRel2Size - fontSizeDifference + 1 = " +(txt2bRel2Size - fontSizeDifference + 1) + " and thats less than my font size -2. My font size is " + myText.fontSize);
 		myText.resizeTextForBestFit = false;
 		myText.fontSize  =  txt2bRel2Size-2;} //this is why setting best fit max would be ideal because this text size is not the same as the best fit one i think due to scaling
 

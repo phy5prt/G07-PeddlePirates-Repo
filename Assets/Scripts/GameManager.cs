@@ -8,6 +8,12 @@ using UnityEngine.SceneManagement;
 //but can still make everything static so easy to access as this just means instances all share the value
 
 //this player wants a ship holds the min volt for activation later this maybe a event setup option 
+
+
+//later when putting more choices in event setup may want to put this in
+//arrowTeamSelector : MonoBehaviour {
+//[SerializeField] float totVoltTriggerMove = 100;
+
 public class GameManager : MonoBehaviour {
 
 //does gameManager need to be on an object or if use statics methods and variables can it be independant

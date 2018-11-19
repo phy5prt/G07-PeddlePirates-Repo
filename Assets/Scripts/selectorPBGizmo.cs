@@ -6,12 +6,12 @@ public class selectorPBGizmo : MonoBehaviour { // may work once we have singleto
 
 	// Use this for initialization
 	void Start () {
-	Debug.Log("seeing whether gizmo should exist" + " my tag is " + tag);
+	//Debug.Log("seeing whether gizmo should exist" + " my tag is " + tag);
 	foreach(thisPlayerPairSettings pair in GameManager.shipPlayerSettingsAr){
-	Debug.Log(pair.getShipPairColor());
+	//Debug.Log(pair.getShipPairColor());
 	if(pair.getShipPairColor() == tag){
 
-	Debug.Log("found my colour " + " and my pair is set to " + pair.getBikePairSetAsAvailableOnEventSetup());
+	//Debug.Log("found my colour " + " and my pair is set to " + pair.getBikePairSetAsAvailableOnEventSetup());
 
 	this.gameObject.SetActive(pair.getBikePairSetAsAvailableOnEventSetup());}}
 		

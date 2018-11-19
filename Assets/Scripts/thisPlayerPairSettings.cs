@@ -13,11 +13,11 @@ using UnityEngine;
 public class thisPlayerPairSettings : MonoBehaviour {
 
 	// Use this for initialization
-	private bool bikePairSetAsAvailableOnEventSetup = true; //set to false after finished setting to scene
+	private bool bikePairSetAsAvailableOnEventSetup = false; 
 
 	//later add health and inputVoltMultiplier as things for the event setting page
 
-	private bool werePlaying = true; //will need to be false in future
+	private bool werePlaying = false; //will need to be false in future
 	private string shipPairColor;
 	private float volt100Perc = 100f;
 	private string shipPairName = "no name yet";
@@ -47,6 +47,9 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	}
 	public void setBikePairSetAsAvailableOnEventSetup(bool YN){
 			bikePairSetAsAvailableOnEventSetup = YN;
+		if(!bikePairSetAsAvailableOnEventSetup){setWerePlaying(false);} 
+		// shouldnt really be necessary but just to count when changed one and forgotten to check other, when refactor put a check in to see when its used and go through code
+		//and ensure its done where its supposed to be as well
 	}
 
 
@@ -56,22 +59,29 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	return werePlaying;
 	}
 	public void setWerePlaying(bool YN){
-	Debug.Log(shipPairColor + "set were playing as " + YN);
+//	Debug.Log(shipPairColor + "set were playing as " + YN);
 	werePlaying = YN;
+
+
+	if(werePlaying == true && bikePairSetAsAvailableOnEventSetup == false){Debug.Log("trying to say wereplay in ppsetting but the bike isnt setup"); werePlaying = false;}
+		// shouldnt really be necessary but just to count when changed one and forgotten to check other, when refactor put a check in to see when its used and go through code
+		//and ensure its done where its supposed to be as well
+
+
 	}
 	public string getShipPairColor(){
 	return shipPairColor;
 	}
 	public void setShipPairColor(string shipPTColor){
 	shipPairColor = shipPTColor;
-	Debug.Log(shipPairColor + " is now our color ");
+	//Debug.Log(shipPairColor + " is now our color ");
 	}
 
 	public float GetVolt100Perc(){
 	return volt100Perc;
 	}
 	public void SetVolt100Perc(float MPercVolt){
-	Debug.Log(shipPairColor + " our volt max is " + volt100Perc);
+//	Debug.Log(shipPairColor + " our volt max is " + volt100Perc);
 	volt100Perc = MPercVolt;
 	}
 
@@ -79,7 +89,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 		return shipPairName;
 	}
 	public void SetShipPairName(string shipName){
-	Debug.Log(shipPairColor + " our name is now " + shipName);
+//	Debug.Log(shipPairColor + " our name is now " + shipName);
 	shipPairName = shipName;
 	}
 
@@ -106,7 +116,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	}
 	public void SetTeamNumber(int thisTeamNumber){
 	teamNumber = thisTeamNumber;
-	Debug.Log(shipPairColor + " our team number is now " + teamNumber);
+//	Debug.Log(shipPairColor + " our team number is now " + teamNumber);
 	
 	}
 

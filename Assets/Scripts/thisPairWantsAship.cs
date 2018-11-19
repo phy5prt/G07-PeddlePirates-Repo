@@ -33,7 +33,7 @@ private float voltMinActivation = 5f;
 		myThisPlayerPairSettings.setWerePlaying(true);
 
 
-		}else{ myThisPlayerPairSettings.setWerePlaying(true); shipSelectedIndicator.color = Color.red;}
+		}else{ myThisPlayerPairSettings.setWerePlaying(false); shipSelectedIndicator.color = Color.red;}
 
 
 

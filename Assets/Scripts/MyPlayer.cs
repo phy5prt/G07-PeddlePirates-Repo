@@ -24,19 +24,23 @@ using UnityEngine.Networking;
 
 public class MyPlayer : NetworkBehaviour  {
 
+	private thisPlayerPairSettings ourShipsPlayerPairSettings;
+	private float ourVolt100PercMax = 1000000;
+
 [Range( -10f,10f)] //cant reverse in game but may be useful for testing
-public float forwardMultiplier =3.42f; //why does it have to be huge - boat only weighs 100kg at moment and drag it 1
+[SerializeField] float forwardMultiplier =3.42f; 
 
-
+/* - this really handy way of controlling the ships for testing and knowing the ranges
 [Range( 0f,1f)] //note that can go over 100% if cycle faster than the person who set their max at game beginning. so do not restrict on final game
 public float cycPercSpeedLeft = 1f;
 [Range (0f,1f)]
 public float cycPercSpeedRight = 0.5f;
+*/
 [Range (0f,200f)] //this is adding two percentage based on 100% is max set by rival players so could be higher also could divide it by 2 to make it 100 and put an if statement to avoid 0/2
 private float forwardSpeed = 0f;
-public float angularVel = 0f; //delete later this is just to help with adjustments
+public float angularVel = 0f; 
 	[Range (0f,2f)] 
-public float angVelMultiplier = 0.24f;
+[SerializeField] float angVelMultiplier = 0.24f;
 
 private Health health;
 
@@ -57,6 +61,19 @@ private Health health;
 
 
 	}
+
+	public void applyPlayerSettingsToShip(thisPlayerPairSettings shipsPlayerPairSettings){
+		ourShipsPlayerPairSettings = shipsPlayerPairSettings;
+
+		//set color
+		//set team number () - public so spawner can read it - and apply it to physics collision matrix sorting layers
+		ourVolt100PercMax = ourShipsPlayerPairSettings.GetVolt100Perc();
+
+
+
+
+	}
+
 	void Update(){
 
 	}
@@ -64,7 +81,7 @@ private Health health;
 	void FixedUpdate () {
 
 
-	if(!isLocalPlayer){return;}
+	if(!isLocalPlayer){return;} // needs removing but cant till got allocated screens
 	if(health.currentHealth < 0){return;}   
 
     //could retag local player as local player but this may retag them for enemy too
@@ -98,8 +115,8 @@ private Health health;
 
 			//was using impulse due to issues with colliders but maybe can set instead of adding
 
-		forwardSpeed = (cycPercSpeedLeft+cycPercSpeedRight)*forwardMultiplier;
-		angularVel = (cycPercSpeedLeft - cycPercSpeedRight)*angVelMultiplier;
+		forwardSpeed = (ourShipsPlayerPairSettings.GetmyLeftVolt() + ourShipsPlayerPairSettings.GetmyRightVolt() )*forwardMultiplier/ourVolt100PercMax;
+		angularVel = (ourShipsPlayerPairSettings.GetmyLeftVolt() - ourShipsPlayerPairSettings.GetmyRightVolt())*angVelMultiplier/ourVolt100PercMax;
 		//torqueModifier = cycPercSpeedLeft - cycPercSpeedRight; //works but changing to velocity
 
 //		Debug.Log(" forward " + Vector3.right*forwardSpeed*forwardMultiplier + " torque Mod " + torqueModifier + " torque " + torqueModifier*torqueMultiplier );
@@ -131,12 +148,6 @@ public override void OnStartLocalPlayer()
 				//need to do this for first child and then get compents in childrens Transform to get all children
 	//for(int i =0; i < this.transform.childCount; i++){this.transform.GetChild(i).gameObject.SetActive(true);}}
 }
-public void gettingMySettings(thisPlayerPairSettings cyclePair){
 
-
-
-
-
-}
 
 }

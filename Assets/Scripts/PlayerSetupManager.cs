@@ -22,7 +22,7 @@ public class PlayerSetupManager : MonoBehaviour {
 
 
 
-public thisPlayerPairSettings[] shipPlayerSettingsAr;
+
 
 private bool[] someoneIsAlreadyGoingToSetMyMax = {false,false,false,false}; // make it part of player settings
 
@@ -214,7 +214,10 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 
 	private void initiateShrinkStage2(float theShrinkTime){			//startShrinking triggers its own arrows and bars
-		checkThereIsAtLeastAPlayerPair();
+
+
+
+		removeGizmosWithNoPlayers(); //think deletes unwanted gizmos too! relabel
 		switchInstructionTexts.updatePirateText(2);
 		foreach(thisPairWantsAship gizmo in currentlySelectedsGOs){gizmo.gameObject.SetActive(false);}
 		//this triggers stage 2
@@ -256,16 +259,16 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 		//or reset if they die in set up by not choosing a team show rest
 	if(Time.timeSinceLevelLoad> stage2EndTime){
 
-			checkThereIsAtLeastAPlayerPair();
+			removeGizmosWithNoPlayers();
 	//another example where if i used a list things would be good here if i made a list and checked if that number war already in it
 
 
 	//calculates if more than one team 
 	//could just get the shiparray and count if greater than zero
 			int[] teamNumberHasTeam = {0,0,0,0};
-			foreach(thisPlayerPairSettings playerWithTeam in shipPlayerSettingsAr){
+			foreach(thisPlayerPairSettings playerWithTeam in GameManager.shipPlayerSettingsAr){
 				if(playerWithTeam.getWerePlaying()==true){
-				Debug.Log(" should always be over zero "+ playerWithTeam.GetTeamNumber());
+				Debug.Log(" should always be over zero "+ playerWithTeam.GetTeamNumber()); //error cause beacuse was zero should of been 4 i think
 				teamNumberHasTeam[playerWithTeam.GetTeamNumber()-1]=1;}}
 
 			int numberOfTeams = 0;
@@ -293,7 +296,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 
 
-			for(int i=0; i<4; i++ ){someoneIsAlreadyGoingToSetMyMax[i]= !shipPlayerSettingsAr[i].getWerePlaying();}
+			for(int i=0; i<4; i++ ){someoneIsAlreadyGoingToSetMyMax[i]= !GameManager.shipPlayerSettingsAr[i].getWerePlaying();}
 
 		
 			for(int i = 0; i<4; i++){
@@ -319,19 +322,19 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 													//this code never actually triggers the else if sets it to itself first dont know why it doesnt work. 
 					//								Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);
-							if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==checkArrayAt){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as myself");*/ break; }		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
+							if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==checkArrayAt){pairSetRivalMaxes[i].runSetMaxFor(GameManager.shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as myself");*/ break; }		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
 
 
 														else if(someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false &&  																												//thearray has already excluded non players
-																shipPlayerSettingsAr[checkArrayAt].GetTeamNumber()!=shipPlayerSettingsAr[i].GetTeamNumber())																			//make sure on opposing team
+																GameManager.shipPlayerSettingsAr[checkArrayAt].GetTeamNumber()!=GameManager.shipPlayerSettingsAr[i].GetTeamNumber())																			//make sure on opposing team
 
-							{pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as enemy");*/ break;		}						//assign rival
+							{pairSetRivalMaxes[i].runSetMaxFor(GameManager.shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as enemy");*/ break;		}						//assign rival
 																													
 															
 
 						}else if (numberChecked <8){if(j+1>= 4){checkArrayAt = 0; j = -1;}else{checkArrayAt = j+1;} 
 					//	Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);   //should plus one so not do zero twice
-						if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as my team mate");*/ break;}		//set my rival as my team mate// only works if i have put them in the array in same  order found the gizmos
+						if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(GameManager.shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as my team mate");*/ break;}		//set my rival as my team mate// only works if i have put them in the array in same  order found the gizmos
 														
 						}else{Debug.Log(gameObject.tag + " not been given a rival or self or team mate so returning" + " availablilty aray reads " +someoneIsAlreadyGoingToSetMyMax[0]+someoneIsAlreadyGoingToSetMyMax[1]+someoneIsAlreadyGoingToSetMyMax[2]+someoneIsAlreadyGoingToSetMyMax[3]); return;} // ha ha this is where my error occurs, hmm it triggers when only one player!
 			} 
@@ -356,11 +359,14 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 		}
 
-		private void checkThereIsAtLeastAPlayerPair(){
+		private void removeGizmosWithNoPlayers(){ 
 
 			int countPlayerPair = 0;
 
-			foreach(thisPlayerPairSettings playerPair in shipPlayerSettingsAr){if (playerPair.getWerePlaying() == false)
+
+
+
+			foreach(thisPlayerPairSettings playerPair in GameManager.shipPlayerSettingsAr){if (playerPair.getWerePlaying() == false)
 			{foreach(selectorPBGizmo gizmoSc in gizmoAr){if(gizmoSc.gameObject.tag == playerPair.getShipPairColor()){gizmoSc.gameObject.SetActive(false);}}}else{countPlayerPair++;}
 
 			}
@@ -370,7 +376,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 		private void resetSetUp(){//todo
 
-
+		Debug.Log(" tried to trigger reset on setup but we dont have that option ");
 		//speed up fuse animation
 		//set text to something like too slow your not gonna make it
 		//do an explosion bubble
