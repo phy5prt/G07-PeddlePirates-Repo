@@ -9,10 +9,8 @@ public class thisPairWantsAship : MonoBehaviour {
 
 private Image shipSelectedIndicator;
 private Color selectedColor;
-public bool weWantAShip = false; // will assign directly to static in future
-
-public float voltLeftForMyColor = 5f; //later will pull from a static of player settings
-public float voltRightForMyColor = 5f;
+ // will assign directly to static in future
+private thisPlayerPairSettings myThisPlayerPairSettings;
 
 private float voltMinActivation = 5f;
 
@@ -21,18 +19,21 @@ private float voltMinActivation = 5f;
 
 	shipSelectedIndicator = GetComponent<Image>();
 	selectedColor = shipSelectedIndicator.color;
-		
+
+		foreach(thisPlayerPairSettings pairShip in GameManager.shipPlayerSettingsAr){if(tag == pairShip.getShipPairColor()){myThisPlayerPairSettings = pairShip;}}
+				
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-	if((voltLeftForMyColor>voltMinActivation) && voltRightForMyColor>voltMinActivation){
+	if(myThisPlayerPairSettings.GetmyLeftVolt()>voltMinActivation && myThisPlayerPairSettings.GetmyRightVolt()>voltMinActivation){
 
 	shipSelectedIndicator.color = selectedColor;
-	weWantAShip = true;
+		myThisPlayerPairSettings.setWerePlaying(true);
 
-	}else{weWantAShip = false; shipSelectedIndicator.color = Color.red;}
+
+		}else{ myThisPlayerPairSettings.setWerePlaying(true); shipSelectedIndicator.color = Color.red;}
 
 
 

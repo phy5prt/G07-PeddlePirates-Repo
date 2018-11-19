@@ -3484,7 +3484,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 374.1, y: 70.3}
+  m_SizeDelta: {x: 376.49, y: 70.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &468724010
 MonoBehaviour:
@@ -3519,7 +3519,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.9
-  m_Text: Peddle Pirates
+  m_Text: Pedal Pirates
 --- !u!222 &468724011
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8527,8 +8527,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 983045370}
-  m_LocalRotation: {x: -0.68977475, y: -0, z: -0, w: 0.7240241}
-  m_LocalPosition: {x: 300, y: -871.7427, z: 295.15765}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 252, y: -238.86003, z: 336}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 691248108}
@@ -9107,6 +9107,35 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1123938925}
+--- !u!1 &1127642804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1127642805}
+  m_Layer: 0
+  m_Name: HolderForPlayerStartSetUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1127642805
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1127642804}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -48, y: 154, z: 36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1686695016}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &1135340338
 GameObject:
   m_ObjectHideFlags: 0
@@ -10677,8 +10706,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6, y: 270.5298}
-  m_SizeDelta: {x: -425.9, y: -529.06}
+  m_AnchoredPosition: {x: 20.224976, y: 270.5298}
+  m_SizeDelta: {x: -373.44998, y: -529.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1302857072
 MonoBehaviour:
@@ -12594,6 +12623,22 @@ MonoBehaviour:
   playerShipsSunk: 0
   playerShipsActive: 0
   ShipsGOs: []
+--- !u!114 &1545174068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1545174066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c299af93cb7e6c42999d0c8ed2dd401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamPairShipSettings: 
+  playerShipToSpawn: {fileID: 1787419668699666, guid: 0579e306aa52c41498b1a88d0a6fe355,
+    type: 2}
+  enemyShipToSpawn: {fileID: 1452595409263392, guid: 1ae21c97bc736124e981aa9ed85e1c03,
+    type: 2}
 --- !u!1 &1553001368
 GameObject:
   m_ObjectHideFlags: 0
@@ -13599,14 +13644,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipPlayerSettingsAr: []
-  redLeftVolt: 10
-  redRightVolt: 10
-  yelLeftVolt: 0
-  yelRightVolt: 0
-  greLeftVolt: 0
-  greRightVolt: 0
-  bluLeftVolt: 0
-  bluRightVolt: 0
   rateMatchReturnsToStart: 100
   matchTurnDegreesPerDeltaTime: 6
   stage1Time: 5
@@ -13628,7 +13665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.319}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.225}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -13734,9 +13771,9 @@ RectTransform:
   - {fileID: 951987550}
   - {fileID: 469119399}
   - {fileID: 1410383532}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 87.225006, y: 0, z: 0}
+  m_Father: {fileID: 1127642805}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 82.004005, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -15389,49 +15426,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2020656605}
---- !u!1 &2039395795
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2039395797}
-  - component: {fileID: 2039395796}
-  m_Layer: 0
-  m_Name: delME
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2039395796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2039395795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8f62157896e9c54bb11ba3152f13471, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyShipToSpawn: {fileID: 0}
-  teamPairShipSettings: 
-  playerShipToSpawn: {fileID: 0}
---- !u!4 &2039395797
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2039395795}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -256.26733, y: -227.59473, z: 341.989}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2043371220
 GameObject:
   m_ObjectHideFlags: 0
@@ -16148,7 +16142,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2111138902}
   m_LocalRotation: {x: -0, y: -0, z: 0.27462846, w: 0.9615505}
-  m_LocalPosition: {x: 45.4, y: 106.00005, z: 0.00006834515}
+  m_LocalPosition: {x: 45.4, y: 106, z: -10}
   m_LocalScale: {x: 8.300003, y: 8.300011, z: 10.000013}
   m_Children: []
   m_Father: {fileID: 1686695016}

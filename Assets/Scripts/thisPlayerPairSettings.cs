@@ -8,10 +8,12 @@ using UnityEngine;
 //need structs for the fixed info i think this would be nice
 //should change everything to get set
 
+//current sets from random number generator
+
 public class thisPlayerPairSettings : MonoBehaviour {
 
 	// Use this for initialization
-	private bool bikePairSetAsAvailableOnEventSetup = false;
+	private bool bikePairSetAsAvailableOnEventSetup = true; //set to false after finished setting to scene
 
 	//later add health and inputVoltMultiplier as things for the event setting page
 
@@ -23,14 +25,11 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	private string teamName;
 
 
-	/// 
-	/// 
-	/// so the shipModel will get its colour volt max etc and strip them off this static
-	//it will also get the (address, so instantiate, or pass an array number for which arduino volt static to call on? arduino changes the static)
-	private GameObject myLeftVolt;     //i think gameObject because storing the address (could be the comm port number) of where to find the thing really
-	private GameObject myRightVolt;
+//using get and setting it to the arduino 
+	private float myLeftVolt;    
+	private float myRightVolt;
 
-	//public static float testVoltStatic; // accessible without an instance
+
 
 
 	void Start () {
@@ -84,17 +83,17 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	shipPairName = shipName;
 	}
 
-	public GameObject GetmyLeftVolt(){
+	public float GetmyLeftVolt(){
 		return myLeftVolt;
 	}
-	public void SetmyLeftVolt(GameObject myLVolt){
+	public void SetmyLeftVolt(float myLVolt){
 		myLeftVolt =  myLVolt;
 	}
 
-	public GameObject GetmyRightVolt(){
+	public float GetmyRightVolt(){
 		return myRightVolt;
 	}
-	public void SetmyRightVolt(GameObject myRVolt){
+	public void SetmyRightVolt(float myRVolt){
 		myRightVolt =  myRVolt;
 	}
 

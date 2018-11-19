@@ -20,34 +20,23 @@ using UnityEngine.UI;
 
 public class PlayerSetupManager : MonoBehaviour {
 
+
+
 public thisPlayerPairSettings[] shipPlayerSettingsAr;
 
 private bool[] someoneIsAlreadyGoingToSetMyMax = {false,false,false,false}; // make it part of player settings
 
 
-//below will be replaced with GameManager.RedShip.GetLeftVolts etc 
-	GameManager.redPShip.GetmyLeftVolt();
-public float redLeftVolt;
-public float redRightVolt;
 
-public float yelLeftVolt;
-public float yelRightVolt;
 
-public float greLeftVolt;
-public float greRightVolt;
-
-public float bluLeftVolt;
-public float bluRightVolt;
-
-//can i make this and this whole script static?
-[SerializeField] static int stage = 0;
+//                                                            MATCH                                                                                  //
 
 //move the match mechanics to own script and object?
 [SerializeField] float rateMatchReturnsToStart = 75f;
 private float matchPosDeg = 0f;
 [SerializeField] float matchTurnDegreesPerDeltaTime = 60f; //a circle in a minute assuming the person cycle out put creates a float of one per second)
-	private float matchDegreeStart = 0f ;              //2550f        // 90f; due to scaling using different numbers but leaving this here so know intended behaviour
-	private float matchDegreesStrike = 240f;         //2305         //350f;
+private float matchDegreeStart = 0f ;              //2550f        // 90f; due to scaling using different numbers but leaving this here so know intended behaviour
+private float matchDegreesStrike = 240f;         //2305         //350f;
 private float minVoltDefineActivePedaling = 1f; //minimum volts in to register bike use
 private GameObject matchObj;
 
@@ -55,6 +44,10 @@ private bool strikeMatch =false;
 private float timeMatchStruck = 0f;
 
 private Quaternion startRotationPosMatch;
+
+
+//                                                      Finding Components                                                                    //
+
 
 private GameObject	stageCountDownImageGO;
 private GameObject	chooseTeamStageGO;
@@ -64,6 +57,12 @@ private arrowTeamSelector[] arrowTeamSelectGizmos;
 private pairSetRivalMaxBar[] pairSetRivalMaxes;
 private PirateInstruction switchInstructionTexts;
 private selectorPBGizmo[] gizmoAr;
+
+
+//													Setting the Stages                                                                     //
+
+
+[SerializeField] static int stage = 0;
 
 [SerializeField] float stage1Time = 10f;
 private float stage1EndTime = 1000f;
@@ -75,21 +74,28 @@ private float stage2EndTime = 1000f;
 private float stage3EndTime = 1000f;
 
 
+
+
+//                                                    Stage 2                                                                            //
+
 [SerializeField] float stage2ShrinkTime = 0.7f;
-
-	// Use this for initialization
-
 
 private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and off not individually assigning because they using the static can individually assign to the thisPlayerPairSettingPair static instance themselves
 
 [SerializeField] int numberPositionMovesStage2 = 6;
 [SerializeField] float arrowJumpChoiceTimeStage2 = 3f; 
 
-private GameManager gM; //later make it so everything runs straight from class using statics rather than instance
 
-					void Start () {
 
-	gM = transform.parent.gameObject.GetComponent<GameManager>();
+
+
+
+
+
+
+	void Start () {
+
+
 
 	matchObj = GameObject.Find("Match").gameObject;    //when restructure try do so so dont have to do this
 	startRotationPosMatch =	matchObj.transform.rotation;
@@ -121,11 +127,7 @@ private GameManager gM; //later make it so everything runs straight from class u
 
 
 
-	
-
-	
-	// Update is called once per frame
-	void Update () {
+	void Update () { // using coroutine could i avoid using update or using switch statements // dont think i need the elses either
 
 	//stage 0 is do people want to play
 	//stage 1 is everyone who wants to play select
@@ -134,15 +136,12 @@ private GameManager gM; //later make it so everything runs straight from class u
 
 
 
-	if(stage == 0){ // when ready make this a method in another class that returns the stage int it adds 1 if it is time to move on
+	if(stage == 0){ 
 		stage = stage0Method ();}else 
-	if (stage == 1 && Time.timeSinceLevelLoad > stage1EndTime){ //this is begging for a coroutine or something that says runs this and when this done run this or run this and we knoew it takes this so after this amoutn of time do this
-		//stage = initiateShrinkStage2();}else
+	if (stage == 1 && Time.timeSinceLevelLoad > stage1EndTime){
+			
 			initiateShrinkStage2(stage2ShrinkTime);
 			Invoke("setupStage2AfterShrink",stage2ShrinkTime);
-			//need to be run in a coroutine and only once
-
-
 			}else
 	if (stage == 2){initiateStage3();
 
@@ -154,22 +153,18 @@ private GameManager gM; //later make it so everything runs straight from class u
 			
 	}
 
-	void HowManyBikePairs ()
-	{
-		
-
-	}
 
 
 
-	// this is the select players who are playing stage
 
 	private int stage0Method (){
 
 		//issue with this if is that if a pair is cycling 3 singles can still contribut  but not sure it is a problem 
 		//could make them ifs in the if
-		if ((redLeftVolt > minVoltDefineActivePedaling && redRightVolt > minVoltDefineActivePedaling) || (yelLeftVolt > minVoltDefineActivePedaling && yelRightVolt > minVoltDefineActivePedaling) || (greLeftVolt > minVoltDefineActivePedaling && greRightVolt > minVoltDefineActivePedaling) || (bluLeftVolt > minVoltDefineActivePedaling && bluRightVolt > minVoltDefineActivePedaling)) {
-			matchPosDeg += (redLeftVolt + redRightVolt + yelLeftVolt + yelRightVolt + greRightVolt + greLeftVolt + bluLeftVolt + bluRightVolt) * matchTurnDegreesPerDeltaTime * Time.deltaTime;
+
+
+		if ((GameManager.redPShip.GetmyLeftVolt() > minVoltDefineActivePedaling && GameManager.redPShip.GetmyRightVolt() > minVoltDefineActivePedaling) || (GameManager.yelPShip.GetmyLeftVolt() > minVoltDefineActivePedaling && GameManager.yelPShip.GetmyRightVolt() > minVoltDefineActivePedaling) || (GameManager.grePShip.GetmyLeftVolt() > minVoltDefineActivePedaling && GameManager.grePShip.GetmyRightVolt() > minVoltDefineActivePedaling) || (GameManager.bluPShip.GetmyLeftVolt() > minVoltDefineActivePedaling && GameManager.bluPShip.GetmyRightVolt() > minVoltDefineActivePedaling)) {
+			matchPosDeg += (GameManager.redPShip.GetmyLeftVolt() + GameManager.redPShip.GetmyRightVolt() + GameManager.yelPShip.GetmyLeftVolt() + GameManager.yelPShip.GetmyRightVolt() + GameManager.grePShip.GetmyRightVolt() + GameManager.grePShip.GetmyLeftVolt() + GameManager.bluPShip.GetmyLeftVolt() + GameManager.bluPShip.GetmyRightVolt()) * matchTurnDegreesPerDeltaTime * Time.deltaTime;
 		}
 		else
 			if (matchPosDeg > matchDegreeStart) {
@@ -182,17 +177,16 @@ private GameManager gM; //later make it so everything runs straight from class u
 			if (matchPosDeg < matchDegreeStart) {
 				matchPosDeg = matchDegreeStart;
 			}
-		//Debug.Log(" before matchObj.transform.eulerAngles.Set = " + matchObj.transform.eulerAngles + " setting z to matchPosDeg which is = " + matchPosDeg);
-		//matchObj.transform.eulerAngles = new Vector3 (matchObj.transform.eulerAngles.x, matchObj.transform.eulerAngles.x ,matchPosDeg); //euler angles works
+
 		matchObj.transform.rotation = startRotationPosMatch;
 		matchObj.transform.Rotate (Vector3.back * matchPosDeg);
-		//Debug.Log(" after matchObj.transform.eulerAngles.Set = " + matchObj.transform.eulerAngles);
+
 		if (matchPosDeg == matchDegreesStrike) {
 			if (strikeMatch == false) {
 				strikeMatch = true;
 				timeMatchStruck = Time.timeSinceLevelLoad;
 			}
-			//the code make match wait 2 seconds in lit position
+			//the code makes the match wait 2 seconds in lit position
 			else
 				if (strikeMatch == true && Time.timeSinceLevelLoad > timeMatchStruck + 1f) {
 					stage = 1;
@@ -209,7 +203,7 @@ private GameManager gM; //later make it so everything runs straight from class u
 	}
 
 
-	private void initiateStage1(){
+	private void initiateStage1(){ //the code that does the selection is the thispairwantsaship
 
 	stageCountDownImageGO.SetActive(true);
 	stageCountDownImageGO.GetComponent<redCountDownTimer>().startStageTimer(stage1Time);
@@ -217,12 +211,15 @@ private GameManager gM; //later make it so everything runs straight from class u
 	stage1EndTime = Time.timeSinceLevelLoad + stage1Time;
 	}
 
+
+
 	private void initiateShrinkStage2(float theShrinkTime){			//startShrinking triggers its own arrows and bars
 		checkThereIsAtLeastAPlayerPair();
 		switchInstructionTexts.updatePirateText(2);
 		foreach(thisPairWantsAship gizmo in currentlySelectedsGOs){gizmo.gameObject.SetActive(false);}
 		//this triggers stage 2
-	//in their code the enabled selectors will have set the static instances so check which are enabled if zero ...
+
+	
 
 	//check static instances playerSettings to see if they are enabled // if not run the reset show an explosion
 
@@ -241,7 +238,7 @@ private GameManager gM; //later make it so everything runs straight from class u
 	foreach(arrowTeamSelector teamSelector in arrowTeamSelectGizmos){teamSelector.gameObject.SetActive(true);}
 	foreach(arrowTeamSelector teamSelector in arrowTeamSelectGizmos){teamSelector.runThisArrowTimer(numberPositionMovesStage2,arrowJumpChoiceTimeStage2);}
 
-	stage2Time = numberPositionMovesStage2*arrowJumpChoiceTimeStage2 + 1f; //1f just incase lose some time in processing // seems go a little long maybe -1 on the stages but not sure why
+	stage2Time = numberPositionMovesStage2*arrowJumpChoiceTimeStage2 + 1f; //1f just incase lose some time in processing
 
 	stageCountDownImageGO.SetActive(true);
 	stageCountDownImageGO.GetComponent<redCountDownTimer>().startStageTimer(stage2Time);
@@ -252,13 +249,9 @@ private GameManager gM; //later make it so everything runs straight from class u
 
 
 
-	private void initiateStage3(){	
+	private void initiateStage3(){	 //currently not destroying ship in the move out warf or get blown up section
 
-
-			//i could send the method an index or which player prefs to use
-
-		//moving the gizmos	 - they move themselves
-		//they set themselves so just need to wait
+				
 	
 		//or reset if they die in set up by not choosing a team show rest
 	if(Time.timeSinceLevelLoad> stage2EndTime){
@@ -298,7 +291,7 @@ private GameManager gM; //later make it so everything runs straight from class u
 			//also if more allies than enemies would be nice if instead of setting for an ally which you will be tempted to let off lightly but instead you joint contributed to an enemy
 			//this system would have you just peddle to set everyone elses maxes except your own and if you are the only player then you set your own
 
-			//this all risk infinite loop if we dont hit the breaks 
+
 
 			for(int i=0; i<4; i++ ){someoneIsAlreadyGoingToSetMyMax[i]= !shipPlayerSettingsAr[i].getWerePlaying();}
 
@@ -349,30 +342,31 @@ private GameManager gM; //later make it so everything runs straight from class u
 			  
 
 
-		stage=3; 
-		}}
+		}stage=3; 
+		}
 		}
 
 		private void setupCompleteStartGame(){
-		//should all this be on spawner and gm just hold info
-		gM.prepareToSpawn();
-		gM.spawnPlayersAndEnemies();
-		this.gameObject.SetActive(false);
 
-		//probably just run GameManager from here as all info should be in statics, then turn off the setup
+			GameManager.startGame();
+
+			this.gameObject.SetActive(false);
+
+			//probably just run GameManager from here as all info should be in statics, then turn off the setup
 
 		}
+
 		private void checkThereIsAtLeastAPlayerPair(){
 
-		int countPlayerPair = 0;
+			int countPlayerPair = 0;
 
-		foreach(thisPlayerPairSettings playerPair in shipPlayerSettingsAr){if (playerPair.getWerePlaying() == false)
-		{foreach(selectorPBGizmo gizmoSc in gizmoAr){if(gizmoSc.gameObject.tag == playerPair.getShipPairColor()){gizmoSc.gameObject.SetActive(false);}}}else{countPlayerPair++;}
+			foreach(thisPlayerPairSettings playerPair in shipPlayerSettingsAr){if (playerPair.getWerePlaying() == false)
+			{foreach(selectorPBGizmo gizmoSc in gizmoAr){if(gizmoSc.gameObject.tag == playerPair.getShipPairColor()){gizmoSc.gameObject.SetActive(false);}}}else{countPlayerPair++;}
 
-		}
-		if(countPlayerPair<1){resetSetUp();}
+			}
+			if(countPlayerPair<1){resetSetUp();}
 
-		}
+			}
 
 		private void resetSetUp(){//todo
 
