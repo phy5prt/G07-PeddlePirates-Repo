@@ -61,6 +61,35 @@ public static thisPlayerPairSettings bluPShip;
 
 public static thisPlayerPairSettings[]  shipPlayerSettingsAr =  {redPShip,yelPShip,grePShip,bluPShip};
 
+
+	
+	private int scenePersisting;     
+								
+
+ void Awake(){ //singleton 
+
+
+
+ 		int numSPWithThisSceneBuildNum = 0;
+		scenePersisting = SceneManager.GetActiveScene().buildIndex;
+
+
+
+		GameManager[] gM = FindObjectsOfType<GameManager>();   
+			foreach(GameManager gameManager in gM){
+				if(gameManager.scenePersisting ==  SceneManager.GetActiveScene().buildIndex) {numSPWithThisSceneBuildNum++;}else	{Destroy(gameManager.gameObject);} }  
+
+			
+		if (numSPWithThisSceneBuildNum>1){ Destroy(gameObject);}                              
+										
+																																																		
+		DontDestroyOnLoad(gameObject);																				
+			
+ 
+}
+
+
+
 private void Start(){
 		settingUpPlayerSettingAr ();
 

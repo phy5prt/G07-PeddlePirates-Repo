@@ -3,17 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//What we need
-//each team with a max, colour, a teams layer, left right row input set, team name(is string so keep an index to a static string array with player numbnumber) 
-//Ai infor to food to computer
-//no need number players just have a ship per colour, it gets assigned a layer and ones allocated get put in player array and created // use colour to border their screen partician they
-//dont need where they are in array
 
 
 
 
-//going to make a player override class
-//  Player : myPlayerSetup overidestart
 
 //https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html
 //https://unity3d.com/learn/tutorials/topics/scripting/coroutines
@@ -22,26 +15,18 @@ using UnityEngine.UI;
 //try this at refactor stage i currently want minimal product
 
 //later need a screen that summarizes teams, players and the maxes, and gives chance to get out - use the slide out menu holding high scores
-// so can see setting mirrored
+// so can see setting mirrored - maybe slides up over team warf - it is unclear what end result is - or at end of the setting replace gizmo with a clear image and the max
+//or even a spikey star bubble with info in like a sale sticker
 
 public class PlayerSetupManager : MonoBehaviour {
 
 public thisPlayerPairSettings[] shipPlayerSettingsAr;
 
-//in future may want to set max's per bike
-//this would mean a child and parent could have different maxes
-//there could be an option for set your own max's
-
-
-
-
-
-
 private bool[] someoneIsAlreadyGoingToSetMyMax = {false,false,false,false}; // make it part of player settings
 
 
 //below will be replaced with GameManager.RedShip.GetLeftVolts etc 
-
+	GameManager.redPShip.GetmyLeftVolt();
 public float redLeftVolt;
 public float redRightVolt;
 
