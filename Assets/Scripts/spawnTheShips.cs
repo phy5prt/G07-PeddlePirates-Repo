@@ -26,7 +26,8 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 
 		SpawnPointsAvialableScripts = GetComponentsInChildren<spawnpoint>();
 		spawnPoints = new Transform[transform.childCount]; // may not be necessary
-		for(int i = 0; i<spawnPoints.Length; i++){spawnPoints[i] = SpawnPointsAvialableScripts[i].gameObject.transform;}
+		for(int i = 0; i<spawnPoints.Length; i++){spawnPoints[i] = SpawnPointsAvialableScripts[i].gameObject.transform;} //does this not include all spawnpoints is this why had to reduce 
+		//the number of points in showslidervalue
 
 		//foreach(spawnpoint thisSpawnPoint in SpawnPointsChildrensScript){spawnPoint[i]thisSpawnPoint.gameObject.transform;} // should this just be 
 		
@@ -94,9 +95,9 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 	//	for (int i = 0; i< SpawnPointsAvailableScripts.Length; i++){if(SpawnPointsAvialableScripts[i].availableSpawnPoint == true){SPscriptIsCurrentlyAvailable[] = SpawnPointsAvialableScripts[i].availableSpawnPoint}}
 		// // but using a list as wont know how many till done it. then just chose the random location from the tures and if the length of availableSpawnPoints is less than one the dont run
 
-	
-		while(foundAvailableSpawn == false){
-			int random = Random.Range(0,SpawnPointsAvialableScripts.Length-1);
+		Debug.Log("SpawnPointsAvialableScripts.Length " + SpawnPointsAvialableScripts.Length );
+		while(foundAvailableSpawn == false){     //this must be where my code hung when it felt the int array was too long though seems it was right
+			int random = Random.Range(0,SpawnPointsAvialableScripts.Length); //if random range is exclusive this may be the error! (im removing the -1)
 			if(SpawnPointsAvialableScripts[random].availableSpawnPoint == true){
 				locationToInstantiate = SpawnPointsAvialableScripts[random].gameObject.transform; // note the random number isnt being recalculated so it is same spawnscript as line above
 				SpawnPointsAvialableScripts[random].availableSpawnPoint = false; // make spawn point unavailable to others
