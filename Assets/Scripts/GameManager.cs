@@ -168,6 +168,7 @@ public static void startGame(){
 //cancel coroutine and run the method, but think that happens anyway
 
 Debug.Log("finding spawn points and tell the script to spawn players and enemies");
+//could have gamemanager here apply the screen split rects however i feel playersetup is the one to do the work gamemanager gives the instructions
 GameObject.Find("SpawnPoints").GetComponent<spawnTheShips>().spawnPlayersAndEnemies();
 
 

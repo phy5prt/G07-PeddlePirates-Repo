@@ -351,6 +351,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 		private void setupCompleteStartGame(){
 
+			setupShipsSplitScreens();
 			GameManager.startGame();
 
 			Debug.Log(" about to set playersetup GO false ");
@@ -359,6 +360,79 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 			//probably just run GameManager from here as all info should be in statics, then turn off the setup
 
 		}
+
+		private void setupShipsSplitScreens(){
+
+		//here i find the colours in order because ... wait now colours in the array of gamemanager theyre always in order!
+		//so i get colours in order with the intention of start at top left top right bottom left bottom right as i feel this will be most intuitive for players
+		//based on where their gizmos were in order on the preivous screen
+		//if foreach access array in order could use that - it does for more dimensional will have to look up
+		//could do the foreach based on the screen array and reduce all this to one bit of code the foreach taking the array and just knowing its size and how to apply it
+		//with an if for 3 players getting a bottom right screen
+
+		int numScreensNeeded = 0;
+		foreach(thisPlayerPairSettings ship in GameManager.shipPlayerSettingsAr){if (ship.getWerePlaying()) {numScreensNeeded++;} }
+
+		if(numScreensNeeded<1){Debug.Log(" found no players "); resetSetUp();}
+
+		if(numScreensNeeded == 1){return;} //ihavent given it a rect as i will just set the default as the split for one in playerSettings rather than find the one and give it rect it already has
+
+		if(numScreensNeeded == 2){
+		int[] splitScreen = new int[2];
+
+
+			for(int i = 0; i<GameManager.shipPlayerSettingsAr.Length; i++){
+				if(GameManager.shipPlayerSettingsAr[i].getWerePlaying() == true)
+				{for(int j =0; j<splitScreen.Length; j++){if(splitScreen[j] == 0){splitScreen[j] = 1; 
+						Rect thisShipRect = new Rect (0f,((float)j*0.5f),1f,0.5f);
+							GameManager.shipPlayerSettingsAr[i].SetSplitScreenArea(thisShipRect); break;}}}}} // will this break take me out if and for
+			
+		if(numScreensNeeded == 3){ 
+
+			int[,] splitScreen = new int[2,2];
+			for(int i = 0; i<GameManager.shipPlayerSettingsAr.Length; i++){
+				if(GameManager.shipPlayerSettingsAr[i].getWerePlaying() == true)
+
+				//start top
+				//work right
+					{for (int k = splitScreen.GetLength(0)-1; k >= 0; k--)
+					{for(int j =0; j<splitScreen.GetLength(0); j++){
+
+
+								{if(splitScreen[j,k] == 0){splitScreen[j,k] = 1; 
+									Rect thisShipRect = new Rect (((float)j*0.5f),((float)k*0.5f),0.5f,0.5f);
+									GameManager.shipPlayerSettingsAr[i].SetSplitScreenArea(thisShipRect); break;}}}}}} // will this break take me out if and for
+			
+			GameObject.Find("temp3Player4thRectCam").GetComponent<Camera>().enabled = true;}
+		//need to create a camera on a canvas with view rect (0.5,0,0.5,0.5)
+
+
+		    		
+		if(numScreensNeeded == 4){ // do the four one but add something 
+		int[,] splitScreen = new int[2,2];
+
+
+			for(int i = 0; i<GameManager.shipPlayerSettingsAr.Length; i++){
+				if(GameManager.shipPlayerSettingsAr[i].getWerePlaying() == true)
+
+				//start top
+				//work right
+					{for (int k = splitScreen.GetLength(0)-1; k >= 0 ; k--)
+					{for(int j =0; j<splitScreen.GetLength(0); j++){
+
+
+								{if(splitScreen[j,k] == 0){splitScreen[j,k] = 1; 
+
+									Rect thisShipRect = new Rect (((float)j*0.5f),((float)k*0.5f),0.5f,0.5f);
+									GameManager.shipPlayerSettingsAr[i].SetSplitScreenArea(thisShipRect); break;}}}}}}} // will this break take me out if and for
+			
+		
+	
+		}
+
+
+
+
 
 		private void removeGizmosWithNoPlayers(){ 
 
@@ -384,4 +458,5 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 		//reset everything ... will have to come through and see whats changed
 
 		}
+
 }
