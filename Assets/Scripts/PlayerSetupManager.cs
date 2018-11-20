@@ -147,7 +147,9 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 
 	}else
-	if(stage==3 && Time.timeSinceLevelLoad> stage3EndTime){setupCompleteStartGame();};
+	if(stage==3 && Time.timeSinceLevelLoad> stage3EndTime){
+	stage=4; //just incase runs more than once
+	setupCompleteStartGame();};
 
 
 			
@@ -349,9 +351,10 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 		}
 		}
 
-		private void setupCompleteStartGame(){
+		private void setupCompleteStartGame(){//seems to be run multiple times
 
 			setupShipsSplitScreens();
+
 			GameManager.startGame();
 
 			Debug.Log(" about to set playersetup GO false ");

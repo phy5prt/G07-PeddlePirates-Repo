@@ -57,6 +57,7 @@ private bool shipBeenSetUp = false; //feel shouldnt need this
 private Camera myMainCamera;
 	// Use this for initialization
 	void Start () {
+	//is this the object not found!
 	myMainCamera = GetComponentInChildren<Camera>(); // the boat camera has cameras in its GO assuming wont find the wrong one,should take shallowest
 	health = GetComponent<Health>();
 
@@ -69,10 +70,25 @@ private Camera myMainCamera;
 
 		//set color
 		//set team number () - public so spawner can read it - and apply it to physics collision matrix sorting layers
+		Debug.Log(" orvolt100perc before received settings is " + ourVolt100PercMax);
 		ourVolt100PercMax = ourShipsPlayerPairSettings.GetVolt100Perc();
-
+		Debug.Log(" orvolt100perc after received settings is " + ourVolt100PercMax);
 		//view port
-		myMainCamera.rect = ourShipsPlayerPairSettings.GetSplitScreenArea(); //not sure if this need word new should because its like a vector but then goes red so dunno
+		//Rect splitScreen = ourShipsPlayerPairSettings.GetSplitScreenArea();
+
+	//	myMainCamera.rect.Set() ; //not sure if this need word new should because its like a vector but then goes red so dunno
+	//most be a better way
+	//could just instead of rect have a float array but seems dumb
+	//dumb to to have to pull each float out of rec
+		//is the issue actually how i pass the info
+		//okay so above may not be the problem so on refactor maybe rect can be passed better
+		//the issue was this code running before the start code
+		//i thought start was like a constructor but it isnt
+		//maybe instead of start this code should require a constructor
+
+		myMainCamera = GetComponentInChildren<Camera>();
+		Debug.Log("my main camera " + myMainCamera + " my main camera rect " + myMainCamera.rect );
+		myMainCamera.rect = new Rect(ourShipsPlayerPairSettings.GetSplitScreenArea().x,ourShipsPlayerPairSettings.GetSplitScreenArea().y,ourShipsPlayerPairSettings.GetSplitScreenArea().width,ourShipsPlayerPairSettings.GetSplitScreenArea().height);
 		shipBeenSetUp = true;
 
 

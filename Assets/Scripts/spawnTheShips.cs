@@ -49,7 +49,9 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 
 		GameManager.enemiesShipSettings = new int[GameManager.numberAIs];//this will be changed when passing more info but for now
 		Debug.Log(" making enemy ship int array its length is " + GameManager.enemiesShipSettings.Length);
-
+		int noPlayerPairs=0;
+		foreach(thisPlayerPairSettings playerPair in GameManager.shipPlayerSettingsAr){if(playerPair.getWerePlaying()){noPlayerPairs++;}}
+		Debug.Log(" this is how many player are playing according to spawntheships " + noPlayerPairs);
 
 
 		foreach(thisPlayerPairSettings playerPair in GameManager.shipPlayerSettingsAr){
@@ -61,7 +63,7 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 					//could the code actually have its object as part of it and make a version of the script and it creates own ship
 					GameObject playerShip = Instantiate (playerShipToSpawn, locationToInstantiate);
 					playerShip.GetComponent<MyPlayer>().applyPlayerSettingsToShip(playerPair);
-			}}
+			} }
 			
 			
 			
