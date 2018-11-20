@@ -85,7 +85,7 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 [SerializeField] int numberPositionMovesStage2 = 6;
 [SerializeField] float arrowJumpChoiceTimeStage2 = 3f; 
 
-
+int[,] splitScreenQuarters = new int[2,2];
 
 
 
@@ -412,28 +412,60 @@ private thisPairWantsAship[] currentlySelectedsGOs; // only need turning on and 
 
 		    		
 		if(numScreensNeeded == 4){ // do the four one but add something 
-		int[,] splitScreen = new int[2,2];
+		Debug.Log(" screens needed " + numScreensNeeded);
+
 
 
 			for(int i = 0; i<GameManager.shipPlayerSettingsAr.Length; i++){
-				if(GameManager.shipPlayerSettingsAr[i].getWerePlaying() == true)
+				if(GameManager.shipPlayerSettingsAr[i].getWerePlaying() == true){allocate2dArraySplitScreenRect(GameManager.shipPlayerSettingsAr[i]);}}}
+
+
+				/*This code does not work because it need to break out of both inner loops and stay in the outer a goto may work, i am using a seperate method with return
+				//dont know which is optimal
 
 				//start top
 				//work right
-					{for (int k = splitScreen.GetLength(0)-1; k >= 0 ; k--)
-					{for(int j =0; j<splitScreen.GetLength(0); j++){
+				{Debug.Log(" setting  " + GameManager.shipPlayerSettingsAr[i].getShipPairColor()); 
+
+					for (int k = splitScreen.GetLength(1)-1; k >= 0 ; k--)
+		
+
+					for(int j =0; j<splitScreen.GetLength(0); j++){
 
 
-								{if(splitScreen[j,k] == 0){splitScreen[j,k] = 1; 
+								{Debug.Log(" k is " + k + "j is " + j );
+
+								if(splitScreen[j,k] == 0){splitScreen[j,k] = 1; 
 
 									Rect thisShipRect = new Rect (((float)j*0.5f),((float)k*0.5f),0.5f,0.5f);
-									GameManager.shipPlayerSettingsAr[i].SetSplitScreenArea(thisShipRect); break;}}}}}}} // will this break take me out if and for
+									GameManager.shipPlayerSettingsAr[i].SetSplitScreenArea(thisShipRect); 
+									Debug.Log(" just gave " + GameManager.shipPlayerSettingsAr[i].getShipPairColor() + " the k,j " + k+j + " which is the rect " + thisShipRect ); 
+
+
+									//refactor options are make the 2 layers of loop a seperate method and use return
+									//put a bool in called break out2dloop
+									break;}}}}}} // will this break take me out if and for - no doesnt break me out both part of loop
 			
-		
+		*/
 	
 		}
 
+		private void allocate2dArraySplitScreenRect(thisPlayerPairSettings shipToAllocateRect){
+	for (int k = splitScreenQuarters.GetLength(1)-1; k >= 0 ; k--)
+		
 
+					for(int j =0; j<splitScreenQuarters.GetLength(0); j++){
+
+
+								{Debug.Log(" k is " + k + "j is " + j );
+
+								if(splitScreenQuarters[j,k] == 0){splitScreenQuarters[j,k] = 1; 
+
+									Rect thisShipRect = new Rect (((float)j*0.5f),((float)k*0.5f),0.5f,0.5f);
+									shipToAllocateRect.SetSplitScreenArea(thisShipRect); 
+									Debug.Log(" just gave " + shipToAllocateRect.getShipPairColor() + " the k,j " + k+j + " which is the rect " + thisShipRect ); 
+									return;
+		}}}}
 
 
 
