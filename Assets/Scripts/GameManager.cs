@@ -170,6 +170,7 @@ public static void startGame(){
 Debug.Log("finding spawn points and tell the script to spawn players and enemies");
 GameObject.Find("SpawnPoints").GetComponent<spawnTheShips>().spawnPlayersAndEnemies();
 
+
 }
 
 

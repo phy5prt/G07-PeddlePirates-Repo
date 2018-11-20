@@ -26,7 +26,7 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 
 		SpawnPointsAvialableScripts = GetComponentsInChildren<spawnpoint>();
 		spawnPoints = new Transform[transform.childCount]; // may not be necessary
-		for(int i = 0; i<spawnPoints.Length; i++){spawnPoints[i] = SpawnPointsAvialableScripts[i].gameObject.transform;} //does this not include all spawnpoints is this why had to reduce 
+		for(int i = 0; i<spawnPoints.Length; i++){spawnPoints[i] = SpawnPointsAvialableScripts[i].gameObject.transform;} 
 		//the number of points in showslidervalue
 
 		//foreach(spawnpoint thisSpawnPoint in SpawnPointsChildrensScript){spawnPoint[i]thisSpawnPoint.gameObject.transform;} // should this just be 
@@ -73,7 +73,7 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 			locationToInstantiate = LocationToinstantiate();
 			Instantiate (enemyShipToSpawn, locationToInstantiate);
 			
-			//change the above to this when intergrate enum
+
 			//GameObject Ship = Instantiate (enemyShipToSpawn, locationToInstantiate);
 			//Ship.GetComponentInChildren<Health>().startHealth = //enum start health setting
 			//Ship.GetComponentInChildren<>(). Some Script maybe player set their public variable by enum = //enum colour, max speed, ram setting, health drop setting etc
@@ -96,12 +96,14 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 		// // but using a list as wont know how many till done it. then just chose the random location from the tures and if the length of availableSpawnPoints is less than one the dont run
 
 		Debug.Log("SpawnPointsAvialableScripts.Length " + SpawnPointsAvialableScripts.Length );
-		while(foundAvailableSpawn == false){     //this must be where my code hung when it felt the int array was too long though seems it was right
-			int random = Random.Range(0,SpawnPointsAvialableScripts.Length); //if random range is exclusive this may be the error! (im removing the -1)
+		while(foundAvailableSpawn == false){     
+			int random = Random.Range(0,SpawnPointsAvialableScripts.Length); //if random range is exclusive this may be the error! (im removing the -1) Yep that was it
 			if(SpawnPointsAvialableScripts[random].availableSpawnPoint == true){
 				locationToInstantiate = SpawnPointsAvialableScripts[random].gameObject.transform; // note the random number isnt being recalculated so it is same spawnscript as line above
 				SpawnPointsAvialableScripts[random].availableSpawnPoint = false; // make spawn point unavailable to others
 				foundAvailableSpawn = true;}
+
+		//when refactor make it check there is any available spawn locations and break if there isnt as crash protection incase number spawns change, as AIs spawned second this will be fine no players will be excluded
 		}
 
 	

@@ -7,7 +7,8 @@ public class showSliderValue : MonoBehaviour { //needs renaming
 
 	private Slider aISlider;
 	private Text numberAITxt;
-	private int numberSpawnPoints = 22 , numberOfPlayerPairs; //changing because getting crashes when maxed but not quite sure why work when 21
+	private int numberSpawnPoints = 22 , numberOfPlayerPairs; //because number spawn points defined next scene this variable directly set here insted of getting the code to count
+	//this means if number of spawns changed there will be a hard crash in the spawning while loop if run out of spawn points.
 	private usePairSelectable[] pairsSelected; // in future may just get straight from elsewhere
 
 	// Use this for initialization

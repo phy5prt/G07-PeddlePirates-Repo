@@ -23,7 +23,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	private string shipPairName = "no name yet";
 	private int teamNumber;
 	private string teamName;
-
+	private Rect splitScreenArea;
 
 //using get and setting it to the arduino 
 	private float myLeftVolt;    
@@ -129,4 +129,13 @@ public class thisPlayerPairSettings : MonoBehaviour {
 
 	teamName = thisTeamName;
 	}
+
+	public Rect GetSplitScreenArea(){
+		return splitScreenArea;
+	}
+	public void SetTeamName(Rect thisRect){
+			
+	splitScreenArea = thisRect;
+	}
+
 }

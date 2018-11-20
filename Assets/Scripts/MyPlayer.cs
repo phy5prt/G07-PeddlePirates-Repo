@@ -54,10 +54,10 @@ private bool shipBeenSetUp = false; //feel shouldnt need this
 //private	Vector3 leftCycVelAngleNorm;
 //private	Vector3 rightCycVelAngleNorm;
 
-
+private Camera myMainCamera;
 	// Use this for initialization
 	void Start () {
-
+	myMainCamera = GetComponentInChildren<Camera>(); // the boat camera has cameras in its GO assuming wont find the wrong one,should take shallowest
 	health = GetComponent<Health>();
 
 
@@ -71,6 +71,8 @@ private bool shipBeenSetUp = false; //feel shouldnt need this
 		//set team number () - public so spawner can read it - and apply it to physics collision matrix sorting layers
 		ourVolt100PercMax = ourShipsPlayerPairSettings.GetVolt100Perc();
 
+		//view port
+		myMainCamera.rect = ourShipsPlayerPairSettings.GetSplitScreenArea(); //not sure if this need word new should because its like a vector but then goes red so dunno
 		shipBeenSetUp = true;
 
 
