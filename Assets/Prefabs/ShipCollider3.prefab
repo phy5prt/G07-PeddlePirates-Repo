@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4012477550083214}
   - component: {fileID: 33949911260594158}
   - component: {fileID: 23355741216817572}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: RightRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 4885531103562186}
   - component: {fileID: 33188557829732076}
   - component: {fileID: 23508133359290580}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: LeftRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 20155521363767436}
   - component: {fileID: 124885453254725358}
   - component: {fileID: 81756545183150326}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 222281576267931762}
   - component: {fileID: 114519507578606934}
   - component: {fileID: 114099133385236370}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ GameObject:
   - component: {fileID: 223366371172275058}
   - component: {fileID: 114013867377568700}
   - component: {fileID: 114490529601051158}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 224557377805184088}
   - component: {fileID: 222192434260989362}
   - component: {fileID: 114722758821350286}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: TacticalViewRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 4583598071208092}
   - component: {fileID: 114807083135866974}
   - component: {fileID: 65963462708480866}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BattleCamTriggerLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 224430666694926866}
   - component: {fileID: 222725237771048238}
   - component: {fileID: 114817810901836498}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: TacticalViewLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 20988573528609798}
   - component: {fileID: 124208524553495862}
   - component: {fileID: 114128452424237760}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BattleCamRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +634,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4930983055280376}
   - component: {fileID: 114835255522274268}
-  - component: {fileID: 114701454837188228}
   - component: {fileID: 54231043891032836}
   - component: {fileID: 135396238737961582}
   - component: {fileID: 95371111621695500}
@@ -675,7 +674,7 @@ GameObject:
   - component: {fileID: 20882131170661608}
   - component: {fileID: 124546472516267410}
   - component: {fileID: 114230533639995624}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BattleCamLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -787,7 +786,7 @@ GameObject:
   - component: {fileID: 4580189173710384}
   - component: {fileID: 114391060609629410}
   - component: {fileID: 65167637648202642}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BattleCamTriggerRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1550,13 +1549,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1661218759719096}
-  m_LocalRotation: {x: -0.026036134, y: -0.93819267, z: 0.30339754, w: -0.1645193}
-  m_LocalPosition: {x: 4.900437, y: 13.103977, z: 71.140144}
+  m_LocalRotation: {x: -0.048889507, y: -0.92307717, z: 0.3005624, w: -0.23494829}
+  m_LocalPosition: {x: -5.4, y: 13.103977, z: 71.140144}
   m_LocalScale: {x: 0.76237345, y: 0.7623725, z: 0.7623737}
   m_Children: []
   m_Father: {fileID: 4554401992532960}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 35.3, y: -201.032, z: -3.581}
+  m_LocalEulerAnglesHint: {x: 35.3, y: -209.7, z: -3.581}
 --- !u!4 &4885531103562186
 Transform:
   m_ObjectHideFlags: 1
@@ -1686,7 +1685,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1838645070506512}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -1722,7 +1721,7 @@ Camera:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1661218759719096}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -2342,45 +2341,13 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
---- !u!114 &114701454837188228
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1787419668699666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 5
-    i1: 121
-    i2: 227
-    i3: 6
-    i4: 170
-    i5: 82
-    i6: 196
-    i7: 20
-    i8: 152
-    i9: 177
-    i10: 168
-    i11: 141
-    i12: 10
-    i13: 111
-    i14: 227
-    i15: 85
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!114 &114722758821350286
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1439532281755544}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -2448,7 +2415,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1579656247436520}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -2480,8 +2447,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardMultiplier: 3.5
-  cycPercSpeedLeft: 0
-  cycPercSpeedRight: 0
   angularVel: 1
   angVelMultiplier: 0.24
 --- !u!124 &124208524553495862
@@ -2869,8 +2834,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1405789024435934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.0000019}
-  m_LocalScale: {x: 0.0012421239, y: 0.0012421239, z: 0.0012421239}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224430666694926866}
   - {fileID: 224557377805184088}
@@ -2880,9 +2845,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1.4210855e-14, y: 0.0000003830064}
-  m_SizeDelta: {x: 1024, y: 768}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!224 &224430666694926866
 RectTransform:
   m_ObjectHideFlags: 1
@@ -2909,7 +2874,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1439532281755544}
   m_LocalRotation: {x: -0.011601419, y: -0.0022480483, z: -0.0003073401, w: 0.99993014}
-  m_LocalPosition: {x: 0, y: 0, z: -14.4}
+  m_LocalPosition: {x: 0, y: 0, z: -14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4580189173710384}
@@ -2918,7 +2883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -1.33, y: -0.257, z: -0.032}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -152.70001, y: -109.600006}
+  m_AnchoredPosition: {x: -146, y: -109.600006}
   m_SizeDelta: {x: 305.8, y: 212.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224945263089631502

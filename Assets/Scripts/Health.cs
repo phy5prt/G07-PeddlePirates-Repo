@@ -46,7 +46,7 @@ private bool sunk = false;
 
 			currentHealth -= damage;
 
-			Debug.Log( " Health is " + currentHealth + " I am " + name);
+//			Debug.Log( " Health is " + currentHealth + " I am " + name);
 
 	
 	}
@@ -57,7 +57,7 @@ private bool sunk = false;
 	damaged = true;
 	animator.SetTrigger("Break");
 	//animation for damaged
-Debug.Log("Damaged ship method triggered");
+//Debug.Log("Damaged ship method triggered");
 	}
 
 	private void SinkShip(){
@@ -66,7 +66,7 @@ Debug.Log("Damaged ship method triggered");
 	sunk = true;
 		animator.SetTrigger("Sink");
 		InvokeRepeating("Sink",2f,10f);
-Debug.Log("SinkShip method triggered");
+//Debug.Log("SinkShip method triggered");
 
 	}
 

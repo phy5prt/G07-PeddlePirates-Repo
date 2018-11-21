@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
+//using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class triggerBattleCam : NetworkBehaviour {
+public class triggerBattleCam : MonoBehaviour { //NetworkBehaviour
 //turns on and off the texture on canvas showing battle cam as is needed
 	// Use this for initialization
 
 private float lastCamActivationTime;
-public float delayBeforeBattleCamTurnsOff = 3f;
+[SerializeField] float delayBeforeBattleCamTurnsOff = 3f;
 
 	void Start () {
 		transform.GetComponentInParent<RawImage>().enabled = false;
@@ -27,6 +27,8 @@ public float delayBeforeBattleCamTurnsOff = 3f;
 	}
 
 	void OnTriggerStay(Collider ship){
+
+		Debug.Log(" battle cam trigger triggered ");
 	//we have labeled the ship localPlayer on start hopefully only to self
 	//may not be the case and can't check untill in multiplayer or read up
 	//so going to make this monobehaviour a network script
@@ -38,20 +40,15 @@ public float delayBeforeBattleCamTurnsOff = 3f;
 	//if i need to directly child the texture to the canvas to get it to snap this will have to change a bit
 	//Debug.Log("triggerd"); // it triggers itself
 		if(ship.tag == "Ship"){
-			if(ship.gameObject.GetComponent<NetworkIdentity>() == null){
-			Debug.Log("ship null detetected");
+			
+			Debug.Log("ship detetected");
 				this.gameObject.transform.GetComponentInParent<RawImage>().enabled = true;
 				Debug.Log("applying raw image");
 			
 				lastCamActivationTime = Time.timeSinceLevelLoad;
-				}else if(ship.gameObject.GetComponent<NetworkIdentity>().isLocalPlayer == false){
-				Debug.Log("its a ship with network and it isnt us");
 
-				this.gameObject.transform.GetComponentInParent<RawImage>().enabled = true;
-				Debug.Log("applying raw image");
-				lastCamActivationTime = Time.timeSinceLevelLoad;
 				}
 		}
-								}
-									}
+		}
+									
 

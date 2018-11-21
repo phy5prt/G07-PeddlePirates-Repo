@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
-using UnityEngine.Networking;
+
 
 //physics approach im not doing
 //what in the game soaks up velocity maybe need make the air thick
@@ -22,7 +22,7 @@ using UnityEngine.Networking;
 		//if wanted not to freeze in y still could try and see if animation keeps it at a set y (currently below water will need lower terrain)
 		//root motion may affect this
 
-public class MyPlayer : NetworkBehaviour  {
+public class MyPlayer : MonoBehaviour  {
 
 	private thisPlayerPairSettings ourShipsPlayerPairSettings;
 	private float ourVolt100PercMax = 1000000;
@@ -101,7 +101,7 @@ private Camera myMainCamera;
 	void FixedUpdate () {
 
 
-	if(!isLocalPlayer && shipBeenSetUp == true){return;} // needs removing but cant till got allocated screens
+	if(shipBeenSetUp == true){return;} // needs removing but cant till got allocated screens //ive removed !isLocalPlayer
 	if(health.currentHealth < 0){return;}   
 
     //could retag local player as local player but this may retag them for enemy too
@@ -157,17 +157,14 @@ private Camera myMainCamera;
 
 		 
 	}
-
-public override void OnStartLocalPlayer()
+/* - think this now unnecessary
+public override void OnStartLocalPlayer() //just delete
 //here could retag privately i think as player1 - maybe things can have multiple tags
 	{Camera[] cameras = this.transform.GetComponentsInChildren<Camera>();
 	foreach(Camera camera in cameras){camera.enabled = true;}
 
 
-				//Debug.Log(this.transform.childCount);
-				//need to do this for first child and then get compents in childrens Transform to get all children
-	//for(int i =0; i < this.transform.childCount; i++){this.transform.GetChild(i).gameObject.SetActive(true);}}
 }
 
-
+*/
 }

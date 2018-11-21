@@ -48,7 +48,7 @@ public float timePersist = 2f;
 	if(targetHit == "bow"){bowDamageMultiplier = 10;}else{bowDamageMultiplier = 1;}
 
 	damage = baseDamage*bowDamageMultiplier;
-	Debug.Log( damage + " Damage taken from " +name+ " hit to the" + coll.name + " on its " + targetHit);
+//	Debug.Log( damage + " Damage taken from " +name+ " hit to the" + coll.name + " on its " + targetHit);
 
 			
 			//having a lot of problems with this line causing errors is cannon ball destroy itself before it should
