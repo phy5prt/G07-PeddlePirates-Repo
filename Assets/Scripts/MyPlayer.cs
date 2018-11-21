@@ -66,7 +66,7 @@ private Camera myMainCamera;
 	}
 
 	public void applyPlayerSettingsToShip(thisPlayerPairSettings shipsPlayerPairSettings){
-		Debug.Log("instantiated player about to received their this player pair settings");
+	//	Debug.Log("instantiated player about to received their this player pair settings");
 		ourShipsPlayerPairSettings = shipsPlayerPairSettings;
 
 		//set battle cams to their render textures
@@ -76,9 +76,9 @@ private Camera myMainCamera;
 
 		//set color
 		//set team number () - public so spawner can read it - and apply it to physics collision matrix sorting layers
-		Debug.Log(" orvolt100perc before received settings is " + ourVolt100PercMax);
+//		Debug.Log(" orvolt100perc before received settings is " + ourVolt100PercMax);
 		ourVolt100PercMax = ourShipsPlayerPairSettings.GetVolt100Perc();
-		Debug.Log(" orvolt100perc after received settings is " + ourVolt100PercMax);
+//		Debug.Log(" orvolt100perc after received settings is " + ourVolt100PercMax);
 		//view port
 		//Rect splitScreen = ourShipsPlayerPairSettings.GetSplitScreenArea();
 
@@ -93,8 +93,9 @@ private Camera myMainCamera;
 		//maybe instead of start this code should require a constructor
 
 		myMainCamera = GetComponentInChildren<Camera>();
-		Debug.Log("my main camera " + myMainCamera + " my main camera rect " + myMainCamera.rect );
+	//	Debug.Log("my main camera " + myMainCamera + " my main camera rect " + myMainCamera.rect );
 		myMainCamera.rect = new Rect(ourShipsPlayerPairSettings.GetSplitScreenArea().x,ourShipsPlayerPairSettings.GetSplitScreenArea().y,ourShipsPlayerPairSettings.GetSplitScreenArea().width,ourShipsPlayerPairSettings.GetSplitScreenArea().height);
+
 		shipBeenSetUp = true;
 
 
@@ -107,7 +108,7 @@ private Camera myMainCamera;
 	void FixedUpdate () {
 
 
-	if(shipBeenSetUp == true){return;} // needs removing but cant till got allocated screens //ive removed !isLocalPlayer
+	if(shipBeenSetUp != true){return;} // needs removing but cant till got allocated screens //ive removed !isLocalPlayer
 	if(health.currentHealth < 0){return;}   
 
     //could retag local player as local player but this may retag them for enemy too

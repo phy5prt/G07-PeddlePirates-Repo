@@ -5327,7 +5327,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.038193807, y: 0}
   m_AnchorMax: {x: 1, y: 0.48052856}
-  m_AnchoredPosition: {x: -9.030243, y: 7.495117}
+  m_AnchoredPosition: {x: -9.030212, y: 7.495117}
   m_SizeDelta: {x: -76.740005, y: -8.790044}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &839051050
@@ -8225,7 +8225,6 @@ GameObject:
   - component: {fileID: 1424764687}
   - component: {fileID: 1424764686}
   - component: {fileID: 1424764685}
-  - component: {fileID: 1424764684}
   m_Layer: 0
   m_Name: temp3Player4thRectCam
   m_TagString: Untagged
@@ -8233,13 +8232,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1424764684
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1424764683}
-  m_Enabled: 1
 --- !u!124 &1424764685
 Behaviour:
   m_ObjectHideFlags: 0
@@ -8273,7 +8265,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: be2641ff0c4fae44bb83c2fd7a594c47, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1

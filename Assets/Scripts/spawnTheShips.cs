@@ -48,10 +48,10 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 
 
 		GameManager.enemiesShipSettings = new int[GameManager.numberAIs];//this will be changed when passing more info but for now
-		Debug.Log(" making enemy ship int array its length is " + GameManager.enemiesShipSettings.Length);
+	//	Debug.Log(" making enemy ship int array its length is " + GameManager.enemiesShipSettings.Length);
 		int noPlayerPairs=0;
 		foreach(thisPlayerPairSettings playerPair in GameManager.shipPlayerSettingsAr){if(playerPair.getWerePlaying()){noPlayerPairs++;}}
-		Debug.Log(" this is how many player are playing according to spawntheships " + noPlayerPairs);
+	//	Debug.Log(" this is how many player are playing according to spawntheships " + noPlayerPairs);
 
 
 		foreach(thisPlayerPairSettings playerPair in GameManager.shipPlayerSettingsAr){
@@ -69,7 +69,7 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 			
 	
 
-	Debug.Log("instantiating enemies");
+//	Debug.Log("instantiating enemies");
 		foreach(int enemyShip in GameManager.enemiesShipSettings){
 			Transform locationToInstantiate;
 			locationToInstantiate = LocationToinstantiate();
@@ -82,7 +82,7 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 			
 	}
 
-	Debug.Log("finished spawning");
+//	Debug.Log("finished spawning");
 
 	}
 	
@@ -97,7 +97,7 @@ private spawnpoint[] SpawnPointsAvialableScripts;
 	//	for (int i = 0; i< SpawnPointsAvailableScripts.Length; i++){if(SpawnPointsAvialableScripts[i].availableSpawnPoint == true){SPscriptIsCurrentlyAvailable[] = SpawnPointsAvialableScripts[i].availableSpawnPoint}}
 		// // but using a list as wont know how many till done it. then just chose the random location from the tures and if the length of availableSpawnPoints is less than one the dont run
 
-		Debug.Log("SpawnPointsAvialableScripts.Length " + SpawnPointsAvialableScripts.Length );
+//		Debug.Log("SpawnPointsAvialableScripts.Length " + SpawnPointsAvialableScripts.Length );
 		while(foundAvailableSpawn == false){     
 			int random = Random.Range(0,SpawnPointsAvialableScripts.Length); //if random range is exclusive this may be the error! (im removing the -1) Yep that was it
 			if(SpawnPointsAvialableScripts[random].availableSpawnPoint == true){

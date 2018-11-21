@@ -357,7 +357,7 @@ int[,] splitScreenQuarters = new int[2,2];
 
 			GameManager.startGame();
 
-			Debug.Log(" about to set playersetup GO false ");
+	//		Debug.Log(" about to set playersetup GO false ");
 			this.gameObject.SetActive(false);
 
 			//probably just run GameManager from here as all info should be in statics, then turn off the setup
@@ -380,7 +380,11 @@ int[,] splitScreenQuarters = new int[2,2];
 
 		if(numScreensNeeded == 1){return;} //ihavent given it a rect as i will just set the default as the split for one in playerSettings rather than find the one and give it rect it already has
 
-		if(numScreensNeeded == 2){
+		if(numScreensNeeded == 2){ //this is the only one that changes the view ratio, in doing so tactical cams
+		//dont move so need to stretch the camera or squash their height and then stretch canvas or uv rect or camera rect
+		//to enable it be displayed
+
+
 		int[] splitScreen = new int[2];
 
 
@@ -394,17 +398,7 @@ int[,] splitScreenQuarters = new int[2,2];
 
 			int[,] splitScreen = new int[2,2];
 			for(int i = 0; i<GameManager.shipPlayerSettingsAr.Length; i++){
-				if(GameManager.shipPlayerSettingsAr[i].getWerePlaying() == true)
-
-				//start top
-				//work right
-					{for (int k = splitScreen.GetLength(0)-1; k >= 0; k--)
-					{for(int j =0; j<splitScreen.GetLength(0); j++){
-
-
-								{if(splitScreen[j,k] == 0){splitScreen[j,k] = 1; 
-									Rect thisShipRect = new Rect (((float)j*0.5f),((float)k*0.5f),0.5f,0.5f);
-									GameManager.shipPlayerSettingsAr[i].SetSplitScreenArea(thisShipRect); break;}}}}}} // will this break take me out if and for
+				if(GameManager.shipPlayerSettingsAr[i].getWerePlaying() == true){allocate2dArraySplitScreenRect(GameManager.shipPlayerSettingsAr[i]);}}
 			
 			GameObject.Find("temp3Player4thRectCam").GetComponent<Camera>().enabled = true;}
 		//need to create a camera on a canvas with view rect (0.5,0,0.5,0.5)
@@ -412,7 +406,7 @@ int[,] splitScreenQuarters = new int[2,2];
 
 		    		
 		if(numScreensNeeded == 4){ // do the four one but add something 
-		Debug.Log(" screens needed " + numScreensNeeded);
+	//	Debug.Log(" screens needed " + numScreensNeeded);
 
 
 
@@ -456,14 +450,14 @@ int[,] splitScreenQuarters = new int[2,2];
 
 					for(int j =0; j<splitScreenQuarters.GetLength(0); j++){
 
-
-								{Debug.Log(" k is " + k + "j is " + j );
+					{
+//								Debug.Log(" k is " + k + "j is " + j );
 
 								if(splitScreenQuarters[j,k] == 0){splitScreenQuarters[j,k] = 1; 
 
 									Rect thisShipRect = new Rect (((float)j*0.5f),((float)k*0.5f),0.5f,0.5f);
 									shipToAllocateRect.SetSplitScreenArea(thisShipRect); 
-									Debug.Log(" just gave " + shipToAllocateRect.getShipPairColor() + " the k,j " + k+j + " which is the rect " + thisShipRect ); 
+//									Debug.Log(" just gave " + shipToAllocateRect.getShipPairColor() + " the k,j " + k+j + " which is the rect " + thisShipRect ); 
 									return;
 		}}}}
 

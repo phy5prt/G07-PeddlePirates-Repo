@@ -141,6 +141,8 @@ private void settingUpPlayerSettingAr ()  //dont think i can run without an inst
 
 private void feedFakeArduino (){
 
+		//Debug.Log("redship " + redPShip + " fake red arduino volt " + fakeRedLeftArduinoVolt.theRandomNumber);
+		//constant errors saying not set to object - buy not always! due to code being called out of order>
 		redPShip.SetmyLeftVolt(fakeRedLeftArduinoVolt.theRandomNumber);
 		redPShip.SetmyRightVolt(fakeRedRightArduinoVolt.theRandomNumber);
 
@@ -178,7 +180,7 @@ public static void startGame(){
 //if they win before time up will need to 
 //cancel coroutine and run the method, but think that happens anyway
 
-Debug.Log("finding spawn points and tell the script to spawn players and enemies");
+//Debug.Log("finding spawn points and tell the script to spawn players and enemies");
 //could have gamemanager here apply the screen split rects however i feel playersetup is the one to do the work gamemanager gives the instructions
 GameObject.Find("SpawnPoints").GetComponent<spawnTheShips>().spawnPlayersAndEnemies();
 
@@ -187,5 +189,8 @@ GameObject.Find("SpawnPoints").GetComponent<spawnTheShips>().spawnPlayersAndEnem
 
 
 
-	private void Update(){ feedFakeArduino();} // wont be need once got real arduino
+	private void Update(){ 
+
+	//
+	feedFakeArduino();} // wont be need once got real arduino
 }
