@@ -43,6 +43,7 @@ private float lastCamActivationTime;
 			
 			Debug.Log("ship detetected");
 				this.gameObject.transform.GetComponentInParent<RawImage>().enabled = true;
+			
 				Debug.Log("applying raw image");
 			
 				lastCamActivationTime = Time.timeSinceLevelLoad;
