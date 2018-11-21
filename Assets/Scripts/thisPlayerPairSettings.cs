@@ -18,6 +18,8 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	//later add health and inputVoltMultiplier as things for the event setting page
 
 	private bool werePlaying = false; //will need to be false in future
+	private bool alive = false; //were playing should only happen in setup so should never be false and alive true
+
 	private string shipPairColor;
 	private float volt100Perc = 100f;
 	private string shipPairName = "no name yet";
@@ -32,6 +34,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	//instead of string could just feed the render texture and do the lifting here? not sure whats optimal
 	private string battleCamRenderTextureLeft;
 	private string battleCamRenderTextureRight;
+
 
 
 
@@ -64,7 +67,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	public void setWerePlaying(bool YN){
 //	Debug.Log(shipPairColor + "set were playing as " + YN);
 	werePlaying = YN;
-
+	setAlive(YN); //should not be an issue as should only set were playing in set up screens
 
 	if(werePlaying == true && bikePairSetAsAvailableOnEventSetup == false){Debug.Log("trying to say wereplay in ppsetting but the bike isnt setup"); werePlaying = false;}
 		// shouldnt really be necessary but just to count when changed one and forgotten to check other, when refactor put a check in to see when its used and go through code
@@ -163,6 +166,15 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	battleCamRenderTextureRight = rightBattleCamRenderNamePath;
 	}
 
+
+
+
+	public bool getAlive(){
+	return alive;
+	}
+	public void setAlive(bool YN){
+
+	alive = YN;}
 
 
 }

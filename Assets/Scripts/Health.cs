@@ -72,6 +72,8 @@ private bool sunk = false;
 
 	private void Sink(){
 
+		if(GetComponent<MyPlayer>() != null){GetComponent<MyPlayer>().ourShipsPlayerPairSettings.setAlive(false);}//ideally would run all the methods except for tracking health in myplayer but because script shared with ai cant
+
 	//Ai not sink maybe because part of it kinematic if changing this 
 	//or because of its control could try turning these things off
 	//cannons still shoot so they need destroying or script disabling

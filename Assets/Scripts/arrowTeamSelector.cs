@@ -104,7 +104,7 @@ foreach(thisPlayerPairSettings playerPairSettings in GameManager.shipPlayerSetti
 	}
 
 
-	void setArrowScaleColor ()
+	void setArrowScaleColor ()//this is havinf find object errors now too is it because changed some static in gm
 	{
 
 		totVoltThisPeriodRight += myThisPlayerPairSettings.GetmyRightVolt() - myThisPlayerPairSettings.GetmyLeftVolt();
@@ -166,7 +166,7 @@ foreach(thisPlayerPairSettings playerPairSettings in GameManager.shipPlayerSetti
 		//works if it connects which doesnt seem to do for first position
 		//will try rounding	
 			if(Mathf.Round(gizmoRT.transform.position.x) == Mathf.Round(gizmoSittingPositions[i].transform.position.x)){selectedTeamNumber = i+1;  break;}}
-			Debug.Log("selected team number is " + selectedTeamNumber);
+	//		Debug.Log("selected team number is " + selectedTeamNumber);
 		if(selectedTeamNumber == -1){foreach(thisPlayerPairSettings thisPlayerPSettings in GameManager.shipPlayerSettingsAr){if(thisPlayerPSettings.getShipPairColor() == tag ){thisPlayerPSettings.setWerePlaying(false);Debug.Log(" disabling " + tag);}}}
 
 		foreach(thisPlayerPairSettings thisPlayerPSettings in GameManager.shipPlayerSettingsAr){if(thisPlayerPSettings.getShipPairColor() == tag ){thisPlayerPSettings.SetTeamNumber(selectedTeamNumber);}}

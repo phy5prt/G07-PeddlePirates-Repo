@@ -24,7 +24,7 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class MyPlayer : MonoBehaviour  {
 
-	private thisPlayerPairSettings ourShipsPlayerPairSettings;
+	public thisPlayerPairSettings ourShipsPlayerPairSettings;
 	private float ourVolt100PercMax = 1000000;
 	private setupBattleCamsRenderTextures setupBattleCams;
 
@@ -95,7 +95,7 @@ private Camera myMainCamera;
 		myMainCamera = GetComponentInChildren<Camera>();
 	//	Debug.Log("my main camera " + myMainCamera + " my main camera rect " + myMainCamera.rect );
 		myMainCamera.rect = new Rect(ourShipsPlayerPairSettings.GetSplitScreenArea().x,ourShipsPlayerPairSettings.GetSplitScreenArea().y,ourShipsPlayerPairSettings.GetSplitScreenArea().width,ourShipsPlayerPairSettings.GetSplitScreenArea().height);
-
+	//	Debug.Log("confirming that " + tag + " has been set up so it should know its volt input ");
 		shipBeenSetUp = true;
 
 
@@ -142,7 +142,7 @@ private Camera myMainCamera;
 
 			//was using impulse due to issues with colliders but maybe can set instead of adding
 
-		forwardSpeed = (ourShipsPlayerPairSettings.GetmyLeftVolt() + ourShipsPlayerPairSettings.GetmyRightVolt() )*forwardMultiplier/ourVolt100PercMax;
+		forwardSpeed = (ourShipsPlayerPairSettings.GetmyLeftVolt() + ourShipsPlayerPairSettings.GetmyRightVolt() )*forwardMultiplier/ourVolt100PercMax; //soemtime get not set to instance of object wonder if to do with death
 		angularVel = (ourShipsPlayerPairSettings.GetmyLeftVolt() - ourShipsPlayerPairSettings.GetmyRightVolt())*angVelMultiplier/ourVolt100PercMax;
 		//torqueModifier = cycPercSpeedLeft - cycPercSpeedRight; //works but changing to velocity
 

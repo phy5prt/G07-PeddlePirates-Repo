@@ -270,10 +270,10 @@ int[,] splitScreenQuarters = new int[2,2];
 			int[] teamNumberHasTeam = {0,0,0,0};
 			foreach(thisPlayerPairSettings playerWithTeam in GameManager.shipPlayerSettingsAr){
 				if(playerWithTeam.getWerePlaying()==true){
-				Debug.Log(" should always be over zero "+ playerWithTeam.GetTeamNumber()); //error cause beacuse was zero should of been 4 i think
+//				Debug.Log(" should always be over zero "+ playerWithTeam.GetTeamNumber()); //error cause beacuse was zero should of been 4 i think
 				teamNumberHasTeam[playerWithTeam.GetTeamNumber()-1]=1;}}
 
-			int numberOfTeams = 0;
+			int numberOfTeams = 0; //this as a static could be useful later for check how many teams started game or just count were playing
 			foreach(int thisInt in teamNumberHasTeam){numberOfTeams += thisInt;}
 			if(numberOfTeams>1){switchInstructionTexts.updatePirateText(3);}
 			else{switchInstructionTexts.updatePirateText(4);}
@@ -323,7 +323,7 @@ int[,] splitScreenQuarters = new int[2,2];
 
 
 													//this code never actually triggers the else if sets it to itself first dont know why it doesnt work. 
-												Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);
+//												Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);
 							if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==checkArrayAt){pairSetRivalMaxes[i].runSetMaxFor(GameManager.shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as myself");*/ break; }		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
 
 
@@ -335,7 +335,7 @@ int[,] splitScreenQuarters = new int[2,2];
 															
 
 						}else if (numberChecked <8){if(j+1>= 4){checkArrayAt = 0; j = -1;}else{checkArrayAt = j+1;} 
-						Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);   //should plus one so not do zero twice
+//						Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);   //should plus one so not do zero twice
 						if (someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false){pairSetRivalMaxes[i].runSetMaxFor(GameManager.shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as my team mate");*/ break;}		//set my rival as my team mate// only works if i have put them in the array in same  order found the gizmos
 														
 						}else{Debug.Log(gameObject.tag + " not been given a rival or self or team mate so returning" + " availablilty aray reads " +someoneIsAlreadyGoingToSetMyMax[0]+someoneIsAlreadyGoingToSetMyMax[1]+someoneIsAlreadyGoingToSetMyMax[2]+someoneIsAlreadyGoingToSetMyMax[3]); return;} // ha ha this is where my error occurs, hmm it triggers when only one player!
@@ -355,7 +355,7 @@ int[,] splitScreenQuarters = new int[2,2];
 
 			setupShipsSplitScreens();
 
-			GameManager.startGame();
+			GameObject.Find("Game Manager").GetComponent<GameManager>().startGame();
 
 	//		Debug.Log(" about to set playersetup GO false ");
 			this.gameObject.SetActive(false);

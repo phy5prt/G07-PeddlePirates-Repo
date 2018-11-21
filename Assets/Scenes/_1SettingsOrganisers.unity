@@ -2206,6 +2206,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myToggle: {fileID: 0}
+--- !u!114 &576448581 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114090916006253862, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+    type: 2}
+  m_PrefabInternal: {fileID: 1827335885}
+  m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
 --- !u!1 &601085563
 GameObject:
   m_ObjectHideFlags: 0
@@ -2362,6 +2368,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iDetectedABike: 0
+--- !u!114 &631558231 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114619849153876628, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+    type: 2}
+  m_PrefabInternal: {fileID: 1827335885}
+  m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
 --- !u!1 &633336323
 GameObject:
   m_ObjectHideFlags: 0
@@ -3162,6 +3174,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &814825063 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114799713269534254, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+    type: 2}
+  m_PrefabInternal: {fileID: 1827335885}
+  m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
 --- !u!1 &821309103
 GameObject:
   m_ObjectHideFlags: 0
@@ -3312,6 +3330,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iDetectedABike: 0
+--- !u!114 &823044508 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114369305508005868, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+    type: 2}
+  m_PrefabInternal: {fileID: 1827335885}
+  m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
 --- !u!1 &834748259
 GameObject:
   m_ObjectHideFlags: 0
@@ -4695,6 +4719,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1126070028}
+--- !u!114 &1143064246 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114956509114642298, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+    type: 2}
+  m_PrefabInternal: {fileID: 1827335885}
+  m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
 --- !u!1 &1148144986
 GameObject:
   m_ObjectHideFlags: 0
@@ -5746,6 +5776,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1388719905}
+--- !u!114 &1397766661 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114009042006091656, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+    type: 2}
+  m_PrefabInternal: {fileID: 1827335885}
+  m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
 --- !u!1 &1404366132
 GameObject:
   m_ObjectHideFlags: 0
@@ -5861,6 +5897,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1411223274}
+--- !u!114 &1423136106 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114215050113694016, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+    type: 2}
+  m_PrefabInternal: {fileID: 1827335885}
+  m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
 --- !u!1 &1436159082
 GameObject:
   m_ObjectHideFlags: 0
@@ -7884,6 +7926,51 @@ Prefab:
       propertyPath: theRandomNumber
       value: 31
       objectReference: {fileID: 0}
+    - target: {fileID: 114356615011951284, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+        type: 2}
+      propertyPath: fakeRedLeftArduinoVolt
+      value: 
+      objectReference: {fileID: 576448581}
+    - target: {fileID: 114356615011951284, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+        type: 2}
+      propertyPath: fakeRedRightArduinoVolt
+      value: 
+      objectReference: {fileID: 1423136106}
+    - target: {fileID: 114356615011951284, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+        type: 2}
+      propertyPath: fakeYelLeftArduinoVolt
+      value: 
+      objectReference: {fileID: 1911851529}
+    - target: {fileID: 114356615011951284, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+        type: 2}
+      propertyPath: fakeYelRightArduinoVolt
+      value: 
+      objectReference: {fileID: 823044508}
+    - target: {fileID: 114356615011951284, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114356615011951284, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+        type: 2}
+      propertyPath: fakeGreLeftArduinoVolt
+      value: 
+      objectReference: {fileID: 814825063}
+    - target: {fileID: 114356615011951284, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+        type: 2}
+      propertyPath: fakeGreRightArduinoVolt
+      value: 
+      objectReference: {fileID: 1397766661}
+    - target: {fileID: 114356615011951284, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+        type: 2}
+      propertyPath: fakeBluLeftArduinoVolt
+      value: 
+      objectReference: {fileID: 1143064246}
+    - target: {fileID: 114356615011951284, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+        type: 2}
+      propertyPath: fakeBluRightArduinoVolt
+      value: 
+      objectReference: {fileID: 631558231}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 548e6b78b7cd3bd4d8b5a044b561d604, type: 2}
   m_IsPrefabParent: 0
@@ -8127,6 +8214,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1900619164}
+--- !u!114 &1911851529 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114220434930718046, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
+    type: 2}
+  m_PrefabInternal: {fileID: 1827335885}
+  m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
 --- !u!1 &1919446888
 GameObject:
   m_ObjectHideFlags: 0
