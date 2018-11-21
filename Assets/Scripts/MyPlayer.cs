@@ -26,6 +26,7 @@ public class MyPlayer : MonoBehaviour  {
 
 	private thisPlayerPairSettings ourShipsPlayerPairSettings;
 	private float ourVolt100PercMax = 1000000;
+	private setupBattleCamsRenderTextures setupBattleCams;
 
 [Range( -10f,10f)] //cant reverse in game but may be useful for testing
 [SerializeField] float forwardMultiplier =3.42f; 
@@ -67,6 +68,11 @@ private Camera myMainCamera;
 	public void applyPlayerSettingsToShip(thisPlayerPairSettings shipsPlayerPairSettings){
 		Debug.Log("instantiated player about to received their this player pair settings");
 		ourShipsPlayerPairSettings = shipsPlayerPairSettings;
+
+		//set battle cams to their render textures
+		setupBattleCams = GetComponentInChildren<setupBattleCamsRenderTextures>();
+		setupBattleCams.setupCamsRenderTexturesMethod(ourShipsPlayerPairSettings);
+
 
 		//set color
 		//set team number () - public so spawner can read it - and apply it to physics collision matrix sorting layers

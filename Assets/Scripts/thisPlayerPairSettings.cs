@@ -29,6 +29,9 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	private float myLeftVolt;    
 	private float myRightVolt;
 
+	//instead of string could just feed the render texture and do the lifting here? not sure whats optimal
+	private string battleCamRenderTextureLeft;
+	private string battleCamRenderTextureRight;
 
 
 
@@ -137,5 +140,29 @@ public class thisPlayerPairSettings : MonoBehaviour {
 			
 	splitScreenArea = thisRect;
 	}
+
+
+
+
+
+
+
+	public string GetBattleCamRenderTextureLeft(){
+		return battleCamRenderTextureLeft;
+	}
+	public void SetBattleCamRenderTextureLeft(string leftBattleCamRenderNamePath){
+			
+	battleCamRenderTextureLeft = leftBattleCamRenderNamePath;
+	}
+
+	public string GetBattleCamRenderTextureRight(){
+		return battleCamRenderTextureRight;
+	}
+	public void SetBattleCamRenderTextureRight(string rightBattleCamRenderNamePath){
+			
+	battleCamRenderTextureRight = rightBattleCamRenderNamePath;
+	}
+
+
 
 }

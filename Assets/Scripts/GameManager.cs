@@ -124,6 +124,17 @@ private void settingUpPlayerSettingAr ()  //dont think i can run without an inst
 		grePShip.setShipPairColor("GREEN");
 		bluPShip.setShipPairColor("BLUE");
 
+		redPShip.SetBattleCamRenderTextureLeft("REDLEFTRENDERTEXTURE");
+		redPShip.SetBattleCamRenderTextureRight("REDRIGHTRENDERTEXTURE");
+		yelPShip.SetBattleCamRenderTextureLeft("YELLEFTRENDERTEXTURE");
+		yelPShip.SetBattleCamRenderTextureRight("YELRIGHTRENDERTEXTURE");
+		grePShip.SetBattleCamRenderTextureLeft("GRELEFTRENDERTEXTURE");
+		grePShip.SetBattleCamRenderTextureRight("GRERIGHTRENDERTEXTURE");
+		bluPShip.SetBattleCamRenderTextureLeft("BLULEFTRENDERTEXTURE");
+		bluPShip.SetBattleCamRenderTextureRight("BLURIGHTRENDERTEXTURE");
+
+
+
 		shipPlayerSettingsAr  =  new thisPlayerPairSettings[] {redPShip,yelPShip,grePShip,bluPShip};
 
 	}
