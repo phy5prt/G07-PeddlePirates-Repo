@@ -57,7 +57,7 @@ private arrowTeamSelector[] arrowTeamSelectGizmos;
 private pairSetRivalMaxBar[] pairSetRivalMaxes;
 private PirateInstruction switchInstructionTexts;
 private selectorPBGizmo[] gizmoAr;
-
+private ScoreAcheivementPanelText scoreAcheivementPanel;
 
 //													Setting the Stages                                                                     //
 
@@ -93,9 +93,10 @@ int[,] splitScreenQuarters = new int[2,2];
 
 
 
-	void Start () {
+	void Start () {//will all this retrigger when enabled disabled or do i need an enable disable method 
 
-
+	scoreAcheivementPanel = GetComponentInChildren<ScoreAcheivementPanelText>(true);
+	scoreAcheivementPanel.enabled = true;
 
 	matchObj = GameObject.Find("Match").gameObject;    //when restructure try do so so dont have to do this
 	startRotationPosMatch =	matchObj.transform.rotation;
@@ -120,7 +121,7 @@ int[,] splitScreenQuarters = new int[2,2];
 
 		pairSetRivalMaxes =  gameObject.GetComponentsInChildren<pairSetRivalMaxBar>(true);
 
-
+	
 
 
 		}
@@ -207,6 +208,7 @@ int[,] splitScreenQuarters = new int[2,2];
 
 	private void initiateStage1(){ //the code that does the selection is the thispairwantsaship
 
+	scoreAcheivementPanel.runSlideInAndDisable(); //should it be the gameobject or script disabled or both
 	stageCountDownImageGO.SetActive(true);
 	stageCountDownImageGO.GetComponent<redCountDownTimer>().startStageTimer(stage1Time);
 	foreach(thisPairWantsAship gizmo in currentlySelectedsGOs){gizmo.gameObject.SetActive(true);}
