@@ -122,8 +122,8 @@ int[,] splitScreenQuarters = new int[2,2];
 		pairSetRivalMaxes =  gameObject.GetComponentsInChildren<pairSetRivalMaxBar>(true);
 
 	
-
-
+		Canvas resultsCanvas = GameObject.Find("HolderForGameResult").GetComponentInChildren<Canvas>(true);
+		resultsCanvas.gameObject.SetActive(false);
 		}
 
 

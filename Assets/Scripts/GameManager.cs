@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // I can't run this in start // how do i initialise it // if no instance redPShip like when I had it in thisPlayerPairSettings how can i store it
 //so i need it to persist
@@ -75,7 +76,12 @@ private static string gameEndResult; //later make this a struct holding various 
 	private int scenePersisting;    
 	private GameObject spawner; //maybe just find and run and avoid having any kept instances
 	 
-								
+
+	 //should i get a seperate script to be triggered for end game like for player setup
+	 //end game and reset
+	[SerializeField] float displayEndResultTimePeriod = 15f;
+	private float timeToReset;
+																								
 
  void Awake(){ //singleton 
 
@@ -214,6 +220,7 @@ endGameTime = Time.timeSinceLevelLoad + gameLength;
 
 
 	if(Time.timeSinceLevelLoad>endGameTime){endGame();}
+	if(Time.timeSinceLevelLoad>timeToReset){reset();}
 
 	}
 
@@ -235,11 +242,22 @@ endGameTime = Time.timeSinceLevelLoad + gameLength;
 	 //use the pirate dialogue boxes and the highscores slide in and record and high light scenario and outcome
 	 //revert ready for the next game
 
-
+	
 	gameEndResult = spawner.gameObject.GetComponent<shipCounts>().currentWinLoseDrawState();
+
+		//be nicer if had script on itself turns itself on and is fed the string
+	Canvas resultsCanvas = GameObject.Find("HolderForGameResult").GetComponentInChildren<Canvas>(true);
+	resultsCanvas.gameObject.SetActive(true);
+	Text resultText = resultsCanvas.gameObject.GetComponentsInChildren<Text>()[1]; //very sloppy but this code going to change when have rea end screen
+	resultText.text = gameEndResult;
 	Debug.Log("GameManager says its time to run a method for " + gameEndResult);
 
-
+	timeToReset = Time.timeSinceLevelLoad + displayEndResultTimePeriod;
 
 	 } 
+
+	 private void reset(){
+	 Debug.Log("need a reset method");
+	 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	 }
 }
