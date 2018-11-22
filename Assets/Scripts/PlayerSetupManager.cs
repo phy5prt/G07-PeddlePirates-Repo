@@ -58,11 +58,12 @@ private pairSetRivalMaxBar[] pairSetRivalMaxes;
 private PirateInstruction switchInstructionTexts;
 private selectorPBGizmo[] gizmoAr;
 private ScoreAcheivementPanelText scoreAcheivementPanel;
-
+private Camera fourthRectFor3playerCam;
+private GameObject spawner;
 //													Setting the Stages                                                                     //
 
 
-[SerializeField] static int stage = 0;
+
 
 [SerializeField] float stage1Time = 10f;
 private float stage1EndTime = 1000f;
@@ -94,6 +95,14 @@ int[,] splitScreenQuarters = new int[2,2];
 
 
 	void Start () {//will all this retrigger when enabled disabled or do i need an enable disable method 
+
+spawner = GameObject.Find("SpawnPoints"); 
+spawner.GetComponent<shipCounts>().enabled=false;
+
+fourthRectFor3playerCam = GameObject.Find("temp3Player4thRectCam").GetComponent<Camera>(); 
+fourthRectFor3playerCam.enabled = false; 
+
+
 
 	scoreAcheivementPanel = GetComponentInChildren<ScoreAcheivementPanelText>(true);
 	scoreAcheivementPanel.enabled = true;
@@ -137,19 +146,19 @@ int[,] splitScreenQuarters = new int[2,2];
 
 
 
-	if(stage == 0){ 
-		stage = stage0Method ();}else 
-	if (stage == 1 && Time.timeSinceLevelLoad > stage1EndTime){
+	if(GameManager.stage == 0){ 
+		GameManager.stage = stage0Method ();}else 
+	if (GameManager.stage == 1 && Time.timeSinceLevelLoad > stage1EndTime){
 			
 			initiateShrinkStage2(stage2ShrinkTime);
 			Invoke("setupStage2AfterShrink",stage2ShrinkTime);
 			}else
-	if (stage == 2){initiateStage3();
+	if (GameManager.stage == 2){initiateStage3();
 
 
 	}else
-	if(stage==3 && Time.timeSinceLevelLoad> stage3EndTime){
-	stage=4; //just incase runs more than once
+	if(GameManager.stage==3 && Time.timeSinceLevelLoad> stage3EndTime){
+	GameManager.stage=4; //just incase runs more than once
 	setupCompleteStartGame();};
 
 
@@ -192,7 +201,7 @@ int[,] splitScreenQuarters = new int[2,2];
 			//the code makes the match wait 2 seconds in lit position
 			else
 				if (strikeMatch == true && Time.timeSinceLevelLoad > timeMatchStruck + 1f) {
-					stage = 1;
+					GameManager.stage = 1;
 					matchObj.SetActive (false);
 					//startCountDownAndPowderKegAnimation();//Todo
 					initiateStage1();
@@ -202,7 +211,7 @@ int[,] splitScreenQuarters = new int[2,2];
 		else {
 			strikeMatch = false;
 		}
-		return stage;
+		return GameManager.stage;
 	}
 
 
@@ -239,7 +248,7 @@ int[,] splitScreenQuarters = new int[2,2];
 	private void setupStage2AfterShrink(){
 
 
-	if(stage!=1){return;} // wont need if using coroutine to just run it once
+	if(GameManager.stage!=1){return;} // wont need if using coroutine to just run it once
 
 	chooseTeamStageGO.transform.GetChild(0).gameObject.SetActive(true);
 	foreach(arrowTeamSelector teamSelector in arrowTeamSelectGizmos){teamSelector.gameObject.SetActive(true);}
@@ -251,7 +260,7 @@ int[,] splitScreenQuarters = new int[2,2];
 	stageCountDownImageGO.GetComponent<redCountDownTimer>().startStageTimer(stage2Time);
 	stage2EndTime = Time.timeSinceLevelLoad + stage2Time;
 
-	stage = 2;
+	GameManager.stage = 2;
 	}
 
 
@@ -317,7 +326,7 @@ int[,] splitScreenQuarters = new int[2,2];
 					for(int j = i; j< 4; j++){ //changed j to -1 because it added as it circles
 					//	Debug.Log(gameObject.tag + " start loop j " + j);
 				
-
+				//ive changed max bar method now need to be fed where it gets the volt from not just who max allocating
 						numberChecked ++;
 						if(numberChecked <4){
 
@@ -326,7 +335,7 @@ int[,] splitScreenQuarters = new int[2,2];
 
 													//this code never actually triggers the else if sets it to itself first dont know why it doesnt work. 
 //												Debug.Log(gameObject.tag + " check array at "  +checkArrayAt);
-							if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==checkArrayAt){pairSetRivalMaxes[i].runSetMaxFor(GameManager.shipPlayerSettingsAr[checkArrayAt]);		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as myself");*/ break; }		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
+							if (someoneIsAlreadyGoingToSetMyMax[i] == false && i==checkArrayAt){pairSetRivalMaxes[i].runSetMaxFor(GameManager.shipPlayerSettingsAr[checkArrayAt] );		someoneIsAlreadyGoingToSetMyMax[checkArrayAt] = true; /*Debug.Log(gameObject.tag + " setting as myself");*/ break; }		//set my rival as myself if been through all the options // only works if i have put them in the array in same  order found the gizmos
 
 
 														else if(someoneIsAlreadyGoingToSetMyMax[checkArrayAt] == false &&  																												//thearray has already excluded non players
@@ -349,7 +358,7 @@ int[,] splitScreenQuarters = new int[2,2];
 			  
 
 
-		}stage=3; 
+		}GameManager.stage=3; 
 		}
 		}
 

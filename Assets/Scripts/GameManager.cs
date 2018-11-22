@@ -47,11 +47,11 @@ public static int numberAIs;
 public static int[] enemiesShipSettings; //this is only an int array because later will be a struct array of settings for 
 
 
-public static int numberDays = 3;
-public static int dayLength = 120; 
-public static int gameLength {get{return numberDays*dayLength;}} //does th 
+public static float numberDays = 3;
+public static float dayLength = 120f; 
+public static float gameLength {get{return numberDays*dayLength;}} //does th 
 private float endGameTime = 9999999999999999f; //trying to keep gm from holding stuff
-	
+private bool gameActive=false;	
 
 
 //inputs
@@ -69,9 +69,9 @@ public static thisPlayerPairSettings bluPShip;
 //made it static?!?!?
 public SemiRandomNumberGenerator fakeRedLeftArduinoVolt, fakeRedRightArduinoVolt, fakeYelLeftArduinoVolt, fakeYelRightArduinoVolt, fakeGreLeftArduinoVolt, fakeGreRightArduinoVolt, fakeBluLeftArduinoVolt, fakeBluRightArduinoVolt;
 
-
+public static int stage = -1;
 private static string gameEndResult; //later make this a struct holding various game information
-
+private Camera fourthRectFor3playerCam;
 
 	private int scenePersisting;    
 	private GameObject spawner; //maybe just find and run and avoid having any kept instances
@@ -160,6 +160,9 @@ private void feedFakeArduino (){ //made it static ?!?
 		//does just seem to lose it at points, should i give it an instance of it instead
 		//if the shipstatic is updated and read at the same time does that cause the issue?
 
+		try{ //not used before hoping will just not update when an error and carry on but still send me someinfo
+
+
 		redPShip.SetmyLeftVolt(fakeRedLeftArduinoVolt.theRandomNumber);
 		redPShip.SetmyRightVolt(fakeRedRightArduinoVolt.theRandomNumber);
 
@@ -172,7 +175,7 @@ private void feedFakeArduino (){ //made it static ?!?
 		bluPShip.SetmyLeftVolt(fakeBluLeftArduinoVolt.theRandomNumber);
 		bluPShip.SetmyRightVolt(fakeBluRightArduinoVolt.theRandomNumber);
 
-
+		}catch{}
 }
 
 
@@ -185,8 +188,23 @@ private void feedFakeArduino (){ //made it static ?!?
 
 public  void startGameScene(){ //cant be static because button uses it
 
-SceneManager.LoadScene(2);
+//take some things of player setup and put them in here
 
+SceneManager.LoadScene(2);
+Debug.Log("calling setup scene 2");
+	// think its firing out of order so seperated out the method
+SceneManager.sceneLoaded += OnSceneLoaded; //using this because i think its running things before theyre there
+}
+	void OnSceneLoaded(Scene scene, LoadSceneMode mode){
+stage = 0;
+gameActive = false;
+		Debug.Log("spawnpoints is " + GameObject.Find("SpawnPoints"));
+spawner = GameObject.Find("SpawnPoints"); // may do this in player setup too dont want to double up
+		Debug.Log("spawner ship count is " + spawner.GetComponent<shipCounts>());
+spawner.GetComponent<shipCounts>().enabled=false;
+		
+fourthRectFor3playerCam = GameObject.Find("temp3Player4thRectCam").GetComponentInChildren<Camera>();
+			fourthRectFor3playerCam.enabled = false;
 }
 
 public void startGame(){ //why does this need to be static then everything interacts with need to be
@@ -201,28 +219,18 @@ public void startGame(){ //why does this need to be static then everything inter
 //could have gamemanager here apply the screen split rects however i feel playersetup is the one to do the work gamemanager gives the instructions
 
 //spawn the ships has nothing in update so should start on the count though could be turned on later. must have time to run start before does anything though
-spawner = GameObject.Find("SpawnPoints");
+
 spawner.GetComponent<spawnTheShips>().enabled=true;
 spawner.GetComponent<shipCounts>().enabled=true;
 spawner.GetComponent<spawnTheShips>().spawnPlayersAndEnemies();
 endGameTime = Time.timeSinceLevelLoad + gameLength;
-
+gameActive=true;
+//Debug.Log(" just set game active to  " + gameActive + " and endGameTime is " + endGameTime + " Which is Timesince level load ish " + Time.timeSinceLevelLoad + " plus gameLenght " + gameLength);
 }
 
 
 
-	private void Update(){ 
-
-	//think feed arduino is running before all of start is finished sometimes hence errors
-	//doesnt need to be solved yet as will be replaced by aduino but
-	if(SceneManager.GetActiveScene().buildIndex != 2){return;}
-	feedFakeArduino();
-
-
-	if(Time.timeSinceLevelLoad>endGameTime){endGame();}
-	if(Time.timeSinceLevelLoad>timeToReset){reset();}
-
-	}
+	
 
 	 public void endGame(){//being called before game started
 
@@ -244,6 +252,7 @@ endGameTime = Time.timeSinceLevelLoad + gameLength;
 
 	
 	gameEndResult = spawner.gameObject.GetComponent<shipCounts>().currentWinLoseDrawState();
+	spawner.GetComponent<shipCounts>().enabled=false;
 
 		//be nicer if had script on itself turns itself on and is fed the string
 	Canvas resultsCanvas = GameObject.Find("HolderForGameResult").GetComponentInChildren<Canvas>(true);
@@ -252,12 +261,30 @@ endGameTime = Time.timeSinceLevelLoad + gameLength;
 	resultText.text = gameEndResult;
 	Debug.Log("GameManager says its time to run a method for " + gameEndResult);
 
+
 	timeToReset = Time.timeSinceLevelLoad + displayEndResultTimePeriod;
 
 	 } 
 
-	 private void reset(){
-	 Debug.Log("need a reset method");
-	 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-	 }
+
+		
+
+	 
+
+	private void Update(){ 
+
+	//think feed arduino is running before all of start is finished sometimes hence errors
+	//doesnt need to be solved yet as will be replaced by aduino but
+	if(SceneManager.GetActiveScene().buildIndex != 2){return;}
+	feedFakeArduino();
+
+	//the should only be run once playerSetup finisher
+	if(gameActive){
+	if(Time.timeSinceLevelLoad>endGameTime){endGame();endGameTime = 99999999999f;}
+			if(Time.timeSinceLevelLoad>timeToReset){startGameScene();
+
+	}
+
+
+	}}
 }

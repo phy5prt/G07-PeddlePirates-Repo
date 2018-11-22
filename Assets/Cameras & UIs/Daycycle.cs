@@ -27,7 +27,8 @@ private Quaternion startRotation;
 	//if we want to set how many cycles a minute which seems more intuitable then
 	//so number of second times 6 so 60 seconds equals 360 and then divde by how many minutes you want a cycle to take, this is your angle, if it goes over 360 thats fine
 	//just need to ensure every time it translate from the start position so every time just reassigning the x value through a method or reseting the transform before re translating
-	float angleTheFrame = Time.time*6f/minutesPerDay;//yeah this works great time scale should be renamed minutesPerDay
+
+	float angleTheFrame = Time.timeSinceLevelLoad*6f/minutesPerDay;//yeah this works great time scale should be renamed minutesPerDay it was now changed again
 	transform.rotation = startRotation;
 	transform.RotateAround(transform.position, Vector3.forward, angleTheFrame);
 	//transform.rotation = startRotation;

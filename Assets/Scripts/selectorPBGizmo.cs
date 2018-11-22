@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class selectorPBGizmo : MonoBehaviour { // may work once we have singleton - pretty sure this is issue
 
+//public thisPlayerPairSettings gizmosThisPlayerPairSetting;
 	// Use this for initialization
 	void Start () {
 	//Debug.Log("seeing whether gizmo should exist" + " my tag is " + tag);
