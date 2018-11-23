@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//issue because gamemanager not running all its code before other things do maybe need to set things to awake for game manager rather than start
+
 // I can't run this in start // how do i initialise it // if no instance redPShip like when I had it in thisPlayerPairSettings how can i store it
 //so i need it to persist
 //but can still make everything static so easy to access as this just means instances all share the value
@@ -191,16 +193,16 @@ public  void startGameScene(){ //cant be static because button uses it
 //take some things of player setup and put them in here
 
 SceneManager.LoadScene(2);
-Debug.Log("calling setup scene 2");
+//Debug.Log("calling setup scene 2");
 	// think its firing out of order so seperated out the method
 SceneManager.sceneLoaded += OnSceneLoaded; //using this because i think its running things before theyre there
 }
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode){
 stage = 0;
 gameActive = false;
-		Debug.Log("spawnpoints is " + GameObject.Find("SpawnPoints"));
+//		Debug.Log("spawnpoints is " + GameObject.Find("SpawnPoints"));
 spawner = GameObject.Find("SpawnPoints"); // may do this in player setup too dont want to double up
-		Debug.Log("spawner ship count is " + spawner.GetComponent<shipCounts>());
+//		Debug.Log("spawner ship count is " + spawner.GetComponent<shipCounts>());
 spawner.GetComponent<shipCounts>().enabled=false;
 		
 fourthRectFor3playerCam = GameObject.Find("temp3Player4thRectCam").GetComponentInChildren<Camera>();

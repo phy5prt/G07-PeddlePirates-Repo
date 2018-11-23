@@ -14,7 +14,10 @@ public class selectorPBGizmo : MonoBehaviour { // may work once we have singleto
 
 	//Debug.Log("found my colour " + " and my pair is set to " + pair.getBikePairSetAsAvailableOnEventSetup());
 
-	this.gameObject.SetActive(pair.getBikePairSetAsAvailableOnEventSetup());}}
+	this.gameObject.SetActive(pair.getBikePairSetAsAvailableOnEventSetup());}
+	percBarDisplay[] perdBarDisplayAr =	GetComponentsInChildren<percBarDisplay>();
+	foreach(percBarDisplay percBarScript in perdBarDisplayAr){percBarScript.passMeMyPlayerPairSettings(pair);}
+	}
 		
 	}
 	
