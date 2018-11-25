@@ -10,13 +10,22 @@ public class selectorPBGizmo : MonoBehaviour { // may work once we have singleto
 	//Debug.Log("seeing whether gizmo should exist" + " my tag is " + tag);
 	foreach(thisPlayerPairSettings pair in GameManager.shipPlayerSettingsAr){
 	//Debug.Log(pair.getShipPairColor());
-	if(pair.getShipPairColor() == tag){
+	if(pair.getShipPairColor() == this.gameObject.tag){
 
 	//Debug.Log("found my colour " + " and my pair is set to " + pair.getBikePairSetAsAvailableOnEventSetup());
 
-	this.gameObject.SetActive(pair.getBikePairSetAsAvailableOnEventSetup());}
-	percBarDisplay[] perdBarDisplayAr =	GetComponentsInChildren<percBarDisplay>();
-	foreach(percBarDisplay percBarScript in perdBarDisplayAr){percBarScript.passMeMyPlayerPairSettings(pair);}
+	this.gameObject.SetActive(pair.getBikePairSetAsAvailableOnEventSetup());
+
+	percBarDisplay[] percBarDisplayAr =	GetComponentsInChildren<percBarDisplay>();
+
+	foreach(percBarDisplay percBarScript in percBarDisplayAr){
+			{percBarScript.passMeMyPlayerPairSettings(pair);
+
+		
+
+				Debug.Log("bar color is " + percBarScript.gameObject.tag + " static color is " + pair.getShipPairColor());
+						}
+	}}
 	}
 		
 	}

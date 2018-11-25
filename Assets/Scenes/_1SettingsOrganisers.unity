@@ -767,8 +767,8 @@ GameObject:
   m_Component:
   - component: {fileID: 125228254}
   - component: {fileID: 125228257}
-  - component: {fileID: 125228256}
   - component: {fileID: 125228255}
+  - component: {fileID: 125228256}
   m_Layer: 0
   m_Name: 200PercentBar
   m_TagString: RED
@@ -828,8 +828,7 @@ MonoBehaviour:
 --- !u!114 &125228256
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114941040815052534, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 125228253}
   m_Enabled: 1
@@ -838,6 +837,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 1
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
+  myPPSettings: {fileID: 0}
 --- !u!222 &125228257
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2790,6 +2793,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 1
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
+  myPPSettings: {fileID: 0}
 --- !u!222 &482976154
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3387,11 +3394,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundnessBellCurveInRNAddedRange: 2
   directionBiasOfRn: 0
-  theRandomNumber: 31
-  tRNCeiling: 120
-  startingPlace: 0.6
+  theRandomNumber: 0
+  tRNCeiling: 200
+  startingPlace: 0.1
   sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0.1
+  rNAddedRange: 0
 --- !u!1 &594044599
 GameObject:
   m_ObjectHideFlags: 0
@@ -3835,11 +3842,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundnessBellCurveInRNAddedRange: 2
   directionBiasOfRn: 0
-  theRandomNumber: 98
-  tRNCeiling: 120
-  startingPlace: 0.6
+  theRandomNumber: 0
+  tRNCeiling: 200
+  startingPlace: 0.8
   sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0.1
+  rNAddedRange: 0
 --- !u!1 &633336323
 GameObject:
   m_ObjectHideFlags: 0
@@ -4668,6 +4675,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 0
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
+  myPPSettings: {fileID: 0}
 --- !u!222 &723250290
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5086,11 +5097,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundnessBellCurveInRNAddedRange: 2
   directionBiasOfRn: 0
-  theRandomNumber: 31
-  tRNCeiling: 120
-  startingPlace: 0.6
+  theRandomNumber: 0
+  tRNCeiling: 200
+  startingPlace: 0.5
   sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0.1
+  rNAddedRange: 0
 --- !u!1 &821309103
 GameObject:
   m_ObjectHideFlags: 0
@@ -5255,11 +5266,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundnessBellCurveInRNAddedRange: 2
   directionBiasOfRn: 0
-  theRandomNumber: 98
-  tRNCeiling: 120
-  startingPlace: 0.6
+  theRandomNumber: 0
+  tRNCeiling: 200
+  startingPlace: 0.4
   sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0.1
+  rNAddedRange: 0
 --- !u!1 &834748259
 GameObject:
   m_ObjectHideFlags: 0
@@ -7057,11 +7068,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundnessBellCurveInRNAddedRange: 2
   directionBiasOfRn: 0
-  theRandomNumber: 31
-  tRNCeiling: 120
-  startingPlace: 0.6
+  theRandomNumber: 0
+  tRNCeiling: 200
+  startingPlace: 0.7
   sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0.1
+  rNAddedRange: 0
 --- !u!1 &1148144986
 GameObject:
   m_ObjectHideFlags: 0
@@ -7692,8 +7703,8 @@ Canvas:
   m_GameObject: {fileID: 1266687590}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 972439556}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -8287,11 +8298,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundnessBellCurveInRNAddedRange: 2
   directionBiasOfRn: 0
-  theRandomNumber: 98
-  tRNCeiling: 120
+  theRandomNumber: 0
+  tRNCeiling: 200
   startingPlace: 0.6
   sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0.1
+  rNAddedRange: 0
 --- !u!1 &1404366132
 GameObject:
   m_ObjectHideFlags: 0
@@ -8421,11 +8432,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundnessBellCurveInRNAddedRange: 2
   directionBiasOfRn: 0
-  theRandomNumber: 98
-  tRNCeiling: 120
-  startingPlace: 0.6
+  theRandomNumber: 0
+  tRNCeiling: 200
+  startingPlace: 0.2
   sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0.1
+  rNAddedRange: 0
 --- !u!1 &1436159082
 GameObject:
   m_ObjectHideFlags: 0
@@ -8578,8 +8589,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1452538695}
   - component: {fileID: 1452538698}
-  - component: {fileID: 1452538697}
   - component: {fileID: 1452538696}
+  - component: {fileID: 1452538697}
   m_Layer: 0
   m_Name: 200PercentBar
   m_TagString: YELLOW
@@ -8639,8 +8650,7 @@ MonoBehaviour:
 --- !u!114 &1452538697
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114373488060722702, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1452538694}
   m_Enabled: 1
@@ -8649,6 +8659,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 1
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
+  myPPSettings: {fileID: 0}
 --- !u!222 &1452538698
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10829,6 +10843,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 0
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
+  myPPSettings: {fileID: 0}
 --- !u!222 &1692495930
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11157,8 +11175,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1797492048}
   - component: {fileID: 1797492051}
-  - component: {fileID: 1797492050}
   - component: {fileID: 1797492049}
+  - component: {fileID: 1797492050}
   m_Layer: 0
   m_Name: 200PercentBar
   m_TagString: RED
@@ -11218,8 +11236,7 @@ MonoBehaviour:
 --- !u!114 &1797492050
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114875558255203118, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1797492047}
   m_Enabled: 1
@@ -11228,6 +11245,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 0
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
+  myPPSettings: {fileID: 0}
 --- !u!222 &1797492051
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11420,8 +11441,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1815919800}
   - component: {fileID: 1815919803}
-  - component: {fileID: 1815919802}
   - component: {fileID: 1815919801}
+  - component: {fileID: 1815919802}
   m_Layer: 0
   m_Name: 200PercentBar
   m_TagString: YELLOW
@@ -11481,8 +11502,7 @@ MonoBehaviour:
 --- !u!114 &1815919802
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114788209700776740, guid: 548e6b78b7cd3bd4d8b5a044b561d604,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1815919799}
   m_Enabled: 1
@@ -11491,6 +11511,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 0
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
+  myPPSettings: {fileID: 0}
 --- !u!222 &1815919803
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11579,6 +11603,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 1
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
+  myPPSettings: {fileID: 0}
 --- !u!222 &1818218492
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11832,14 +11860,14 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1882769239}
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 281, y: -132.09998, z: 394.0001}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.10902588, y: 0.7420531, z: -0.658544, w: -0.061567016}
+  m_LocalPosition: {x: -4.2, y: 19.400024, z: 514.3001}
+  m_LocalScale: {x: 0.10000031, y: 0.10000006, z: 0.1000003}
   m_Children:
   - {fileID: 596026395}
   m_Father: {fileID: 1841925307}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 74.563, y: -118.024, z: -294.142}
 --- !u!1 &1895122563
 GameObject:
   m_ObjectHideFlags: 0
@@ -12162,11 +12190,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundnessBellCurveInRNAddedRange: 2
   directionBiasOfRn: 0
-  theRandomNumber: 31
-  tRNCeiling: 120
-  startingPlace: 0.6
+  theRandomNumber: 0
+  tRNCeiling: 200
+  startingPlace: 0.3
   sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0.1
+  rNAddedRange: 0
 --- !u!1 &1917959876
 GameObject:
   m_ObjectHideFlags: 0

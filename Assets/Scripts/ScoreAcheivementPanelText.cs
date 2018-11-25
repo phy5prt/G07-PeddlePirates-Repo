@@ -69,7 +69,7 @@ private float lastTimeVoltInput;
 		if(panelRT.localPosition.x>startRTLocPos.x - panelRT.rect.width*panelRT.localScale.x && slideInNow==false){
 
 		panelRT.localPosition -= new Vector3((Time.deltaTime*slideOutSpeed),0f,0f);
-		Debug.Log("finished sliding out");
+//		Debug.Log("finished sliding out");
 
 		}else {slideInNow = false; slideOutNow = false;}
 

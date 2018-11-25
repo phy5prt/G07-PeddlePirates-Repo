@@ -19,7 +19,7 @@ public class SemiRandomNumberGenerator : MonoBehaviour {
 
 
 [Range( 0f,200f)]
-public float theRandomNumber;
+[SerializeField] float theRandomNumber;
 
 [Range( 0f,200f)]
 [SerializeField] float tRNCeiling = 120f;
@@ -78,5 +78,9 @@ private float	rNAddedRangeHigh;
 				theRandomNumber = tRNCeiling;
 			}
 		return theRandomNumber;
+	}
+
+	public float getTheRandomNumber(){
+	return theRandomNumber;
 	}
 }

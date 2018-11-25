@@ -83,36 +83,36 @@ private Camera fourthRectFor3playerCam;
 	 //end game and reset
 	[SerializeField] float displayEndResultTimePeriod = 15f;
 	private float timeToReset;
-																								
+
+	private rigAllocateThisplayerPairSettingsToBars bikeRig;
+																																															
 
  void Awake(){ //singleton 
 
-
-
- 		int numSPWithThisSceneBuildNum = 0;
+  		int numSPWithThisSceneBuildNum = 0;
 		scenePersisting = SceneManager.GetActiveScene().buildIndex;
-
-
 
 		GameManager[] gM = FindObjectsOfType<GameManager>();   
 			foreach(GameManager gameManager in gM){
 				if(gameManager.scenePersisting ==  SceneManager.GetActiveScene().buildIndex) {numSPWithThisSceneBuildNum++;}else	{Destroy(gameManager.gameObject);} }  
-
-			
+		
 		if (numSPWithThisSceneBuildNum>1){ Destroy(gameObject);}                              
-										
-																																																		
+																																					
 		DontDestroyOnLoad(gameObject);																				
-			
+
+
+
+
+		settingUpPlayerSettingAr (); //this needs to run before everything else in game
  
 }
 
 
 
 private void Start(){
-		settingUpPlayerSettingAr ();
-
-
+		bikeRig = GetComponentInChildren<rigAllocateThisplayerPairSettingsToBars>();
+		bikeRig.setupTheRigVoltBars();
+	
 }
 
 
@@ -162,22 +162,48 @@ private void feedFakeArduino (){ //made it static ?!?
 		//does just seem to lose it at points, should i give it an instance of it instead
 		//if the shipstatic is updated and read at the same time does that cause the issue?
 
-		try{ //not used before hoping will just not update when an error and carry on but still send me someinfo
+		//try{ //not used before hoping will just not update when an error and carry on but still send me someinfo
 
 
-		redPShip.SetmyLeftVolt(fakeRedLeftArduinoVolt.theRandomNumber);
-		redPShip.SetmyRightVolt(fakeRedRightArduinoVolt.theRandomNumber);
+		redPShip.SetmyLeftVolt(fakeRedLeftArduinoVolt.getTheRandomNumber());
 
-		yelPShip.SetmyLeftVolt(fakeYelLeftArduinoVolt.theRandomNumber);
-		yelPShip.SetmyRightVolt(fakeYelRightArduinoVolt.theRandomNumber);
+//		Debug.Log(redPShip.getShipPairColor() + "    " + redPShip.GetmyLeftVolt());
 
-		grePShip.SetmyLeftVolt(fakeGreLeftArduinoVolt.theRandomNumber);
-		grePShip.SetmyRightVolt(fakeGreRightArduinoVolt.theRandomNumber);
+		redPShip.SetmyRightVolt(fakeRedRightArduinoVolt.getTheRandomNumber());
 
-		bluPShip.SetmyLeftVolt(fakeBluLeftArduinoVolt.theRandomNumber);
-		bluPShip.SetmyRightVolt(fakeBluRightArduinoVolt.theRandomNumber);
+	//	Debug.Log(redPShip.getShipPairColor() + "    " + redPShip.GetmyRightVolt());
 
-		}catch{}
+
+
+
+		yelPShip.SetmyLeftVolt(fakeYelLeftArduinoVolt.getTheRandomNumber());
+
+	//	Debug.Log(yelPShip.getShipPairColor() + "    " + yelPShip.GetmyLeftVolt());
+		yelPShip.SetmyRightVolt(fakeYelRightArduinoVolt.getTheRandomNumber());
+
+//		Debug.Log(yelPShip.getShipPairColor() + "    " + yelPShip.GetmyRightVolt());
+
+
+
+
+		grePShip.SetmyLeftVolt(fakeGreLeftArduinoVolt.getTheRandomNumber());
+
+	//	Debug.Log(grePShip.getShipPairColor() + "    " + grePShip.GetmyLeftVolt());
+		grePShip.SetmyRightVolt(fakeGreRightArduinoVolt.getTheRandomNumber());
+		//Debug.Log(grePShip.getShipPairColor() + "    " + grePShip.GetmyRightVolt());
+
+
+
+
+
+		bluPShip.SetmyLeftVolt(fakeBluLeftArduinoVolt.getTheRandomNumber());
+	//	Debug.Log(bluPShip.getShipPairColor() + "    " + bluPShip.GetmyLeftVolt());
+
+		bluPShip.SetmyRightVolt(fakeBluRightArduinoVolt.getTheRandomNumber());
+	//	Debug.Log(bluPShip.getShipPairColor() + "    " + bluPShip.GetmyRightVolt());
+		//}catch{}
+
+
 }
 
 
@@ -198,6 +224,7 @@ SceneManager.LoadScene(2);
 SceneManager.sceneLoaded += OnSceneLoaded; //using this because i think its running things before theyre there
 }
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode){
+		bikeRig.setupTheRigVoltBars();//seems daft to have to refeed it in
 stage = 0;
 gameActive = false;
 //		Debug.Log("spawnpoints is " + GameObject.Find("SpawnPoints"));
@@ -227,6 +254,7 @@ spawner.GetComponent<shipCounts>().enabled=true;
 spawner.GetComponent<spawnTheShips>().spawnPlayersAndEnemies();
 endGameTime = Time.timeSinceLevelLoad + gameLength;
 gameActive=true;
+//bikeRig.setupTheRigVoltBars(); //shouldnt have to run this twice but seems to lose its static with scene change
 //Debug.Log(" just set game active to  " + gameActive + " and endGameTime is " + endGameTime + " Which is Timesince level load ish " + Time.timeSinceLevelLoad + " plus gameLenght " + gameLength);
 }
 
@@ -277,15 +305,13 @@ gameActive=true;
 
 	//think feed arduino is running before all of start is finished sometimes hence errors
 	//doesnt need to be solved yet as will be replaced by aduino but
-	if(SceneManager.GetActiveScene().buildIndex != 2){return;}
+	//if(SceneManager.GetActiveScene().buildIndex != 2){return;} //- this will reduce errors temporarily until running in awake
 	feedFakeArduino();
-
+	if(SceneManager.GetActiveScene().buildIndex != 2){return;}// - this will reduce errors temporarily until running in awake
 	//the should only be run once playerSetup finisher
 	if(gameActive){
 	if(Time.timeSinceLevelLoad>endGameTime){endGame();endGameTime = 99999999999f;}
-			if(Time.timeSinceLevelLoad>timeToReset){startGameScene();
-
-	}
+			if(Time.timeSinceLevelLoad>timeToReset){startGameScene();}
 
 
 	}}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//now game manager running it seems this is not very necessaru as seperate code?
 
 public class rigAllocateThisplayerPairSettingsToBars : MonoBehaviour {
 
@@ -10,7 +11,7 @@ public class rigAllocateThisplayerPairSettingsToBars : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		Invoke("setupTheVoltBars", 3f); //just giving time for gm to allocate
+	//just giving time for gm to allocate
 		
 	}
 	
@@ -19,12 +20,14 @@ public class rigAllocateThisplayerPairSettingsToBars : MonoBehaviour {
 		
 	}
 
-	private void setupTheVoltBars(){
+	public void setupTheRigVoltBars(){
 
 		percBarDisplay[] percBarAr = GetComponentsInChildren<percBarDisplay>();
 	foreach(percBarDisplay percBarSc in percBarAr){
-	foreach(thisPlayerPairSettings playerPairVolts in GameManager.shipPlayerSettingsAr){
-	if(percBarSc.gameObject.tag == playerPairVolts.getShipPairColor()){percBarSc.passMeMyPlayerPairSettings(playerPairVolts);}
+
+			foreach(thisPlayerPairSettings playerPairVolts in GameManager.shipPlayerSettingsAr){
+//				Debug.Log("bar color is " + percBarSc.gameObject.tag + " static color is " + playerPairVolts.getShipPairColor());
+	if(percBarSc.gameObject.tag == playerPairVolts.getShipPairColor()){percBarSc.passMeMyPlayerPairSettings(playerPairVolts);break;}
 	}}
 	}
 }

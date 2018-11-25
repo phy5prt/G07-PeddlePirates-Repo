@@ -38,7 +38,8 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.003997178, g: 0.00021801863, b: 0.000000051621807,
+    a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2513,6 +2514,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 1
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
 --- !u!1 &527388598
 GameObject:
   m_ObjectHideFlags: 0
@@ -4141,6 +4145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 1
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
 --- !u!1 &763045860
 GameObject:
   m_ObjectHideFlags: 0
@@ -5087,6 +5094,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 0
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
 --- !u!1 &917616575
 GameObject:
   m_ObjectHideFlags: 0
@@ -5511,8 +5521,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 983045370}
-  m_LocalRotation: {x: -0.090067126, y: 0.16769327, z: 0.015387099, w: 0.9815957}
-  m_LocalPosition: {x: 541.2595, y: -132.93445, z: 55.32457}
+  m_LocalRotation: {x: -0.18015462, y: 0.57501143, z: 0.13160907, w: 0.7871374}
+  m_LocalPosition: {x: -211.77551, y: -229.92981, z: 157.32397}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 691248108}
@@ -6253,6 +6263,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 0
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
 --- !u!1 &1200855762
 GameObject:
   m_ObjectHideFlags: 0
@@ -9374,6 +9387,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 1
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
 --- !u!1 &1767218685
 GameObject:
   m_ObjectHideFlags: 0
@@ -9682,6 +9698,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 1
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
 --- !u!1 &1829254852
 GameObject:
   m_ObjectHideFlags: 0
@@ -9988,6 +10007,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 0
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
 --- !u!1 &1933662973
 GameObject:
   m_ObjectHideFlags: 0
@@ -10069,7 +10091,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1936711398}
   - component: {fileID: 1936711397}
-  - component: {fileID: 1936711396}
   m_Layer: 0
   m_Name: SeaReflectionresultCamera
   m_TagString: Untagged
@@ -10077,14 +10098,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!45 &1936711396
-Skybox:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1936711395}
-  m_Enabled: 1
-  m_CustomSkybox: {fileID: 0}
 --- !u!20 &1936711397
 Camera:
   m_ObjectHideFlags: 0
@@ -11386,3 +11399,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideBar: 0
+  voltCurrent: 0
+  voltPerc: 0
+  volt100Perc: 0
