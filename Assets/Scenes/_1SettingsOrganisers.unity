@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657886, g: 0.4964128, b: 0.57481754, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -840,7 +840,6 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   volt100Perc: 0
-  myPPSettings: {fileID: 0}
 --- !u!222 &125228257
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2796,7 +2795,6 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   volt100Perc: 0
-  myPPSettings: {fileID: 0}
 --- !u!222 &482976154
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4678,7 +4676,6 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   volt100Perc: 0
-  myPPSettings: {fileID: 0}
 --- !u!222 &723250290
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8662,7 +8659,6 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   volt100Perc: 0
-  myPPSettings: {fileID: 0}
 --- !u!222 &1452538698
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10846,7 +10842,6 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   volt100Perc: 0
-  myPPSettings: {fileID: 0}
 --- !u!222 &1692495930
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10866,6 +10861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f62157896e9c54bb11ba3152f13471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  port: COM3
+  baudrate: 9600
   fakeRedLeftArduinoVolt: {fileID: 576448581}
   fakeRedRightArduinoVolt: {fileID: 1423136106}
   fakeYelLeftArduinoVolt: {fileID: 1911851529}
@@ -11248,7 +11245,6 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   volt100Perc: 0
-  myPPSettings: {fileID: 0}
 --- !u!222 &1797492051
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11514,7 +11510,6 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   volt100Perc: 0
-  myPPSettings: {fileID: 0}
 --- !u!222 &1815919803
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11606,7 +11601,6 @@ MonoBehaviour:
   voltCurrent: 0
   voltPerc: 0
   volt100Perc: 0
-  myPPSettings: {fileID: 0}
 --- !u!222 &1818218492
 CanvasRenderer:
   m_ObjectHideFlags: 0

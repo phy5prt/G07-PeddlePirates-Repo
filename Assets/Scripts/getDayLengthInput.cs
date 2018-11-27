@@ -16,7 +16,7 @@ public class getDayLengthInput : MonoBehaviour {
 	}
 
 public void runGetDayLengthInput(){
-GameManager.dayLength = int.Parse( GetComponentInChildren<InputField>().text); // again would be better static and then triggered on button press
+GameManager.dayLength = float.Parse( GetComponentInChildren<InputField>().text); // again would be better static and then triggered on button press
 
 	}
 }

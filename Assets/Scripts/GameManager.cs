@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO.Ports;
+using System;
+
+
+
+
+
 
 //issue because gamemanager not running all its code before other things do maybe need to set things to awake for game manager rather than start
 
@@ -19,6 +26,23 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
+	[SerializeField] bool useArduinoData = false;
+
+	/* The serial port where the Arduino is connected. */
+	[Tooltip("The serial port where the Arduino is connected")]
+	public string port = "COM3";
+	/* The baudrate of the serial port. */
+	[Tooltip("The baudrate of the serial port")]
+	public int baudrate = 9600;
+
+	private SerialPort stream;
+	//if this was an enum[] could i have each word allocated to its volt value so i feed in the word and it updates its value?
+	string[] pins = {"DATA0", "DATA1", "DATA2", "DATA3", "DATA4", "DATA5", "DATA6", "DATA7"};
+
+
+
+
+	
 //does gameManager need to be on an object or if use statics methods and variables can it be independant
 
 	//gameManager is going to holdsettings info
@@ -41,7 +65,10 @@ public class GameManager : MonoBehaviour {
 //currently most this code could be on the spawner
 //should game manager just hold setting info
 
-	
+//inputs
+
+
+
 
 
 //spawning settings
@@ -49,7 +76,7 @@ public static int numberAIs;
 public static int[] enemiesShipSettings; //this is only an int array because later will be a struct array of settings for 
 
 
-public static float numberDays = 3;
+public static float numberDays = 3f;
 public static float dayLength = 120f; 
 public static float gameLength {get{return numberDays*dayLength;}} //does th 
 private float endGameTime = 9999999999999999f; //trying to keep gm from holding stuff
@@ -110,10 +137,38 @@ private Camera fourthRectFor3playerCam;
 
 
 private void Start(){
+		
+
+
 		bikeRig = GetComponentInChildren<rigAllocateThisplayerPairSettingsToBars>();
 		bikeRig.setupTheRigVoltBars();
+
+		OpenMyArduinoStream();
+
 	
 }
+
+	private string arduinoTest (string data)
+	{
+		WriteToArduino (data);
+		//WriteToArduino (number.ToString());
+		 string ardionoSays = ReadFromArduino (1);
+		return ardionoSays;
+		//Debug.Log (" pin " + data + " says " + ardionoSays);
+	}
+
+	private float arduinoGetVolt (string data)
+	{
+		WriteToArduino (data);
+		string ardionoSays = ReadFromArduino (1000);
+		Debug.Log (" pin " + data + " says " + ardionoSays);
+		return float.Parse (ardionoSays);
+	}
+
+
+
+
+
 
 
 private void settingUpPlayerSettingAr ()  //dont think i can run without an instance as without an instance dont think i can store values
@@ -148,6 +203,36 @@ private void settingUpPlayerSettingAr ()  //dont think i can run without an inst
 
 		shipPlayerSettingsAr  =  new thisPlayerPairSettings[] {redPShip,yelPShip,grePShip,bluPShip};
 
+	}
+	private void feedRealArduino(){
+
+		redPShip.SetmyLeftVolt(arduinoGetVolt(pins[0]));
+
+
+
+		redPShip.SetmyRightVolt(arduinoGetVolt(pins[1]));
+
+
+
+
+		yelPShip.SetmyLeftVolt(arduinoGetVolt(pins[2]));
+
+
+		yelPShip.SetmyRightVolt(arduinoGetVolt(pins[3]));
+
+	
+
+		grePShip.SetmyLeftVolt(arduinoGetVolt(pins[4]));
+
+
+		grePShip.SetmyRightVolt(arduinoGetVolt(pins[5]));
+	
+
+		bluPShip.SetmyLeftVolt(arduinoGetVolt(pins[6]));
+	
+
+		bluPShip.SetmyRightVolt(arduinoGetVolt(pins[7]));
+	
 	}
 
 private void feedFakeArduino (){ //made it static ?!?
@@ -303,16 +388,125 @@ gameActive=true;
 
 	private void Update(){ 
 
+	//	foreach (String pin in pins) {arduinoTest (pin);}
+		//arduinoIsCommunicating();
 	//think feed arduino is running before all of start is finished sometimes hence errors
 	//doesnt need to be solved yet as will be replaced by aduino but
 	//if(SceneManager.GetActiveScene().buildIndex != 2){return;} //- this will reduce errors temporarily until running in awake
-	feedFakeArduino();
+		if(useArduinoData &&          (arduinoTest(pins[0]) != null)   ){Debug.Log("using real arduino feed");feedRealArduino();}else{feedFakeArduino();}
+
 	if(SceneManager.GetActiveScene().buildIndex != 2){return;}// - this will reduce errors temporarily until running in awake
 	//the should only be run once playerSetup finisher
-	if(gameActive){
-	if(Time.timeSinceLevelLoad>endGameTime){endGame();endGameTime = 99999999999f;}
+	
+
+		//this is triggering instantly!
+		if(gameActive){
+	if(Time.timeSinceLevelLoad>endGameTime){endGame();
+				Debug.Log (" current time is " + Time.timeSinceLevelLoad + " end game time is " + endGameTime + " day length " + dayLength + " number of days  " + numberDays);
+				endGameTime = 99999999999f;}
 			if(Time.timeSinceLevelLoad>timeToReset){startGameScene();}
 
 
 	}}
+
+
+	public void OpenMyArduinoStream () {
+		// Opens the serial port
+		stream = new SerialPort(port, baudrate);
+		stream.ReadTimeout = 50;
+		stream.Open();
+		//this.stream.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+	}
+
+	public void WriteToArduino(string message)
+	{
+		// Send the request
+		stream.WriteLine(message);
+		stream.BaseStream.Flush();
+	}
+
+	public string ReadFromArduino(int timeout = 0)
+	{
+		stream.ReadTimeout = timeout;
+		try
+		{
+			return stream.ReadLine();
+		}
+		catch (TimeoutException e)
+		{
+			return null;
+		}
+	}
+
+
+	public IEnumerator AsynchronousReadFromArduino(Action<string> callback, Action fail = null, float timeout = float.PositiveInfinity)
+	{
+		DateTime initialTime = DateTime.Now;
+		DateTime nowTime;
+		TimeSpan diff = default(TimeSpan);
+
+		string dataString = null;
+
+		do
+		{
+			// A single read attempt
+			try
+			{
+				dataString = stream.ReadLine();
+			}
+			catch (TimeoutException)
+			{
+				dataString = null;
+			}
+
+			if (dataString != null)
+			{
+				callback(dataString);
+				yield return null;
+			} else
+				yield return new WaitForSeconds(0.05f);
+
+			nowTime = DateTime.Now;
+			diff = nowTime - initialTime;
+
+		} while (diff.Milliseconds < timeout);
+
+		if (fail != null)
+			fail();
+		yield return null;
+	}
+
+	public void Close()
+	{
+		stream.Close();
+	}
+
+	private void arduinoIsCommunicating(){ // make bool when works
+		float delay;
+		float timeAsked = Time.timeSinceLevelLoad;
+
+		float timeReplied = arduinoTest2 ();
+		delay = timeReplied - timeAsked;
+//		Debug.Log (" delay in arduino reply " + delay);
+
+
+	}
+
+	private float arduinoTest2 (){
+
+
+
+
+
+
+			WriteToArduino ("DATA0");
+			//WriteToArduino (number.ToString());
+		ReadFromArduino (1000);
+
+		return Time.timeSinceLevelLoad;
+			
+
+
+
+	}
 }
