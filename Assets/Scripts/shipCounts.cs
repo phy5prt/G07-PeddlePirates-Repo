@@ -70,7 +70,7 @@ private Health[] ShipsHealths;
 	}
 	public void UpdateShipCounts(){
 
-	ShipsHealths = GetComponentsInChildren<Health>(); 
+	ShipsHealths = GetComponentsInChildren<Health>(); //surely this should not be in an invoke
 
 	ShipsCount = ShipsHealths.Length;
 
@@ -125,7 +125,8 @@ ShipsActive = playerShipsActive + aIShipsActive;
 //therefore currently mutual annilation or ai winning is a lose state
 		if("DRAW" != currentWinLoseDrawState()){
 		Debug.Log("currentWinLoseState is not returning draw when shipsCount checked if should end the game so were telling gm to end game");
-		GameObject.Find("Game Manager").GetComponent<GameManager>().endGame();};
+		GameObject.Find("Game Manager").GetComponent<GameManager>().endGame();
+		CancelInvoke();};
 
 //run method here to check if should trigger game manager end games
 
@@ -136,7 +137,7 @@ ShipsActive = playerShipsActive + aIShipsActive;
 
 	//not having ai just playing selves at the moment
 	//would be fun later to have a win condition where the ai wins and gets a win screen, instead of a player lose screen 
-	if(playerShips<1){Debug.Log("currentWinLoseState is returning LOSE"); return "LOSE";}
+	if(playerShipsActive<1){Debug.Log("currentWinLoseState is returning LOSE"); return "LOSE";}
 		if(aIShipsActive <1 && numberOfTeamsActive ==1){Debug.Log("currentWinLoseState is returning LOSE"); return "WIN";}
 
 //Debug.Log("returning draw from current win lose draw state method");

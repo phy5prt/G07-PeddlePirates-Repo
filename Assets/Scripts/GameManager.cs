@@ -6,9 +6,14 @@ using UnityEngine.UI;
 using System.IO.Ports;
 using System;
 
+//need to strip off arduino and do system threading
+//https://www.alanzucconi.com/2016/12/01/asynchronous-serial-communication/
 
+//arduino needs to be itsown object
 
-
+//need to rewrite arduino code for my purpose to optimise how long willing to wait how often am i will to just use the current number
+//if the read takes too long
+//can it have its own update where it just changes the static as often as it can but nothing waits for it to do it.
 
 
 //issue because gamemanager not running all its code before other things do maybe need to set things to awake for game manager rather than start
@@ -26,18 +31,19 @@ using System;
 
 public class GameManager : MonoBehaviour {
 
-	[SerializeField] bool useArduinoData = false;
+	[SerializeField]  bool useArduinoData = false;
 
 	/* The serial port where the Arduino is connected. */
 	[Tooltip("The serial port where the Arduino is connected")]
-	public string port = "COM3";
+	public static string port = "COM3";
 	/* The baudrate of the serial port. */
 	[Tooltip("The baudrate of the serial port")]
-	public int baudrate = 9600;
+	public static int baudrate = 9600;
 
-	private SerialPort stream;
+
+	private  SerialPort stream;
 	//if this was an enum[] could i have each word allocated to its volt value so i feed in the word and it updates its value?
-	string[] pins = {"DATA0", "DATA1", "DATA2", "DATA3", "DATA4", "DATA5", "DATA6", "DATA7"};
+	private  string[] pins = {"DATA0", "DATA1", "DATA2", "DATA3", "DATA4", "DATA5", "DATA6", "DATA7"};
 
 
 
@@ -108,7 +114,7 @@ private Camera fourthRectFor3playerCam;
 
 	 //should i get a seperate script to be triggered for end game like for player setup
 	 //end game and reset
-	[SerializeField] float displayEndResultTimePeriod = 15f;
+	[SerializeField] float displayEndResultTimePeriod = 3.0f;
 	private float timeToReset = 9999999f;
 
 	private rigAllocateThisplayerPairSettingsToBars bikeRig;
@@ -143,7 +149,7 @@ private void Start(){
 		bikeRig = GetComponentInChildren<rigAllocateThisplayerPairSettingsToBars>();
 		bikeRig.setupTheRigVoltBars();
 
-		OpenMyArduinoStream();
+		//OpenMyArduinoStream();
 
 	
 }
@@ -302,7 +308,7 @@ private void feedFakeArduino (){ //made it static ?!?
 public  void startGameScene(){ //cant be static because button uses it
 
 //take some things of player setup and put them in here
-
+Debug.Log("im in the startGameScene method");
 SceneManager.LoadScene(2);
 //Debug.Log("calling setup scene 2");
 	// think its firing out of order so seperated out the method
@@ -319,6 +325,13 @@ spawner.GetComponent<shipCounts>().enabled=false;
 		
 fourthRectFor3playerCam = GameObject.Find("temp3Player4thRectCam").GetComponentInChildren<Camera>();
 			fourthRectFor3playerCam.enabled = false;
+
+	
+}
+private void resetMyShipsTeamAndMaxData(){
+
+Debug.Log("need to reset max and teams and data here also put bool in so if now allow this self set up of teams" );
+
 }
 
 public void startGame(){ //why does this need to be static then everything interacts with need to be
@@ -378,7 +391,7 @@ gameActive=true;
 
 
 	timeToReset = Time.timeSinceLevelLoad + displayEndResultTimePeriod;
-		Debug.Log(" timetoreset set by gm to" + Time.timeSinceLevelLoad + displayEndResultTimePeriod + " at " + Time.timeSinceLevelLoad);
+		Debug.Log(" timetoreset set by gm to" + Time.timeSinceLevelLoad + "  " + displayEndResultTimePeriod + " at " + Time.timeSinceLevelLoad);
 
 	 } 
 
@@ -394,7 +407,7 @@ gameActive=true;
 	//think feed arduino is running before all of start is finished sometimes hence errors
 	//doesnt need to be solved yet as will be replaced by aduino but
 	//if(SceneManager.GetActiveScene().buildIndex != 2){return;} //- this will reduce errors temporarily until running in awake
-		if(useArduinoData &&          (arduinoTest(pins[0]) != null)   ){feedRealArduino();}else{feedFakeArduino();}
+		if(useArduinoData /*&&          (arduinoTest(pins[0]) != null) */  ){feedRealArduino();}else{feedFakeArduino();}
 
 	if(SceneManager.GetActiveScene().buildIndex != 2){return;}// - this will reduce errors temporarily until running in awake
 	//the should only be run once playerSetup finisher
@@ -513,4 +526,5 @@ gameActive=true;
 
 
 	}
+	public void useArduinoMethod(){useArduinoData =true;}
 }
