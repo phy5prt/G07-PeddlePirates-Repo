@@ -23,7 +23,7 @@ public class selectorPBGizmo : MonoBehaviour { // may work once we have singleto
 
 		
 
-				Debug.Log("bar color is " + percBarScript.gameObject.tag + " static color is " + pair.getShipPairColor());
+//				Debug.Log("bar color is " + percBarScript.gameObject.tag + " static color is " + pair.getShipPairColor());
 						}
 	}}
 	}

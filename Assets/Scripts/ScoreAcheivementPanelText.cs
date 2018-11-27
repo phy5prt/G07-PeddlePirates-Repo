@@ -100,7 +100,7 @@ private float lastTimeVoltInput;
 		panelRT.localPosition += new Vector3((Time.deltaTime*slideInSpeed),0f,0f);
 		//Debug.Log("finished sliding In");
 
-	someDebugs();
+	//someDebugs();
 
 	}else{this.enabled = false;}
 

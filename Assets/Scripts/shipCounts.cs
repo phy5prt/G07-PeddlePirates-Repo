@@ -108,7 +108,7 @@ teamActive = new bool[]{false,false,false,false,false};
 shipsActivePerTeamCount = new int[]{0,0,0,0,0}; //if was a list could just check length of list for how many teams active
 		foreach(GameObject Ship in ShipsGOs){if(Ship.GetComponent<MyPlayer>() != null && Ship.tag == "Ship" ){    //foreach using ship but an array of ourShipsPlayer and checking allive may be better than a tag check
 			playerShipsActive++;
-				Debug.Log(" Ship.GetComponent<MyPlayer>().ourShipsPlayerPairSettings.GetTeamNumber() is " + Ship.GetComponent<MyPlayer>().ourShipsPlayerPairSettings.GetTeamNumber());
+//				Debug.Log(" Ship.GetComponent<MyPlayer>().ourShipsPlayerPairSettings.GetTeamNumber() is " + Ship.GetComponent<MyPlayer>().ourShipsPlayerPairSettings.GetTeamNumber());
 			shipsActivePerTeamCount[Ship.GetComponent<MyPlayer>().ourShipsPlayerPairSettings.GetTeamNumber()]++; //getting array out of limits error presume this is knock on from the ship losing its connection to the static
 			}
 		}for(int i=0; i<shipsActivePerTeamCount.Length;i++){if(shipsActivePerTeamCount[i]>0){teamActive[i] = true;}else{teamActive[i]= false;}};
