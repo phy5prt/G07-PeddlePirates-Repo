@@ -109,7 +109,7 @@ private Camera fourthRectFor3playerCam;
 	 //should i get a seperate script to be triggered for end game like for player setup
 	 //end game and reset
 	[SerializeField] float displayEndResultTimePeriod = 15f;
-	private float timeToReset;
+	private float timeToReset = 9999999f;
 
 	private rigAllocateThisplayerPairSettingsToBars bikeRig;
 																																															
@@ -161,7 +161,7 @@ private void Start(){
 	{
 		WriteToArduino (data);
 		string ardionoSays = ReadFromArduino (1000);
-		Debug.Log (" pin " + data + " says " + ardionoSays);
+//		Debug.Log (" pin " + data + " says " + ardionoSays);
 		return float.Parse (ardionoSays);
 	}
 
@@ -365,7 +365,7 @@ gameActive=true;
 	 //use the pirate dialogue boxes and the highscores slide in and record and high light scenario and outcome
 	 //revert ready for the next game
 
-	
+	Debug.Log("gm requesting win lose state from ship count in end game method");
 	gameEndResult = spawner.gameObject.GetComponent<shipCounts>().currentWinLoseDrawState();
 	spawner.GetComponent<shipCounts>().enabled=false;
 
@@ -378,6 +378,7 @@ gameActive=true;
 
 
 	timeToReset = Time.timeSinceLevelLoad + displayEndResultTimePeriod;
+		Debug.Log(" timetoreset set by gm to" + Time.timeSinceLevelLoad + displayEndResultTimePeriod + " at " + Time.timeSinceLevelLoad);
 
 	 } 
 
@@ -393,18 +394,21 @@ gameActive=true;
 	//think feed arduino is running before all of start is finished sometimes hence errors
 	//doesnt need to be solved yet as will be replaced by aduino but
 	//if(SceneManager.GetActiveScene().buildIndex != 2){return;} //- this will reduce errors temporarily until running in awake
-		if(useArduinoData &&          (arduinoTest(pins[0]) != null)   ){Debug.Log("using real arduino feed");feedRealArduino();}else{feedFakeArduino();}
+		if(useArduinoData &&          (arduinoTest(pins[0]) != null)   ){feedRealArduino();}else{feedFakeArduino();}
 
 	if(SceneManager.GetActiveScene().buildIndex != 2){return;}// - this will reduce errors temporarily until running in awake
 	//the should only be run once playerSetup finisher
 	
 
 		//this is triggering instantly!
+
 		if(gameActive){
-	if(Time.timeSinceLevelLoad>endGameTime){endGame();
-				Debug.Log (" current time is " + Time.timeSinceLevelLoad + " end game time is " + endGameTime + " day length " + dayLength + " number of days  " + numberDays);
+	if(Time.timeSinceLevelLoad>endGameTime){
+				Debug.Log (" GM update about to run endgame "+" current time is " + Time.timeSinceLevelLoad + " end game time is " + endGameTime + " day length " + dayLength + " number of days  " + numberDays);
+				endGame();
 				endGameTime = 99999999999f;}
-			if(Time.timeSinceLevelLoad>timeToReset){startGameScene();}
+
+	if(Time.timeSinceLevelLoad>timeToReset){Debug.Log(" GM update about to run reset "+" current time is " + Time.timeSinceLevelLoad + " reset time is " + timeToReset); timeToReset = 9999999f;   startGameScene();}
 
 
 	}}
