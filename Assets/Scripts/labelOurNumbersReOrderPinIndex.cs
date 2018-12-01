@@ -22,11 +22,14 @@ public class labelOurNumbersReOrderPinIndex : MonoBehaviour {
 	private Sprite[] newOptionsSprites= new Sprite[9]; //should it be 9 with the blank
 	private Dropdown[] dropDowns;
 	private List<Dropdown.OptionData> dropDownOptionsTxtsSprites;
+	private arduinoReceiver sendMeBikeOrder; //should only be one of these so should be a static and calling the static or its singular instance
 
 	void Start(){
 
 	dropDowns = GetComponentsInChildren<Dropdown>();
 	Debug.Log("I found " +dropDowns.Length+ " dropdowns");
+
+	sendMeBikeOrder = GameObject.Find("ArduinoHolder").GetComponent<arduinoReceiver>();
 
 		updateTheIndexAndImageLabels();
 	}
@@ -68,10 +71,16 @@ public class labelOurNumbersReOrderPinIndex : MonoBehaviour {
 		dropDownOptionsTxtsSprites.Add(option);
 		}
 	foreach(Dropdown drop in dropDowns){ drop.AddOptions(dropDownOptionsTxtsSprites);}
+
+		updateTheInputOrder();
 	}
 		
 
+	private void updateTheInputOrder(){
 
+		sendMeBikeOrder.setOrderPinDataRequestedToMatchBikeOrder(selectedOption); //this will send blanks with 8s
+
+	}
 
 
 	

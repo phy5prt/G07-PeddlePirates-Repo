@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.IO.Ports;
+using UnityEngine.SceneManagement;
 
 //currently only working on 9600 and get an io exeption acess denied on trying to open yet still works
 
@@ -16,13 +17,41 @@ using System.IO.Ports;
 public class arduinoReceiver : MonoBehaviour { // can i make it a static class
 
 	[Tooltip("The serial port where the Arduino is connected")]
-    public string port = "COM4";
+	public string port = "COM4" ;
     /* The baudrate of the serial port. */
     [Tooltip("The baudrate of the serial port")]
-	public int baudrate =  9600;  //  115200;;;//ive changed it at the computer side
+	private int baudrate =  9600;  //  115200;;;//ive changed it at the computer side
+	int[,] conversionArray = new int[8,2]; //  can ask to receive nothing
 	private static string[] pins = {"DATA0", "DATA1", "DATA2", "DATA3", "DATA4", "DATA5", "DATA6", "DATA7" };
 
     private SerialPort stream;
+
+	private int scenePersisting; 
+    void Awake(){//singleton
+
+		int numSPWithThisSceneBuildNum = 0;
+		scenePersisting = SceneManager.GetActiveScene().buildIndex;
+
+		arduinoReceiver[] aR = FindObjectsOfType<arduinoReceiver>();   
+			foreach(arduinoReceiver arduino in aR){
+				if(arduino.scenePersisting ==  SceneManager.GetActiveScene().buildIndex) {numSPWithThisSceneBuildNum++;}else	{Destroy(arduino.gameObject);} }  
+		
+		if (numSPWithThisSceneBuildNum>1){ Destroy(gameObject);}                              
+																																					
+		DontDestroyOnLoad(gameObject);		
+
+
+    }
+    public void setBaud(int baud){
+    baudrate = baud;
+    Debug.Log("baud is " + baudrate);
+    }
+
+	public void setCom(string com){
+   port = com;
+		Debug.Log("com is " + port);
+    }
+
 
     private void OpenArduinoStream () {
         // Opens the serial port
@@ -133,9 +162,15 @@ for(int i=0; i<8; i++){
 									Debug.Log(" i is " +i + " j is " + j + "I'm setting the conversionArray"); 
 									break;
 									}}}
+//if for when i dont want a blank
+for(int i=0; i<8; i+2;){
+if(ConversionArray[i,1] ==8){shipAr[i/2].left = 0;}else
+{shipAr[i/2].left = ConversionArray[i,1];}} //apply the lefts blanks other wise
 
-for(int i=0; i<8; i+2;){shipAr[i/2].left = ConversionArray[i,1];} //apply the lefts
-for(int i=1; i<8; i+2;){shipAr[(i-1)/2].Right = ConversionArray[i,1];} //applytherights
+
+for(int i=1; i<8; i+2;){
+if(ConversionArray[i,1]==8){{shipAr[(i-1)/2].Right =0;}else
+{shipAr[(i-1)/2].Right = ConversionArray[i,1];}} //applytherights
 
                                                         */
 
@@ -185,20 +220,23 @@ StartCoroutine
 //isnt relevant now
 //make static once not using it with buttons for testing preset with an array
 //remove the preset array order whren done testing
-	public void setOrderPinDataRequestedToMatchBikeOrder(){ // run as they assign the colours
+	public void setOrderPinDataRequestedToMatchBikeOrder(int[] newConOrder){// run as they assign the colours
+
 //pins = newDatasOrder;
 //put global
 
-		int[] newConOrder = {7 , 6 , 5 , 4 , 3 , 2 , 1 , 0}; //just modeling the int the method will take
+		//just modeling the int the method will take
 
-		int[,] conversionArray = new int[8,2];
+
+
+
 for(int i =0; i<8;i++){
 			conversionArray[i,0] = newConOrder[i]; //this will put the 1st column as the new index order and the second column empty as will hold the values
 
 }
 }
 
-	void Start(){      OpenArduinoStream(); //needs to be seperate from everything else or will cause an error when they check too soon}
+	void Start(){     // OpenArduinoStream(); //needs to be seperate from everything else or will cause an error when they check too soon}
 	}
 public void writeReadTest(){
   
@@ -209,8 +247,30 @@ public void writeReadTest(){
 
 }
 
-//
+	public bool isBaudCommRight(){ //this code only works once i dont know why but once stream is opened even
+	//though i redefine stream and close it fails on opening?! doesnt need to be run twice so just turning buttons off once worked
+
+	bool BaudCommWorked = true;
+	//test
+		
+           
+            try
+            {
+				 // i added
+			stream = new  SerialPort(port, baudrate);
+				Close();
+				OpenArduinoStream();
+			
+
+                //im not specifying what i want to read because im not writing would it be better to code arduino to provide all results one string
+            }
+            catch {BaudCommWorked = false;}
+	
+
+		Debug.Log("BaudCommWorked = "+ BaudCommWorked);
+	return BaudCommWorked;
 
 
+	}
 
 }
