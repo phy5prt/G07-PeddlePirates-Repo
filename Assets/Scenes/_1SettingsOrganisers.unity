@@ -6290,13 +6290,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundnessBellCurveInRNAddedRange: 2
-  directionBiasOfRn: 0
+  roundnessBellCurveInRNAddedRange: 100
+  directionBiasOfRn: 0.44
   theRandomNumber: 0
   tRNCeiling: 200
   startingPlace: 0.1
-  sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0
+  sensitivityToRateOfUpdate: 286
+  rNAddedRange: 0.0184
 --- !u!1 &594044599
 GameObject:
   m_ObjectHideFlags: 0
@@ -6866,13 +6866,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundnessBellCurveInRNAddedRange: 2
-  directionBiasOfRn: 0
+  roundnessBellCurveInRNAddedRange: 100
+  directionBiasOfRn: 0.44
   theRandomNumber: 0
   tRNCeiling: 200
   startingPlace: 0.8
-  sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0
+  sensitivityToRateOfUpdate: 286
+  rNAddedRange: 0.0184
 --- !u!1 &631996052
 GameObject:
   m_ObjectHideFlags: 0
@@ -8874,13 +8874,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundnessBellCurveInRNAddedRange: 2
-  directionBiasOfRn: 0
+  roundnessBellCurveInRNAddedRange: 100
+  directionBiasOfRn: 0.44
   theRandomNumber: 0
   tRNCeiling: 200
   startingPlace: 0.5
-  sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0
+  sensitivityToRateOfUpdate: 286
+  rNAddedRange: 0.0184
 --- !u!1 &815040423
 GameObject:
   m_ObjectHideFlags: 0
@@ -9103,13 +9103,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundnessBellCurveInRNAddedRange: 2
-  directionBiasOfRn: 0
+  roundnessBellCurveInRNAddedRange: 100
+  directionBiasOfRn: 0.44
   theRandomNumber: 0
   tRNCeiling: 200
   startingPlace: 0.4
-  sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0
+  sensitivityToRateOfUpdate: 286
+  rNAddedRange: 0.0184
 --- !u!1 &869318038
 GameObject:
   m_ObjectHideFlags: 0
@@ -11688,13 +11688,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundnessBellCurveInRNAddedRange: 2
-  directionBiasOfRn: 0
+  roundnessBellCurveInRNAddedRange: 100
+  directionBiasOfRn: 0.44
   theRandomNumber: 0
   tRNCeiling: 200
   startingPlace: 0.7
-  sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0
+  sensitivityToRateOfUpdate: 286
+  rNAddedRange: 0.0184
 --- !u!1 &1159700950
 GameObject:
   m_ObjectHideFlags: 0
@@ -13982,13 +13982,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundnessBellCurveInRNAddedRange: 2
-  directionBiasOfRn: 0
+  roundnessBellCurveInRNAddedRange: 100
+  directionBiasOfRn: 0.44
   theRandomNumber: 0
   tRNCeiling: 200
   startingPlace: 0.6
-  sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0
+  sensitivityToRateOfUpdate: 286
+  rNAddedRange: 0.0184
 --- !u!1 &1413301004
 GameObject:
   m_ObjectHideFlags: 0
@@ -14152,13 +14152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundnessBellCurveInRNAddedRange: 2
-  directionBiasOfRn: 0
+  roundnessBellCurveInRNAddedRange: 100
+  directionBiasOfRn: 0.44
   theRandomNumber: 0
   tRNCeiling: 200
   startingPlace: 0.2
-  sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0
+  sensitivityToRateOfUpdate: 286
+  rNAddedRange: 0.0184
 --- !u!1 &1431200638
 GameObject:
   m_ObjectHideFlags: 0
@@ -19220,13 +19220,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dbf725fd4ec8514b81be848f1a6283f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundnessBellCurveInRNAddedRange: 2
-  directionBiasOfRn: 0
+  roundnessBellCurveInRNAddedRange: 100
+  directionBiasOfRn: 0.44
   theRandomNumber: 0
   tRNCeiling: 200
   startingPlace: 0.3
-  sensitivityToRateOfUpdate: 10
-  rNAddedRange: 0
+  sensitivityToRateOfUpdate: 286
+  rNAddedRange: 0.0184
 --- !u!1 &1913162775
 GameObject:
   m_ObjectHideFlags: 0
