@@ -236,8 +236,7 @@ for(int i =0; i<8;i++){
 }
 }
 
-	void Start(){     // OpenArduinoStream(); //needs to be seperate from everything else or will cause an error when they check too soon}
-	}
+	
 public void writeReadTest(){
   
 
@@ -259,10 +258,8 @@ public void writeReadTest(){
 				 // i added
 			stream = new  SerialPort(port, baudrate);
 				Close();
-				OpenArduinoStream();
-			
-
-                //im not specifying what i want to read because im not writing would it be better to code arduino to provide all results one string
+				OpenArduinoStream(); //found if this happens withouther things it fails
+				               
             }
             catch {BaudCommWorked = false;}
 	

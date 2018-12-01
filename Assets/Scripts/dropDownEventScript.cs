@@ -16,17 +16,16 @@ private labelOurNumbersReOrderPinIndex reorder;
 		reorder =  this.transform.parent.gameObject.GetComponent<labelOurNumbersReOrderPinIndex>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 
 	private void DropdownValueChanged(Dropdown change){
 	Debug.Log("a drop down option changed");
 	for(int i =0; i<8;i++){
-	if((dropDowns[i] != thisDropDown) &&(dropDowns[i].value == thisDropDown.value)){dropDowns[i].value = 8;} //set those sharing number to blank
+	if(     (dropDowns[i] != thisDropDown) &&    (dropDowns[i].value == thisDropDown.value)   ){dropDowns[i].value = 8;} //set those sharing number to blank
 	}
-
+		Debug.Log(" this drop down is " + tag + " and its value is " + thisDropDown.value);
 	reorder.updateTheIndexAndImageLabels();
+
+
 	}
 }

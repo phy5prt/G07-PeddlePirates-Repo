@@ -27,7 +27,7 @@ public class labelOurNumbersReOrderPinIndex : MonoBehaviour {
 	void Start(){
 
 	dropDowns = GetComponentsInChildren<Dropdown>();
-	Debug.Log("I found " +dropDowns.Length+ " dropdowns");
+	Debug.Log("I found " +dropDowns.Length+ " dropdowns"); //why called twice
 
 	sendMeBikeOrder = GameObject.Find("ArduinoHolder").GetComponent<arduinoReceiver>();
 

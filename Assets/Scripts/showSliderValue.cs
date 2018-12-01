@@ -13,7 +13,7 @@ public class showSliderValue : MonoBehaviour { //needs renaming
 
 	// Use this for initialization
 	void Start () {
-	pairsSelected = transform.parent.gameObject.GetComponentsInChildren<usePairSelectable>();
+	pairsSelected = transform.root.gameObject.GetComponentsInChildren<usePairSelectable>();
 
 	aISlider = GetComponent<Slider>();
 
@@ -30,7 +30,7 @@ public class showSliderValue : MonoBehaviour { //needs renaming
 
 	public void ValueChangedcheck(){ //careful this needs to be run if the max is reduced by increasing the no.players
 		numberOfPlayerPairs = 0;
-		foreach(usePairSelectable pair in pairsSelected){if (pair.myToggle.isOn == true){numberOfPlayerPairs++;}}
+		foreach(usePairSelectable pair in pairsSelected){if (pair.myToggle.isOn == true){numberOfPlayerPairs++; Debug.Log("increased player pairs to "+numberOfPlayerPairs);}}
 
 
 	aISlider.maxValue = numberSpawnPoints - numberOfPlayerPairs;
