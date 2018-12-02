@@ -17091,7 +17091,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f62157896e9c54bb11ba3152f13471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useArduinoData: 0
   fakeRedLeftArduinoVolt: {fileID: 576448581}
   fakeRedRightArduinoVolt: {fileID: 1423136106}
   fakeYelLeftArduinoVolt: {fileID: 1911851529}
@@ -18618,7 +18617,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1841925306}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 500, z: 0}
+  m_LocalPosition: {x: -23, y: 507.04, z: -43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 654966721}

@@ -72,15 +72,11 @@ public class labelOurNumbersReOrderPinIndex : MonoBehaviour {
 		}
 	foreach(Dropdown drop in dropDowns){ drop.AddOptions(dropDownOptionsTxtsSprites);}
 
-		updateTheInputOrder();
+		for(int i = 0; i<8; i++){arduinoReceiver.conversionArray[i,0] = selectedOption[i];} //think will work
 	}
 		
 
-	private void updateTheInputOrder(){
-
-		sendMeBikeOrder.setOrderPinDataRequestedToMatchBikeOrder(selectedOption); //this will send blanks with 8s
-
-	}
+	
 
 
 	

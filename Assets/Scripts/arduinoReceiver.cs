@@ -20,10 +20,11 @@ public class arduinoReceiver : MonoBehaviour { // can i make it a static class
 	public string port = "COM4" ;
     /* The baudrate of the serial port. */
     [Tooltip("The baudrate of the serial port")]
-	private int baudrate =  9600;  //  115200;;;//ive changed it at the computer side
-	int[,] conversionArray = new int[8,2]; //  can ask to receive nothing
+	private int baudrate =  115200;  //  115200;;;//ive changed it at the computer side
+	public static int[,] conversionArray = new int[8,2]; //  can ask to receive nothing
 	private static string[] pins = {"DATA0", "DATA1", "DATA2", "DATA3", "DATA4", "DATA5", "DATA6", "DATA7" };
-
+	private static int[] rawPinOutPut = new int[8];
+	private static int[] LRRYGBArrangedPinOut = new int[8];
     private SerialPort stream;
 
 	private int scenePersisting; 
@@ -104,7 +105,7 @@ public class arduinoReceiver : MonoBehaviour { // can i make it a static class
         do
         {
         //this will change to "all"
-			WriteToArduinoTest("DATA0"); // works with or without flush i added this so here i just need to have all my coroutines writing and reading but dont know if will get mixed up
+			WriteToArduinoTest("ALLDATA"); // works with or without flush i added this so here i just need to have all my coroutines writing and reading but dont know if will get mixed up
 
             // A single read attempt
             try
@@ -125,54 +126,41 @@ public class arduinoReceiver : MonoBehaviour { // can i make it a static class
             //and apply to the shipArray
             //for now then later removing debug in calling the coroutine
 
-            /* could try // this would work for flexible lengths for each data
-            string values = "1,2,3,4,5,6,7,8,9,10";
-string[] tokens = values.Split(',');
-
-int[] convertedItems = Array.ConvertAll<string, int>(tokens, int.Parse);
-
-//same as above
- string s = "1,5,7";
- int[] nums = Array.ConvertAll(s.Split(','), int.Parse);
 
 
-Or // this method relies on each number being 4 digets e.g. 0000 1023 9990 0012 
-
-int[] numbers=new int[strings.Lenght];
-
-
-for(int c=0;c<strings.Length;c+4;)
-
-numbers[c/4]=int.TryParse(strings[c]) + int.TryParse(strings[c+1])+ int.TryParse(strings[c+2])+ int.TryParse(strings[c+3]);
+ 				rawPinOutPut = Array.ConvertAll(dataString.Split(' '), int.Parse);
+ 				//conversionArray
+ 				//LRRYGBArrangedPinOut
 
 
 ///then when i have my array of numbers they will need reordering
 //think using an enum some how would make code better to read
 //idont want to change order of ship array
 
-have a middle array so pinArray convertArray shipArray
-the convert array has the desired order e,g [0] = 7 [1]=4 etc
-so foreach element in pin array the index holding that pin index receives the value
+//have a middle array so pinArray convertArray shipArray
+//the convert array has the desired order e,g [0] = 7 [1]=4 etc
+//so foreach element in pin array the index holding that pin index receives the value
 //make it 2d as if it replaces its value then if any read happens to =0 it might get found
 
 for(int i=0; i<8; i++){
 	for(int j=0; j<8; j++){
-		if(conversionArray[j,0] = i){
-			coversionArray[j,1] = pinOutPutData[i]; 
-									Debug.Log(" i is " +i + " j is " + j + "I'm setting the conversionArray"); 
+		if(conversionArray[j,0] == i){
+			conversionArray[j,1] = rawPinOutPut[i]; 
+									
 									break;
 									}}}
 //if for when i dont want a blank
-for(int i=0; i<8; i+2;){
-if(ConversionArray[i,1] ==8){shipAr[i/2].left = 0;}else
-{shipAr[i/2].left = ConversionArray[i,1];}} //apply the lefts blanks other wise
+
+for(int i=0; i<8; i =i+2 ){
+					if(conversionArray[i,0] ==8){GameManager.shipPlayerSettingsAr[i/2].SetmyLeftVolt(0);}else  //TODO not sure this works as didnt seem to reset
+					{GameManager.shipPlayerSettingsAr[i/2].SetmyLeftVolt(conversionArray[i,1]);}} //apply the lefts blanks other wise
 
 
-for(int i=1; i<8; i+2;){
-if(ConversionArray[i,1]==8){{shipAr[(i-1)/2].Right =0;}else
-{shipAr[(i-1)/2].Right = ConversionArray[i,1];}} //applytherights
+				for(int i=1; i<8; i =i+2){
+					if(conversionArray[i,0]==8){GameManager.shipPlayerSettingsAr[(i-1)/2].SetmyRightVolt(0);}else
+					{GameManager.shipPlayerSettingsAr[(i-1)/2].SetmyRightVolt(conversionArray[i,1]);}} //applytherights
 
-                                                        */
+                                                        
 
 
                 callback(dataString);
@@ -198,7 +186,7 @@ if(ConversionArray[i,1]==8){{shipAr[(i-1)/2].Right =0;}else
 
 public void startUpdatingInputs(){
 
-//put this in a foreach loop
+GameManager.useArduinoMethod();
 	
 		
 StartCoroutine
@@ -220,27 +208,14 @@ StartCoroutine
 //isnt relevant now
 //make static once not using it with buttons for testing preset with an array
 //remove the preset array order whren done testing
-	public void setOrderPinDataRequestedToMatchBikeOrder(int[] newConOrder){// run as they assign the colours
+	
 
-//pins = newDatasOrder;
-//put global
-
-		//just modeling the int the method will take
-
-
-
-
-for(int i =0; i<8;i++){
-			conversionArray[i,0] = newConOrder[i]; //this will put the 1st column as the new index order and the second column empty as will hold the values
-
-}
-}
 
 	
 public void writeReadTest(){
   
 
-		WriteToArduino("DATA0");
+		WriteToArduino("ALLDATA");
 		string iRead = ReadFromArduino(100);
 		Debug.Log(iRead);
 
@@ -269,5 +244,28 @@ public void writeReadTest(){
 
 
 	}
+
+	/*
+
+	            /* could try // this would work for flexible lengths for each data
+            string values = "1,2,3,4,5,6,7,8,9,10";
+string[] tokens = values.Split(',');
+
+int[] convertedItems = Array.ConvertAll<string, int>(tokens, int.Parse);
+
+//same as above
+
+Or // this method relies on each number being 4 digets e.g. 0000 1023 9990 0012 
+
+int[] numbers=new int[strings.Lenght];
+
+
+for(int c=0;c<strings.Length;c+4;)
+
+numbers[c/4]=int.TryParse(strings[c]) + int.TryParse(strings[c+1])+ int.TryParse(strings[c+2])+ int.TryParse(strings[c+3]);
+
+
+
+	*/
 
 }

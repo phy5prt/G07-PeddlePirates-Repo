@@ -31,7 +31,7 @@ using System;
 
 public class GameManager : MonoBehaviour {
 
-	[SerializeField]  bool useArduinoData = false;
+	[SerializeField] static bool useArduinoData = false;
 
 
 	
@@ -370,5 +370,5 @@ gameActive=true;
 
 
 
-	public void useArduinoMethod(){useArduinoData =true;}
+	public static void useArduinoMethod(){useArduinoData =true;}
 }
