@@ -12,6 +12,9 @@ using UnityEngine;
 //or try using transform point
 //or use transform left right and just alter it
 
+//if checked ships alive or dead not by tag but by if they are floating then they would stay called ship
+//see if it can count number of times entered and left to solve the shooting issue
+
 public class Cannon : MonoBehaviour {
 
 public GameObject cannonBall;
@@ -97,6 +100,8 @@ private bool isFiring = false;
 	//if(transform.root == coll.transform.root){return;} //is it my collider
 		if(transform == coll.transform){return;} //they share the spawn parent now and health is on collider so changed this
 	//Debug.Log(transform.root + " " + coll.transform.root);
+
+
 	if(!isFiring){isFiring = true; InvokeRepeating("Firing" , 0f , (1f/ShotsPS));}
 
 

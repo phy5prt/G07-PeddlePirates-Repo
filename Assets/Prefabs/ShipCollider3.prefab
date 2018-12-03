@@ -656,6 +656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4186409517526340}
   - component: {fileID: 137263345913537856}
+  - component: {fileID: 114686674892831910}
   m_Layer: 9
   m_Name: Sails
   m_TagString: Untagged
@@ -2657,6 +2658,17 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
+--- !u!114 &114686674892831910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1663479856486918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1fccfb5b653a4f489958819bc59400f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114694156122366734
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -28,7 +28,7 @@ public class MyPlayer : MonoBehaviour  {
 	private float ourVolt100PercMax = 1000000;
 	private setupBattleCamsRenderTextures setupBattleCams;
 
-[Range( -10f,10f)] //cant reverse in game but may be useful for testing
+[Range( -10f,50f)] //cant reverse in game but may be useful for testing
 [SerializeField] float forwardMultiplier =3.42f; 
 
 /* - this really handy way of controlling the ships for testing and knowing the ranges
@@ -37,10 +37,10 @@ public float cycPercSpeedLeft = 1f;
 [Range (0f,1f)]
 public float cycPercSpeedRight = 0.5f;
 */
-[Range (0f,200f)] //this is adding two percentage based on 100% is max set by rival players so could be higher also could divide it by 2 to make it 100 and put an if statement to avoid 0/2
+//[Range (0f,200f)] //this is adding two percentage based on 100% is max set by rival players so could be higher also could divide it by 2 to make it 100 and put an if statement to avoid 0/2
 private float forwardSpeed = 0f;
 public float angularVel = 0f; 
-	[Range (0f,2f)] 
+	[Range (0f,10f)] 
 [SerializeField] float angVelMultiplier = 0.24f;
 
 private Health health;
@@ -99,6 +99,10 @@ private Camera myMainCamera;
 	//give the ship spray its powerbars
 		percBarDisplay[] foams = GetComponentsInChildren<percBarDisplay>();
 		foreach(percBarDisplay bar in foams){bar.passMeMyPlayerPairSettings(ourShipsPlayerPairSettings);}
+
+
+		//set ship sail colour
+		GetComponentInChildren<shipSailColor>().changeTheSails(ourShipsPlayerPairSettings);
 
 		shipBeenSetUp = true;
 

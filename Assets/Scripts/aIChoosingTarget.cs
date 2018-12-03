@@ -66,7 +66,7 @@ public bool justHumans = true;
 
 		if(potentialTarget.gameObject != this.gameObject){   //check not targetting self
 			bool isHuman; 
-			if(potentialTarget.GetComponent<ThirdPersonCharacter>() == null){isHuman=true;}else{isHuman=false;} // not sure if can test for component like this
+			if(potentialTarget.GetComponent<ThirdPersonCharacter>() == null){isHuman=true;}else{isHuman=false;} // this aint working
 
 			if((justHumans == false) || (justHumans == isHuman)){
 

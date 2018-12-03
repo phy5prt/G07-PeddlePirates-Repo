@@ -14,7 +14,9 @@ public float timePersist = 2f;
 
 //not sure if this will still work as now only the cannon ball is trigger so can use colliders for impacts
 //so relying on one to be hit the other to say where may not work so may need re coding
-		
+
+//need a little code doesnt do damage to ally
+				
 	// Use this for initialization
 	void Start () {
 		timeCreated = Time.timeSinceLevelLoad;

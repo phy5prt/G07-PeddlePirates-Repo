@@ -25,7 +25,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	private string shipPairName = "no name yet";
 	private int teamNumber;
 	private string teamName;
-	private Rect splitScreenArea = new Rect(0,0,1,1); //this used if only one player pair
+	private Rect splitScreenArea = new Rect(0,0,1,1); //this used if only one player pair //Todo why throwing an erro why running at beginnings
 
 //using get and setting it to the arduino 
 	private float myLeftVolt;    
