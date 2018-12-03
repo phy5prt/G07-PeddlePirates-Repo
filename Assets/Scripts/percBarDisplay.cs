@@ -28,7 +28,7 @@ private Text CurrentVoltOutput;
 	private thisPlayerPairSettings myPPSettings; //loses this over scene change so may need singleton design pattern //static seems to solve it but get orther errors
 	private bool iHaveTextBoxes = false;
 	private bool receivedMyPlayerPairSettings = false;
-
+	private float originalAlpha;
 
 
 	// Use this for initialization
@@ -42,7 +42,7 @@ private Text CurrentVoltOutput;
 
 
 	percBar = this.gameObject.GetComponent<Image>();
-
+	originalAlpha = percBar.color.a;
 	//this needs to find the text boxes and if non return text boxes
 
 	if(gameObject.transform.childCount>0){
@@ -87,6 +87,10 @@ private Text CurrentVoltOutput;
 	if(proportion200Bar <  0.8 && proportion200Bar>=0.7){percBar.color = Color.green;} 
 	if(proportion200Bar <  0.7 && proportion200Bar>=0.5){percBar.color = Color.yellow;} 
 	if(proportion200Bar <  0.5){percBar.color = Color.red;} 
+
+	//reapplying alpha
+	percBar.color = new Color(percBar.color.r, percBar.color.g, percBar.color.b, originalAlpha );
+
 	}
 
 	}

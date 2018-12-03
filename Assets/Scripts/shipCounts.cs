@@ -125,7 +125,7 @@ ShipsActive = playerShipsActive + aIShipsActive;
 //therefore currently mutual annilation or ai winning is a lose state
 		if("DRAW" != currentWinLoseDrawState()){
 		Debug.Log("currentWinLoseState is not returning draw when shipsCount checked if should end the game so were telling gm to end game");
-		GameObject.Find("Game Manager").GetComponent<GameManager>().endGame();
+		GameObject.Find("Game Manager").GetComponent<GameManager>().endGame();  //TODO not being found also calling it early due to waiting to count?
 		CancelInvoke();};
 
 //run method here to check if should trigger game manager end games

@@ -96,6 +96,10 @@ private Camera myMainCamera;
 	//	Debug.Log("my main camera " + myMainCamera + " my main camera rect " + myMainCamera.rect );
 		myMainCamera.rect = new Rect(ourShipsPlayerPairSettings.GetSplitScreenArea().x,ourShipsPlayerPairSettings.GetSplitScreenArea().y,ourShipsPlayerPairSettings.GetSplitScreenArea().width,ourShipsPlayerPairSettings.GetSplitScreenArea().height);
 	//	Debug.Log("confirming that " + tag + " has been set up so it should know its volt input ");
+	//give the ship spray its powerbars
+		percBarDisplay[] foams = GetComponentsInChildren<percBarDisplay>();
+		foreach(percBarDisplay bar in foams){bar.passMeMyPlayerPairSettings(ourShipsPlayerPairSettings);}
+
 		shipBeenSetUp = true;
 
 
