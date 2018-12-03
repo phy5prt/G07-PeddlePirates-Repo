@@ -169,6 +169,8 @@ foreach(thisPlayerPairSettings playerPairSettings in GameManager.shipPlayerSetti
 	//		Debug.Log("selected team number is " + selectedTeamNumber);
 		if(selectedTeamNumber == -1){foreach(thisPlayerPairSettings thisPlayerPSettings in GameManager.shipPlayerSettingsAr){if(thisPlayerPSettings.getShipPairColor() == tag ){thisPlayerPSettings.setWerePlaying(false);Debug.Log(" disabling " + tag);}}}
 
+		//disablign yellow came up and when it was the number of rects was not changed TODO sought rects at end of set up.
+
 		foreach(thisPlayerPairSettings thisPlayerPSettings in GameManager.shipPlayerSettingsAr){if(thisPlayerPSettings.getShipPairColor() == tag ){thisPlayerPSettings.SetTeamNumber(selectedTeamNumber);}}
 
 		}
