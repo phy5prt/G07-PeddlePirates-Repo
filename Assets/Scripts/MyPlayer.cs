@@ -39,7 +39,7 @@ public float cycPercSpeedRight = 0.5f;
 */
 //[Range (0f,200f)] //this is adding two percentage based on 100% is max set by rival players so could be higher also could divide it by 2 to make it 100 and put an if statement to avoid 0/2
 private float forwardSpeed = 0f;
-public float angularVel = 0f; 
+private float angularVel = 0f; 
 	[Range (0f,10f)] 
 [SerializeField] float angVelMultiplier = 0.24f;
 

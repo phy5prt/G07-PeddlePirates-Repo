@@ -2723,7 +2723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72bde8833b8e6ce49bf2e0cd29a7db1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 1000
+  startHealth: 100000
   currentHealth: 1000
 --- !u!114 &114774490016792156
 MonoBehaviour:
@@ -2819,9 +2819,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ourShipsPlayerPairSettings: {fileID: 0}
-  forwardMultiplier: 3.5
-  angularVel: 1
-  angVelMultiplier: 0.24
+  forwardMultiplier: 10.8
+  angVelMultiplier: 1.08
 --- !u!114 &114847024610507440
 MonoBehaviour:
   m_ObjectHideFlags: 1

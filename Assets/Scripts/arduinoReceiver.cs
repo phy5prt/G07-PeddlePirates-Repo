@@ -4,6 +4,9 @@ using System.Collections;
 using System.IO.Ports;
 using UnityEngine.SceneManagement;
 
+//when tidying code https://dailydotnettips.com/back-to-basic-difference-between-int-parse-and-int-tryparse/
+
+
 //currently only working on 9600 and get an io exeption acess denied on trying to open yet still works
 
 //https://www.alanzucconi.com/2016/12/01/asynchronous-serial-communication/
@@ -72,7 +75,7 @@ public class arduinoReceiver : MonoBehaviour { // can i make it a static class
 	private void WriteToArduinoTest(string data)
     {
         // Send the request
-        stream.WriteLine(data);
+        stream.WriteLine(data); //run during battle caused io error did it call it twice before using it?!
 
       stream.BaseStream.Flush();
     }
@@ -129,6 +132,7 @@ public class arduinoReceiver : MonoBehaviour { // can i make it a static class
 
 
  				rawPinOutPut = Array.ConvertAll(dataString.Split(' '), int.Parse);
+				if(rawPinOutPut.Length<8){ Debug.Log("chopped array but not long enoug"); yield return null;} //not a good solve
  				//conversionArray
  				//LRRYGBArrangedPinOut
 
@@ -141,11 +145,14 @@ public class arduinoReceiver : MonoBehaviour { // can i make it a static class
 //the convert array has the desired order e,g [0] = 7 [1]=4 etc
 //so foreach element in pin array the index holding that pin index receives the value
 //make it 2d as if it replaces its value then if any read happens to =0 it might get found
-
+				
 for(int i=0; i<8; i++){
 	for(int j=0; j<8; j++){
 		if(conversionArray[j,0] == i){
-			conversionArray[j,1] = rawPinOutPut[i]; 
+		Debug.Log(" i is " + i + " j is " + j);
+		Debug.Log("raw input array is this long " + rawPinOutPut.Length); // is it being updated conversion array while in use? for some reason length 1!
+
+			conversionArray[j,1] = rawPinOutPut[i]; //starteed getting out of range errorsS TODO
 									
 									break;
 									}}}
@@ -187,7 +194,8 @@ for(int i=0; i<8; i =i+2 ){
 public void startUpdatingInputs(){
 
 GameManager.useArduinoMethod();
-	
+
+	Debug.Log("there should be only one coroutine and thats me");	
 		
 StartCoroutine
 (
