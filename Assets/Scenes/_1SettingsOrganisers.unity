@@ -11662,7 +11662,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9612a579fb324e44cbae62ea68272363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: COM4
 --- !u!4 &1139827434
 Transform:
   m_ObjectHideFlags: 0
