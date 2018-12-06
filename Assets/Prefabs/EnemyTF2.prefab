@@ -399,6 +399,10 @@ GameObject:
   - component: {fileID: 136463941366517156}
   - component: {fileID: 135432353981370040}
   - component: {fileID: 114273060086112782}
+  - component: {fileID: 65617673407016746}
+  - component: {fileID: 65221278581908390}
+  - component: {fileID: 65031467524420926}
+  - component: {fileID: 65657963700625274}
   m_Layer: 9
   m_Name: EnemyTF2
   m_TagString: Ship
@@ -880,7 +884,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1556332472039182}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.2300001, y: 0.43, z: -0}
+  m_LocalPosition: {x: -1.6, y: 0.43, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4580836288432216}
@@ -1006,7 +1010,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1725507626005736}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.43, z: 0}
+  m_LocalPosition: {x: 0.41, y: 0.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4027714868236604}
@@ -1351,7 +1355,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1452595409263392}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.003249468, z: -0, w: 0.99999475}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1360,7 +1364,7 @@ Transform:
   - {fileID: 4071384976471476}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0.372, z: 0}
 --- !u!4 &4910906297745974
 Transform:
   m_ObjectHideFlags: 1
@@ -1541,6 +1545,54 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!65 &65031467524420926
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1452595409263392}
+  m_Material: {fileID: 13400000, guid: 52baaeb214519f347a35cf0edfd262ff, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.804441, y: 6.2613993, z: 1.0362539}
+  m_Center: {x: 0.10701156, y: 4.871411, z: -0.30646205}
+--- !u!65 &65221278581908390
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1452595409263392}
+  m_Material: {fileID: 13400000, guid: 52baaeb214519f347a35cf0edfd262ff, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5304413, y: 5.0783195, z: 0.9406409}
+  m_Center: {x: -0.025171459, y: 4.274908, z: 1.9152589}
+--- !u!65 &65617673407016746
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1452595409263392}
+  m_Material: {fileID: 13400000, guid: 52baaeb214519f347a35cf0edfd262ff, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.94622254, y: 2.8454561, z: 1.471519}
+  m_Center: {x: 0.5936886, y: 3.536759, z: 3.8390753}
+--- !u!65 &65657963700625274
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1452595409263392}
+  m_Material: {fileID: 13400000, guid: 52baaeb214519f347a35cf0edfd262ff, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3443527, y: 3.4775772, z: 0.9923775}
+  m_Center: {x: -0.525113, y: 4.478136, z: -1.9954287}
 --- !u!95 &95390547980137392
 Animator:
   serializedVersion: 3
@@ -1605,7 +1657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 1
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
@@ -1622,7 +1674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 1
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
@@ -1656,7 +1708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 1
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
@@ -1718,7 +1770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 1
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
@@ -1758,8 +1810,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72bde8833b8e6ce49bf2e0cd29a7db1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 1000
-  currentHealth: 1000
+  startHealth: 333
+  currentHealth: 333
 --- !u!114 &114276854174409740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1825,7 +1877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 1
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
@@ -1869,7 +1921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 1
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
@@ -1886,7 +1938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 1
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
@@ -1903,7 +1955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 1
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
@@ -1968,7 +2020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 1
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
@@ -1985,7 +2037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 1
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}

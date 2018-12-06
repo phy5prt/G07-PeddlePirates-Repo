@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CannonBall : MonoBehaviour {
 
-public int baseDamage = 10;
-public string targetHit = " I dont Know what I hit ";
-public int damage = 10; 	
-public int bowDamageMultiplier = 10;
+public int baseDamage = 1;
+private string targetHit = " I dont Know what I hit ";
+private int damage = 1; 	
+private int damageMultiplier = 10;
 
 	private float timeCreated;
-public float timePersist = 2f;
+private float timePersist = 1.1f;
 
 //not sure if this will still work as now only the cannon ball is trigger so can use colliders for impacts
 //so relying on one to be hit the other to say where may not work so may need re coding
@@ -39,17 +39,18 @@ public float timePersist = 2f;
 	if(coll.tag != "Ship" ){return;}     //is it a ship
 	if(coll.gameObject.GetComponent<Health>() == null){return;} //is the collider one for taking damage
 
-
-	if(transform.parent.transform.parent.transform.parent.transform.parent.gameObject.transform == coll.transform){return;}
+	//this isnt working because dont use own tranform anymore but if cannons well placed should have to check if shooting self
+//	if(transform.parent.transform.parent.transform.parent.transform.parent.gameObject.transform == coll.transform){return;}
 
 
 
 
 	if(coll is SphereCollider){targetHit = "bow";}
-		else if(coll is CapsuleCollider){targetHit = "boatBody";}
-	if(targetHit == "bow"){bowDamageMultiplier = 10;}else{bowDamageMultiplier = 1;}
+		else if(coll is CapsuleCollider){targetHit = "hull";}else if(coll is BoxCollider){targetHit = "sails";}
+		if(targetHit == "bow"){damageMultiplier = 60;}else if(targetHit == "hull"){damageMultiplier = 4;}else if(targetHit == "sails"){damageMultiplier = 1;}
 
-	damage = baseDamage*bowDamageMultiplier;
+	damage = baseDamage*damageMultiplier;
+	Debug.Log(damage);
 //	Debug.Log( damage + " Damage taken from " +name+ " hit to the" + coll.name + " on its " + targetHit);
 
 			
@@ -58,7 +59,8 @@ public float timePersist = 2f;
 	coll.gameObject.GetComponent<Health>().OnHitReceived(damage);
 	//do a special effect here an a noise
 
-	Destroy(gameObject,1f);
+
+		Destroy(gameObject);
 }
 
 	//private void OnTriggerEnter(CapsuleCollider boatBody){targetHit = "boatBody";}

@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1287851976237578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.483, y: 0.035, z: -0.122}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -111,11 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f50d52b53ce7d2645a9c889c2cf83d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 10
-  targetHit: ' I dont Know what I hit '
-  damage: 10
-  bowDamageMultiplier: 10
-  timePersist: 2
+  baseDamage: 1
 --- !u!135 &135299228950028088
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -126,5 +122,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.50915796
+  m_Radius: 0.5
   m_Center: {x: -0.009003082, y: 0, z: 0}

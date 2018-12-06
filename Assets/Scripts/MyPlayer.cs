@@ -7,6 +7,14 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 
+/*current issue is it is tipping over could try this
+Try freezing the rotation manually in the LateUpdate
+
+ protected void LateUpdate()
+ {
+     transform.localEulerAngles = new Vector3(0, 0, transform.localEulerAngles.z);
+ }
+ */
 //physics approach im not doing
 //what in the game soaks up velocity maybe need make the air thick
 //made the wood high friction
@@ -44,6 +52,7 @@ private float angularVel = 0f;
 [SerializeField] float angVelMultiplier = 0.24f;
 
 private Health health;
+private Rigidbody myRigidBody;
 
 private bool shipBeenSetUp = false; //feel shouldnt need this
 
@@ -61,7 +70,7 @@ private Camera myMainCamera;
 	//is this the object not found!
 	myMainCamera = GetComponentInChildren<Camera>(); // the boat camera has cameras in its GO assuming wont find the wrong one,should take shallowest
 	health = GetComponent<Health>();
-
+		myRigidBody = this.gameObject.GetComponent<Rigidbody>();
 
 	}
 
@@ -167,9 +176,25 @@ private Camera myMainCamera;
 		//actually should do above anyway
 
 		//not sure it likes the  fixed update seems to jerk as turns
-		this.gameObject.GetComponent<Rigidbody>().angularVelocity = transform.up*angularVel;
-		this.gameObject.GetComponent<Rigidbody>().velocity = transform.right*forwardSpeed;
+		//angular velocity could be what making it fall over
+		//testing below
+		//could change boat angle with deltatime
+		//this.gameObject.GetComponent<Rigidbody>().angularVelocity.Set(0,angularVel,0);
 
+
+
+		//im getting every frame will be faster if put in start
+
+
+		myRigidBody.angularVelocity = transform.up*angularVel;
+		myRigidBody.velocity = transform.right*forwardSpeed;
+
+		//local or world
+	
+	//are both necessary - seems to work now with out either the only other change was in the start grabbing the rigidbody
+	//	transform.up.Set(0f,1f,0f); - works just with this
+
+	//	transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);
 		 
 	}
 /* - think this now unnecessary

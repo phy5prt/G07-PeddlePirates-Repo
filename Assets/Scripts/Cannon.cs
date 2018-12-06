@@ -15,24 +15,34 @@ using UnityEngine;
 //if checked ships alive or dead not by tag but by if they are floating then they would stay called ship
 //see if it can count number of times entered and left to solve the shooting issue
 
+
+//code needs to not fire on friendly
+//code needs the cannon balls to by parented to spawn position so dont move with ship
+//repeated triggering shouldnt mean fast firing
+//so all cannon balls just childed transform of the spawn point at top
+
+
+
 public class Cannon : MonoBehaviour {
 
 public GameObject cannonBall;
 public bool forceFire = false;
 private bool switchWas = false;
-public float ShotsPS = 5f;
+public float ShotsPS = 1f;
 public float cyclePercWeapons = 0f;
 public float powerOfCannonBall = 150f;
 public Vector3 trajectoryCannonBallWorldSpace = new Vector3(1000f,2500f,1000f); // need to depend on boat direction so relative to cannon
 private Vector3 trajectoryCannonBall = new Vector3(); //make it local
-private bool isFiring = false;
-
+private bool startFiring = false;
+private float timeLastFired;
+private bool alreadyFiring = false;
+private  Transform spawnPoint;
 
 //private Vector3 randomnessToTragectory;
 //private float rangeRandomFireDelay //maybe not necessary as each cannon will triggered one at a time
 	// Use this for initialization
 	void Start () {
-
+	spawnPoint = this.transform.root.GetComponentInChildren<spawnpoint>().gameObject.transform;
 
 	}
 	
@@ -50,18 +60,23 @@ private bool isFiring = false;
 	//do this in another script
 
 	trajectoryCannonBall = transform.TransformDirection(trajectoryCannonBallWorldSpace); //if knew how to do a reference think wouldnt need to update
-	ShotsPS = 1f + 2f*cyclePercWeapons;
+	//ShotsPS = 1f+ 2f*cyclePercWeapons;
 
 	//need to be on enter collider bool on on exit bool off
 
 
 		if(forceFire == true && (switchWas != forceFire)){
 		switchWas = forceFire;
-		InvokeRepeating("Firing",0f,0.5f);
+		startFiring = true;
+
 		}
-		if(forceFire == false && (switchWas != forceFire)){switchWas=forceFire;CancelInvoke();}
+
+		if(forceFire == false && (switchWas != forceFire)){switchWas=forceFire;startFiring=false;}
 		//just for testing
 
+		if(startFiring && (alreadyFiring==false)   ){
+		alreadyFiring = true;
+		InvokeRepeating("Firing" , (1f/ShotsPS)- (Time.timeSinceLevelLoad - timeLastFired) , (1f/ShotsPS)); }else if (startFiring==false){alreadyFiring=false; CancelInvoke();  }
 	
 	}
 
@@ -71,7 +86,7 @@ private bool isFiring = false;
 			//cannonBall = GetComponent<GameObject>();
 		//cannon position transform
 		Transform cannonPosition = GetComponentInParent<Transform>().gameObject.transform;
-		GameObject cannonBallFired = Instantiate(cannonBall,cannonPosition.position,Quaternion.identity, gameObject.transform);
+		GameObject cannonBallFired = Instantiate(cannonBall,cannonPosition.position,Quaternion.identity, spawnPoint);
 
 	//	cannonBallFired.transform.parent = gameObject.transform.parent; // works but unneccesary
 
@@ -82,6 +97,7 @@ private bool isFiring = false;
 
 
 	cannonBallFired.GetComponent<Rigidbody>().AddForce(trajectoryCannonBall*powerOfCannonBall, ForceMode.Impulse); //only fires in fixed world direction not local direction
+	timeLastFired = Time.timeSinceLevelLoad;
 	}
 
 
@@ -102,7 +118,10 @@ private bool isFiring = false;
 	//Debug.Log(transform.root + " " + coll.transform.root);
 
 
-	if(!isFiring){isFiring = true; InvokeRepeating("Firing" , 0f , (1f/ShotsPS));}
+
+	startFiring = true; 
+
+			 //can it take a negative number
 
 
 	}
@@ -119,8 +138,8 @@ private bool isFiring = false;
 	if(coll.gameObject.GetComponent<Health>() == null){return;} //is the collider one for taking damage
 	//if(transform.root == coll.transform.root){return;} // are they all the same root now theyre in spawner but now health on collider may work just asking is same game object
 		if(transform == coll.transform){return;}
-		CancelInvoke();      //if it dies or is deleted it never leaves there is no on trigger empty could count no. entering leaving? TODO
-		isFiring = false;
+		    //if it dies or is deleted it never leaves there is no on trigger empty could count no. entering leaving? TODO
+		startFiring = false;
 	}
 
 	//code i could use 

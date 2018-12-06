@@ -810,6 +810,10 @@ GameObject:
   - component: {fileID: 137577471786752678}
   - component: {fileID: 114762809048985942}
   - component: {fileID: 136078530022365464}
+  - component: {fileID: 65660517376509794}
+  - component: {fileID: 65403209969732944}
+  - component: {fileID: 65566644631340916}
+  - component: {fileID: 65884043350913842}
   m_Layer: 9
   m_Name: ShipCollider3
   m_TagString: Ship
@@ -1155,7 +1159,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1619034918109200}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.7201076, y: 0, z: 0.3535319}
+  m_LocalPosition: {x: -1.7201076, y: 0.24, z: 0.3535319}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4770650359794172}
@@ -1374,7 +1378,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1997592048398156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.68, z: 1.23}
+  m_LocalPosition: {x: 0, y: 0.68, z: 2.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4101845275043674}
@@ -1558,7 +1562,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1969995110486180}
   m_LocalRotation: {x: -0, y: -0.002971105, z: -0, w: 0.9999956}
-  m_LocalPosition: {x: 0.057399705, y: 0.68, z: 17.48}
+  m_LocalPosition: {x: 0.057399705, y: 0.68, z: 16.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4787028969554174}
@@ -2207,6 +2211,54 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 200, y: 10, z: 60}
   m_Center: {x: 60, y: -16.4, z: -30}
+--- !u!65 &65403209969732944
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1787419668699666}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.036254, y: 6.261399, z: 3.804441}
+  m_Center: {x: -0.306462, y: 4.871411, z: 0.1070116}
+--- !u!65 &65566644631340916
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1787419668699666}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9406409, y: 5.07832, z: 2.530441}
+  m_Center: {x: 1.915259, y: 4.274908, z: -0.02517146}
+--- !u!65 &65660517376509794
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1787419668699666}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9923773, y: 2.9921284, z: 2.0927505}
+  m_Center: {x: -1.995429, y: 4.7208605, z: 0.93110156}
+--- !u!65 &65884043350913842
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1787419668699666}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4715195, y: 2.123931, z: 0.7102699}
+  m_Center: {x: 3.839075, y: 3.8975215, z: -0.64224195}
 --- !u!65 &65963462708480866
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2468,10 +2520,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 5
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
-  trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
+  trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
 --- !u!114 &114085770480570314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2507,7 +2559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 5
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
@@ -2541,7 +2593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 5
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
@@ -2602,7 +2654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 5
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
@@ -2632,10 +2684,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 5
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
-  trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
+  trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
 --- !u!114 &114391060609629410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2677,10 +2729,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 5
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
-  trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
+  trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
 --- !u!114 &114490529601051158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2710,10 +2762,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 5
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
-  trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
+  trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
 --- !u!114 &114556310085306534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2742,7 +2794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 5
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
@@ -2774,10 +2826,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 5
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
-  trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
+  trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
 --- !u!114 &114686674892831910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2802,7 +2854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonBall: {fileID: 1287851976237578, guid: 182e1224449118241a64f0022c107fea, type: 2}
   forceFire: 0
-  ShotsPS: 5
+  ShotsPS: 0.5
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
@@ -2870,8 +2922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72bde8833b8e6ce49bf2e0cd29a7db1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHealth: 100000
-  currentHealth: 1000
+  startHealth: 999
+  currentHealth: 999
 --- !u!114 &114774490016792156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2884,7 +2936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.122}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.478}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3068,7 +3120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.122}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.478}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3152,9 +3204,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.99645996
-  m_Height: 8.76
+  m_Height: 6.6762676
   m_Direction: 0
-  m_Center: {x: 0.05, y: 0.94, z: 0.14}
+  m_Center: {x: -0.9918661, y: 0.94000006, z: 0.13999999}
 --- !u!136 &136147007450670002
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -3613,17 +3665,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1739665977185846}
-  m_LocalRotation: {x: 0.7536587, y: 0.010383315, z: 0.008955441, w: 0.657123}
-  m_LocalPosition: {x: 0, y: 0, z: -3.72}
+  m_LocalRotation: {x: 0.70057535, y: 0.011044919, z: 0.008125542, w: 0.71344674}
+  m_LocalPosition: {x: 0, y: 0, z: -2.2700007}
   m_LocalScale: {x: 12.35, y: 7, z: 1}
   m_Children:
   - {fileID: 224383119263450410}
   m_Father: {fileID: 4770650359794172}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 97.98401, y: -11.27, z: -11.385986}
+  m_LocalEulerAnglesHint: {x: 91.871, y: -123.759995, z: -123.996}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -1.48, y: -0.029999852}
+  m_AnchoredPosition: {x: -1.09, y: -0.029999852}
   m_SizeDelta: {x: 0.13, y: 1}
   m_Pivot: {x: 0.48, y: -0.45}
 --- !u!224 &224374526522241844
@@ -3654,7 +3706,7 @@ RectTransform:
   m_GameObject: {fileID: 1255331182894882}
   m_LocalRotation: {x: -0, y: -4.6566118e-10, z: 0.000000011175868, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1236005, y: 1.4319013, z: 1}
+  m_LocalScale: {x: 1, y: 1.13, z: 1}
   m_Children: []
   m_Father: {fileID: 224173964906456496}
   m_RootOrder: 0
@@ -3670,17 +3722,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1631988160655528}
-  m_LocalRotation: {x: 0.7536587, y: 0.010383315, z: 0.008955441, w: 0.657123}
-  m_LocalPosition: {x: 0, y: 0, z: -3.72}
+  m_LocalRotation: {x: 0.70057535, y: 0.011044919, z: 0.008125542, w: 0.71344674}
+  m_LocalPosition: {x: 0, y: 0, z: -2.27}
   m_LocalScale: {x: 12.35, y: 7, z: 1}
   m_Children:
   - {fileID: 224606758594111498}
   m_Father: {fileID: 4770650359794172}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 97.98401, y: -11.27, z: -11.385986}
+  m_LocalEulerAnglesHint: {x: 91.871, y: -123.759995, z: -123.996}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 1.19, y: -0.03}
+  m_AnchoredPosition: {x: 0.85, y: -0.03}
   m_SizeDelta: {x: 0.13, y: 1}
   m_Pivot: {x: 0.48, y: -0.45}
 --- !u!224 &224430666694926866
@@ -3766,7 +3818,7 @@ RectTransform:
   m_GameObject: {fileID: 1034460792717268}
   m_LocalRotation: {x: -0, y: -4.6566118e-10, z: 0.000000011175868, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1236005, y: 1.4319013, z: 1}
+  m_LocalScale: {x: 1, y: 1.13, z: 1}
   m_Children: []
   m_Father: {fileID: 224417871937557474}
   m_RootOrder: 0
