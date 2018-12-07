@@ -75,9 +75,9 @@ private  Transform spawnPoint;
 		if(forceFire == false && (switchWas != forceFire)){switchWas=forceFire;startFiring=false;}
 		//just for testing
 
-		if(startFiring && (alreadyFiring==false)   ){
+		if(startFiring && (alreadyFiring==false) && (  (Time.timeSinceLevelLoad - timeLastFired)>(1f/ShotsPS) ) ){
 		alreadyFiring = true;
-		InvokeRepeating("Firing" , (1f/ShotsPS)- (Time.timeSinceLevelLoad - timeLastFired) , (1f/ShotsPS)); }else if (startFiring==false){alreadyFiring=false; CancelInvoke();  }
+		InvokeRepeating("Firing" , 0f  , (1f/ShotsPS)); }else if (startFiring==false){alreadyFiring=false; CancelInvoke();  }
 	
 	}
 
@@ -136,14 +136,14 @@ private  Transform spawnPoint;
 	//if change one remember to change both
 
 
-		if( (coll.tag != "Ship") ||(coll.tag != "Destroyed")  ){return;}  //so this will turn it off for destroyed ships even if they werent counted on the way in but will do for now
+		if( (coll.tag == "Ship") || (coll.tag == "Destroyed")  )  //so this will turn it off for destroyed ships even if they werent counted on the way in but will do for now
    //is it a ship 
 
 	//if(coll.gameObject.GetComponent<Health>() == null){return;} //is the collider one for taking damage
 	//if(transform.root == coll.transform.root){return;} // are they all the same root now theyre in spawner but now health on collider may work just asking is same game object
 //		if(transform == coll.transform){return;}
 		    //if it dies or is deleted it never leaves there is no on trigger empty could count no. entering leaving? TODO
-		startFiring = false;
+		{startFiring = false;}
 	}
 
 	//code i could use 

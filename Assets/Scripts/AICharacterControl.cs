@@ -24,6 +24,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
           public float circlingRadius = 20f;
 		[Tooltip("Woody this multiplied by the circRadius is the distance away before starts trying to circle")]
 		public float multiplesOfCRTostartCirc = 1.5f;
+	
 		[Tooltip("Woody This is the angle added to the angle between target and enemy position it is added so enemy never reaches its location but circles")]
           public float movingAnglePerSecond = 0.2f; //should this be less
 		//public Vector3 relToTargAttckrot = new Vector3(0f,180f,0f);

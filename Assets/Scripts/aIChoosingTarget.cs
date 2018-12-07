@@ -34,6 +34,7 @@ public class aIChoosingTarget : MonoBehaviour {
 private AICharacterControl aI;
 private GameObject SpawnPointsGO; 
 public bool justHumans = true;
+	private Transform attackThis;
 
 	void Start () {
 
@@ -56,7 +57,13 @@ public bool justHumans = true;
 
 	public void findNearestTarget(){
 
-	Transform attackThis = this.transform; //just needs inialising if it does attack self its gone wrong or no enemies
+	//maybe a method for if your current target is alive and within a distance stick with it
+	//maybe set this in code but lets say 20 circuling radius and start circling 1.5x that away so 
+	//if attackthis.gameobject.tag == Ship
+	//if attackthis is closer than 20*1.5 + 10 //10 is fudge factor
+	//retturn
+
+//	Transform attackThis = this.transform; //just needs inialising if it does attack self its gone wrong or no enemies
 
 		Health[] targets = SpawnPointsGO.GetComponentsInChildren<Health>();
 		float distanceClosestTarget = 100000f;
