@@ -17098,7 +17098,7 @@ MonoBehaviour:
   fakeGreRightArduinoVolt: {fileID: 1397766661}
   fakeBluLeftArduinoVolt: {fileID: 1143064246}
   fakeBluRightArduinoVolt: {fileID: 631558231}
-  displayEndResultTimePeriod: 15
+  displayEndResultTimePeriod: 5
 --- !u!1 &1704183666
 GameObject:
   m_ObjectHideFlags: 0

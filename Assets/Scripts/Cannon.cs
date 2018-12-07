@@ -21,7 +21,8 @@ using UnityEngine;
 //repeated triggering shouldnt mean fast firing
 //so all cannon balls just childed transform of the spawn point at top
 
-
+//got lots cannons maybe should just fire when pass through and then have cool down so only using on trigger enter
+//only if moved identically in step would this result in not firing when should and because of boats rocking ot sure this would happen
 
 public class Cannon : MonoBehaviour {
 
@@ -112,9 +113,10 @@ private  Transform spawnPoint;
 		//messy because do these lines in both cannon and cannon ball really should make a shared method
 	//if change one remember to change both
 	if(coll.tag != "Ship" ){return;}     //is it a ship
+		
 	if(coll.gameObject.GetComponent<Health>() == null){return;} //is the collider one for taking damage
 	//if(transform.root == coll.transform.root){return;} //is it my collider
-		if(transform == coll.transform){return;} //they share the spawn parent now and health is on collider so changed this
+	//	if(transform == coll.transform){return;} //they share the spawn parent now and health is on collider so changed this
 	//Debug.Log(transform.root + " " + coll.transform.root);
 
 
@@ -134,10 +136,12 @@ private  Transform spawnPoint;
 	//if change one remember to change both
 
 
-	if(coll.tag != "Ship" ){return;}     //is it a ship
-	if(coll.gameObject.GetComponent<Health>() == null){return;} //is the collider one for taking damage
+		if( (coll.tag != "Ship") ||(coll.tag != "Destroyed")  ){return;}  //so this will turn it off for destroyed ships even if they werent counted on the way in but will do for now
+   //is it a ship 
+
+	//if(coll.gameObject.GetComponent<Health>() == null){return;} //is the collider one for taking damage
 	//if(transform.root == coll.transform.root){return;} // are they all the same root now theyre in spawner but now health on collider may work just asking is same game object
-		if(transform == coll.transform){return;}
+//		if(transform == coll.transform){return;}
 		    //if it dies or is deleted it never leaves there is no on trigger empty could count no. entering leaving? TODO
 		startFiring = false;
 	}

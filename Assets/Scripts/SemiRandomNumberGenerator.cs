@@ -18,13 +18,13 @@ public class SemiRandomNumberGenerator : MonoBehaviour {
 
 
 
-[Range( 0f,200f)]
+[Range( 0f,2048f)]
 [SerializeField] float theRandomNumber;
 
-[Range( 0f,200f)]
+[Range( 0f,2048f)]
 [SerializeField] float tRNCeiling = 120f;
 
-[Range( 0f,1f)]
+[Range( 0f,2048f)]
 	[SerializeField] float startingPlace = 50f;
 
 [Range( 0f,1000f)]
@@ -32,7 +32,7 @@ public class SemiRandomNumberGenerator : MonoBehaviour {
 
 private float rNAdded;
 
-[Range( 0f,0.1f)]  // so if set to ).2f that means if direction of bias is 1 the max increase step will be 20% of current position with bell point at 10%
+[Range( 0f,1f)]  // so if set to ).2f that means if direction of bias is 1 the max increase step will be 20% of current position with bell point at 10%
 	[SerializeField] float rNAddedRange = 0.1f;
 private float	rNAddedRangeLow;
 private float	rNAddedRangeHigh;

@@ -272,7 +272,9 @@ fourthRectFor3playerCam = GameObject.Find("temp3Player4thRectCam").GetComponentI
 }
 private void resetMyShipsTeamAndMaxData(){
 
-Debug.Log("need to reset max and teams and data here also put bool in so if now allow this self set up of teams" );
+
+		foreach(thisPlayerPairSettings pair in shipPlayerSettingsAr){pair.setWerePlaying(false); pair.SetVolt100Perc(1024f);} //do i need to reinitialise teams?
+//Debug.Log("need to reset max and teams and data here also put bool in so if now allow this self set up of teams" );
 
 }
 
@@ -363,7 +365,7 @@ gameActive=true;
 				endGame();
 				endGameTime = 99999999999f;}
 
-	if(Time.timeSinceLevelLoad>timeToReset){Debug.Log(" GM update about to run reset "+" current time is " + Time.timeSinceLevelLoad + " reset time is " + timeToReset); timeToReset = 9999999f;   startGameScene();}
+			if(Time.timeSinceLevelLoad>timeToReset){Debug.Log(" GM update about to run reset "+" current time is " + Time.timeSinceLevelLoad + " reset time is " + timeToReset);resetMyShipsTeamAndMaxData(); timeToReset = 9999999f;   startGameScene();}
 
 
 	}}

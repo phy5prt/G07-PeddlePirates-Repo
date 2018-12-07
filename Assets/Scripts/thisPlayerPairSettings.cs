@@ -21,7 +21,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	private bool alive = false; //were playing should only happen in setup so should never be false and alive true
 
 	private string shipPairColor;
-	private float volt100Perc = 100f;
+	private float volt100Perc = 1024f;
 	private string shipPairName = "no name yet";
 	private int teamNumber;
 	private string teamName;

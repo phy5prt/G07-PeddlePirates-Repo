@@ -9,6 +9,8 @@ using UnityStandardAssets.Characters.ThirdPerson;
 //could be nice to count teams at start and teams at end so can say which teams lost
 //may be able to do this by using were playing if were playing but dead then they were defeated
 
+
+//code runs often has lots of gets can it initialise more instances
 public class shipCounts : MonoBehaviour {
 
 public int ShipsCount;
@@ -58,7 +60,7 @@ private Health[] ShipsHealths;
 	// Use this for initialization
 	void Start () { //this starts before the ships out is it supposed to be disabled and enabled on gamestart
 
-		InvokeRepeating("UpdateShipCounts",30f,3f);
+		InvokeRepeating("UpdateShipCounts",5f,5f);
 		
 	}
 	
