@@ -65,7 +65,8 @@ private bool sunk = false;
 		this.gameObject.tag = "Destroyed";
 	sunk = true;
 		animator.SetTrigger("Sink");
-		InvokeRepeating("Sink",2f,10f);
+		Invoke("Sink",2f);
+		//InvokeRepeating("Sink",2f,10f); // maybe just invoke
 //Debug.Log("SinkShip method triggered");
 
 	}
@@ -106,8 +107,10 @@ private bool sunk = false;
 
 	Cannon[] cannons = GetComponentsInChildren<Cannon>();
 
-	foreach(Cannon cannon in cannons){cannon.gameObject.SetActive(false);}
-	CancelInvoke();
+		foreach(Cannon cannon in cannons){ 
+		//cannon.gameObject.SetActive(false); //was this but shoots when dead
+		cannon.enabled = false;} //trying this
+	//CancelInvoke();
 		
 	}
 
