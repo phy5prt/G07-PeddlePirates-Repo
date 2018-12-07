@@ -58,7 +58,7 @@ private Health[] ShipsHealths;
 	// Use this for initialization
 	void Start () { //this starts before the ships out is it supposed to be disabled and enabled on gamestart
 
-		InvokeRepeating("UpdateShipCounts",30f,3f);
+		InvokeRepeating("UpdateShipCounts",5f,3f);
 		
 	}
 	
