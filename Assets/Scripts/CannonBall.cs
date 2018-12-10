@@ -8,7 +8,7 @@ public int baseDamage = 1;
 private string targetHit = " I dont Know what I hit ";
 private int damage = 1; 	
 private int damageMultiplier = 10;
-private bool playerCannonBall = false;
+private bool playerLocalCannonBall = false;
 private AudioSource audioSource;
 
 [SerializeField] AudioClip splosh;
@@ -36,8 +36,8 @@ private float timePersist = 1.1f;
 	// Update is called once per frame
 	void Update () {
 		if(Time.timeSinceLevelLoad-timeCreated>timePersist){Destroy(gameObject);} // destroy cannon ball after has sun	
-		if(playerCannonBall && (gameObject.transform.position.y < 0f) ){
-			playerCannonBall=false;
+		if(playerLocalCannonBall && (gameObject.transform.position.y < 0f) ){
+			playerLocalCannonBall=false;
 
 
 
@@ -48,8 +48,8 @@ private float timePersist = 1.1f;
 		}
 	}
 
-	public void setAsPlayerCannonBall(){
-	playerCannonBall=true;
+	public void setAsPlayerLocalCannonBall(){
+	playerLocalCannonBall=true;
 
 
 
@@ -94,7 +94,7 @@ private float timePersist = 1.1f;
 
 	//here could have an if for if hitting a player makes a sound
 	//not sure how would do if ai hit but by player makes a sound
-		if(playerCannonBall || (coll.gameObject.GetComponent<MyPlayer>() != null))
+		if(playerLocalCannonBall || (coll.gameObject.GetComponent<MyPlayer>() != null))
 		{	
 			PlayClipAt(explosion, transform.position);}	
 		//AudioSource.PlayClipAtPoint(explosion, transform.position);}

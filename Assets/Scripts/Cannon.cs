@@ -55,6 +55,7 @@ private float timeStartedInvokeRepeatingFiring =0f;
 private  Transform spawnPoint;
 private ParticleSystem smoke;
 private bool iAmAPlayer = false; //if ai and player ships same architecture could just check for a script better 
+private bool iAmShootingAPlayer = false;
 
 //private Vector3 randomnessToTragectory;
 //private float rangeRandomFireDelay //maybe not necessary as each cannon will triggered one at a time
@@ -100,7 +101,7 @@ private bool iAmAPlayer = false; //if ai and player ships same architecture coul
 		if(startFiring && (alreadyFiring==false) && (  (Time.timeSinceLevelLoad - timeLastFired)>(reloadTime) ) ){
 		alreadyFiring = true;
 		timeStartedInvokeRepeatingFiring = Time.timeSinceLevelLoad;
-		InvokeRepeating("Firing" , 0f  , (reloadTime)); }else if (startFiring==false){alreadyFiring=false; CancelInvoke();  }
+		InvokeRepeating("Firing" , 0f  , (reloadTime)); }else if (startFiring==false){alreadyFiring=false; iAmShootingAPlayer=false; CancelInvoke();  }
 
 
 
@@ -122,6 +123,7 @@ private bool iAmAPlayer = false; //if ai and player ships same architecture coul
 		
 		alreadyFiring=false;
 		startFiring = false; 
+		iAmShootingAPlayer=false;
 		CancelInvoke();
 
 	}
@@ -133,7 +135,7 @@ private bool iAmAPlayer = false; //if ai and player ships same architecture coul
 		//cannon position transform
 		Transform cannonPosition = GetComponentInParent<Transform>().gameObject.transform;
 		GameObject cannonBallFired = Instantiate(cannonBall,cannonPosition.position,Quaternion.identity, spawnPoint);
-		if(iAmAPlayer){cannonBallFired.GetComponent<CannonBall>().setAsPlayerCannonBall();}
+		if(iAmAPlayer || iAmShootingAPlayer ){cannonBallFired.GetComponent<CannonBall>().setAsPlayerLocalCannonBall();}
 
 	//	cannonBallFired.transform.parent = gameObject.transform.parent; // works but unneccesary
 
@@ -167,8 +169,11 @@ private bool iAmAPlayer = false; //if ai and player ships same architecture coul
 	//Debug.Log(transform.root + " " + coll.transform.root);
 
 
+	if(coll.gameObject.GetComponent<MyPlayer>()!=null){iAmShootingAPlayer=true;}
 
 	startFiring = true; 
+
+
 
 			 //can it take a negative number
 

@@ -33,7 +33,7 @@ private bool audioBlendInprogress = false; //if issues use this by seeing if its
 
 	public void playPlayerSetupSpound(){
 	if(audioSources[1].isPlaying){
-			StartCoroutine(CrossFadeAudio(audioSources[1], audioSources[0], 2f, myVolume));
+			StartCoroutine(CrossFadeAudio(audioSources[1], audioSources[0], 1f, myVolume));
 
 
 	} //crossfade otherwise
@@ -47,7 +47,7 @@ private bool audioBlendInprogress = false; //if issues use this by seeing if its
 	public void playGameBackGroundSound(){
 
 
-		StartCoroutine(CrossFadeAudio(audioSources[0], audioSources[1], 2f, myVolume));
+		StartCoroutine(CrossFadeAudio(audioSources[0], audioSources[1], 1f, myVolume));
 	//audioSources[1].clip = backgroundSounds[2];
 
 
