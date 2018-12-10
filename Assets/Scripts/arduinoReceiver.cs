@@ -40,6 +40,8 @@ public class arduinoReceiver : MonoBehaviour { // can i make it a static class
     private static SerialPort stream;
 
 
+
+
     private int scenePersisting; 
 
 
@@ -182,7 +184,7 @@ for(int i=0; i<8; i =i+2 ){
 
             if(readSuccesfully){
 			Debug.Log("im at the end of the coroutine so gonna wait ");
-				yield return new WaitForSeconds(0.05f);   
+				yield return new WaitForSeconds(0.05f);   //try increasing makes no difference
 				nowTime = DateTime.Now;
             diff = nowTime - initialTime; }
             else{Debug.Log("didnt read succesfully better try again quick");yield return null;} 
