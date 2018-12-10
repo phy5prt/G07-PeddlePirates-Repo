@@ -4,6 +4,18 @@ using UnityEngine;
 
 //remember to find out how to acknowledge the ship asset
 
+
+
+//current code says if something left i stop shooting if something entered i start if two things enter and one leaves i stop, so if i count entered vs left wouldnt risk this
+
+//if i didnt use tags as they change but instead the floats sorting layer, then i could count every tag in out and shoot based on sorting layer - floating or sunk
+//then i could just count what leaves and what enters and while enters - left is greater than 0 i should shoot
+//another option is when something dies it tells everything its colliding with to stop firing but im already saying stop firing when something dead leaves trigger
+
+//really i should count in and out portential targets going through the collider, stop shooting when none in there
+//and if worried the counter will get confused just reset by doing a count of whats in collider to check its right now and again - though i dont know how to
+//could check foreach current transform on all ships to see if they are in it not sure if this would be slow.
+
 //code doesnt work because does not fire in the trajectory of the local position
 //maybe use transform.forward to make sure cannon ball fires in right direction
 //or just trajectory = transform right or left depending on a bool for left or right cannon
@@ -36,7 +48,10 @@ public Vector3 trajectoryCannonBallWorldSpace = new Vector3(1000f,2500f,1000f); 
 private Vector3 trajectoryCannonBall = new Vector3(); //make it local
 private bool startFiring = false;
 private float timeLastFired;
+public float numberOfVolleysBeforeCheck = 5f;
+private float reloadTime;
 private bool alreadyFiring = false;
+private float timeStartedInvokeRepeatingFiring =0f;
 private  Transform spawnPoint;
 
 //private Vector3 randomnessToTragectory;
@@ -44,7 +59,7 @@ private  Transform spawnPoint;
 	// Use this for initialization
 	void Start () {
 	spawnPoint = this.transform.root.GetComponentInChildren<spawnpoint>().gameObject.transform;
-
+		reloadTime = 1f/ShotsPS;
 	}
 	
 	// Update is called once per frame
@@ -75,14 +90,39 @@ private  Transform spawnPoint;
 		if(forceFire == false && (switchWas != forceFire)){switchWas=forceFire;startFiring=false;}
 		//just for testing
 
-		if(startFiring && (alreadyFiring==false) && (  (Time.timeSinceLevelLoad - timeLastFired)>(1f/ShotsPS) ) ){
-		alreadyFiring = true;
-		InvokeRepeating("Firing" , 0f  , (1f/ShotsPS)); }else if (startFiring==false){alreadyFiring=false; CancelInvoke();  }
 	
+
+		if(startFiring && (alreadyFiring==false) && (  (Time.timeSinceLevelLoad - timeLastFired)>(reloadTime) ) ){
+		alreadyFiring = true;
+		timeStartedInvokeRepeatingFiring = Time.timeSinceLevelLoad;
+		InvokeRepeating("Firing" , 0f  , (reloadTime)); }else if (startFiring==false){alreadyFiring=false; CancelInvoke();  }
+
+
+
+		if(  (alreadyFiring == true) && Time.timeSinceLevelLoad > ( (numberOfVolleysBeforeCheck +0.5f)*reloadTime + timeStartedInvokeRepeatingFiring  )){
+		checkStillShootingATarget();}
+		 // so been firing this long check there is something to fire at still
+
+	}
+	private void checkStillShootingATarget(){
+
+
+	bool aTargetIsInCollider = false;
+
+	//no idea how to check TODO
+
+	//CapsuleCollider myCapsColl = GetComponent<CapsuleCollider>();
+	//myCapsColl.
+
+		
+		alreadyFiring=false;
+		startFiring = false; 
+		CancelInvoke();
+
 	}
 
 
-	void Firing(){
+	private void Firing(){
 
 			//cannonBall = GetComponent<GameObject>();
 		//cannon position transform
