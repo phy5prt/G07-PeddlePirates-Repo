@@ -50,6 +50,7 @@ private float forwardSpeed = 0f;
 private float angularVel = 0f; 
 	[Range (0f,10f)] 
 [SerializeField] float angVelMultiplier = 0.24f;
+[SerializeField] float backwardSpeed = -1;
 
 private Health health;
 private Rigidbody myRigidBody;
@@ -160,6 +161,7 @@ private Camera myMainCamera;
 			//was using impulse due to issues with colliders but maybe can set instead of adding
 
 		forwardSpeed = (ourShipsPlayerPairSettings.GetmyLeftVolt() + ourShipsPlayerPairSettings.GetmyRightVolt() )*forwardMultiplier/ourVolt100PercMax; //soemtime get not set to instance of object wonder if to do with death
+		if(forwardSpeed<=0){forwardSpeed = backwardSpeed;}
 		angularVel = (ourShipsPlayerPairSettings.GetmyLeftVolt() - ourShipsPlayerPairSettings.GetmyRightVolt())*angVelMultiplier/ourVolt100PercMax;
 		//torqueModifier = cycPercSpeedLeft - cycPercSpeedRight; //works but changing to velocity
 

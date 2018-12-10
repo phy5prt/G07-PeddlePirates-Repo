@@ -17,7 +17,7 @@ void setup() {
   digitalWrite(arduinoLED,LOW);    // default to LED off
   Serial.begin(115200);
   while (!Serial);
- // Serial.print("Hi!");
+ Serial.print("Hi!");
 //  sCmd.addCommand("DATA0", data0Handler);
 //  sCmd.addCommand("DATA1", data1Handler);
 //  sCmd.addCommand("DATA2", data2Handler);

@@ -53,13 +53,18 @@ private float reloadTime;
 private bool alreadyFiring = false;
 private float timeStartedInvokeRepeatingFiring =0f;
 private  Transform spawnPoint;
+private ParticleSystem smoke;
+private bool iAmAPlayer = false; //if ai and player ships same architecture could just check for a script better 
 
 //private Vector3 randomnessToTragectory;
 //private float rangeRandomFireDelay //maybe not necessary as each cannon will triggered one at a time
 	// Use this for initialization
 	void Start () {
-	spawnPoint = this.transform.root.GetComponentInChildren<spawnpoint>().gameObject.transform;
+		smoke = GetComponent<ParticleSystem>();
 		reloadTime = 1f/ShotsPS;
+	spawnPoint = this.transform.root.GetComponentInChildren<spawnpoint>().gameObject.transform; //just dumps cannon balls in top spawn point
+		if(gameObject.transform.parent.parent.parent.GetComponentInChildren<Camera>() !=null){iAmAPlayer=true;Debug.Log("found a camera so im a player");}
+	
 	}
 	
 	// Update is called once per frame
@@ -128,6 +133,7 @@ private  Transform spawnPoint;
 		//cannon position transform
 		Transform cannonPosition = GetComponentInParent<Transform>().gameObject.transform;
 		GameObject cannonBallFired = Instantiate(cannonBall,cannonPosition.position,Quaternion.identity, spawnPoint);
+		if(iAmAPlayer){cannonBallFired.GetComponent<CannonBall>().setAsPlayerCannonBall();}
 
 	//	cannonBallFired.transform.parent = gameObject.transform.parent; // works but unneccesary
 
@@ -139,6 +145,7 @@ private  Transform spawnPoint;
 
 	cannonBallFired.GetComponent<Rigidbody>().AddForce(trajectoryCannonBall*powerOfCannonBall, ForceMode.Impulse); //only fires in fixed world direction not local direction
 	timeLastFired = Time.timeSinceLevelLoad;
+	smoke.Play();
 	}
 
 

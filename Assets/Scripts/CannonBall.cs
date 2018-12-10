@@ -8,8 +8,16 @@ public int baseDamage = 1;
 private string targetHit = " I dont Know what I hit ";
 private int damage = 1; 	
 private int damageMultiplier = 10;
+private bool playerCannonBall = false;
+private AudioSource audioSource;
 
-	private float timeCreated;
+[SerializeField] AudioClip splosh;
+[SerializeField] AudioClip explosion;
+[SerializeField] AudioClip launchSound;
+[SerializeField] float myVolume = 0.5f;
+ //private AudioSource audioSource; //do i need this not using the instance
+
+private float timeCreated;
 private float timePersist = 1.1f;
 
 //not sure if this will still work as now only the cannon ball is trigger so can use colliders for impacts
@@ -20,14 +28,37 @@ private float timePersist = 1.1f;
 	// Use this for initialization
 	void Start () {
 		timeCreated = Time.timeSinceLevelLoad;
+	//	audioSource = GetComponent<AudioSource>(); dont know why cant use this
+	
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(Time.timeSinceLevelLoad-timeCreated>timePersist){Destroy(gameObject);} // destroy cannon ball after has sun	
+		if(playerCannonBall && (gameObject.transform.position.y < 0f) ){
+			playerCannonBall=false;
+
+
+
+		//	audioSource = AudioSource.PlayClipAtPoint(splosh, transform.position) ; //cant grab it like this
+			PlayClipAt(splosh, transform.position);
+			//redo below
+
+		}
 	}
 
+	public void setAsPlayerCannonBall(){
+	playerCannonBall=true;
 
+
+
+
+	//AudioSource.PlayClipAtPoint(launchSound, transform.position);
+		PlayClipAt(launchSound, transform.position);
+	//play launch sound
+
+	}
 
 
 
@@ -60,9 +91,45 @@ private float timePersist = 1.1f;
 	//do a special effect here an a noise
 
 
+
+	//here could have an if for if hitting a player makes a sound
+	//not sure how would do if ai hit but by player makes a sound
+		if(playerCannonBall || (coll.gameObject.GetComponent<MyPlayer>() != null))
+		{	
+			PlayClipAt(explosion, transform.position);}	
+		//AudioSource.PlayClipAtPoint(explosion, transform.position);}
+
+		if(coll.gameObject.GetComponent<MyPlayer>() != null){
+
+			//paticle effect at the point too amd connected to the transform
+
+		}
+
+
+
+
+
 		Destroy(gameObject);
 }
+	private AudioSource PlayClipAt(AudioClip clip, Vector3 pos){
 
+	//so need to put in here how im going to make it global
+
+   GameObject tempGO = new GameObject("TempAudio"); // create the temp object
+   tempGO.transform.position = pos; // set its position
+   AudioSource aSource = tempGO.AddComponent<AudioSource>(); // add an audio source
+   aSource.clip = clip; // define the clip
+   // set other aSource properties here, if desired
+
+   //must be a better way
+   aSource.volume = myVolume;
+   aSource.minDistance=500f;
+	aSource.maxDistance=500f;
+
+   aSource.Play(); // start the sound
+   Destroy(tempGO, clip.length); // destroy object after clip duration
+   return aSource; // return the AudioSource reference
+ }
 	//private void OnTriggerEnter(CapsuleCollider boatBody){targetHit = "boatBody";}
 }
 

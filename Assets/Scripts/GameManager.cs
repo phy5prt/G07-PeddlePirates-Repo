@@ -93,7 +93,7 @@ public SemiRandomNumberGenerator fakeRedLeftArduinoVolt, fakeRedRightArduinoVolt
 public static int stage = -1;
 private static string gameEndResult; //later make this a struct holding various game information
 private Camera fourthRectFor3playerCam;
-
+private backgroundSound backgroundSoundScript;
 	private int scenePersisting;    
 	private GameObject spawner; //maybe just find and run and avoid having any kept instances
 	 
@@ -134,7 +134,8 @@ private void Start(){
 
 		bikeRig = GetComponentInChildren<rigAllocateThisplayerPairSettingsToBars>();
 		bikeRig.setupTheRigVoltBars();
-
+		backgroundSoundScript = GetComponentInChildren<backgroundSound>();
+		backgroundSoundScript.playEventSetupSpound();
 		//OpenMyArduinoStream();
 
 	
@@ -268,7 +269,7 @@ spawner.GetComponent<shipCounts>().enabled=false;
 fourthRectFor3playerCam = GameObject.Find("temp3Player4thRectCam").GetComponentInChildren<Camera>();
 			fourthRectFor3playerCam.enabled = false;
 
-	
+backgroundSoundScript.playPlayerSetupSpound();	
 }
 private void resetMyShipsTeamAndMaxData(){
 
@@ -296,6 +297,8 @@ spawner.GetComponent<shipCounts>().enabled=true;
 spawner.GetComponent<spawnTheShips>().spawnPlayersAndEnemies();
 endGameTime = Time.timeSinceLevelLoad + gameLength;
 gameActive=true;
+
+backgroundSoundScript.playGameBackGroundSound();
 //bikeRig.setupTheRigVoltBars(); //shouldnt have to run this twice but seems to lose its static with scene change
 //Debug.Log(" just set game active to  " + gameActive + " and endGameTime is " + endGameTime + " Which is Timesince level load ish " + Time.timeSinceLevelLoad + " plus gameLenght " + gameLength);
 }
