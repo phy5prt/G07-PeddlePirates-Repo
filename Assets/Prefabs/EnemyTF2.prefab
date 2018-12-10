@@ -1661,6 +1661,7 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
+  numberOfVolleysBeforeCheck: 5
 --- !u!114 &114002809866396960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1678,6 +1679,7 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
+  numberOfVolleysBeforeCheck: 5
 --- !u!114 &114003761635561584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1695,6 +1697,7 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
+  numberOfVolleysBeforeCheck: 5
 --- !u!114 &114104704817250678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1712,6 +1715,7 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
+  numberOfVolleysBeforeCheck: 5
 --- !u!114 &114127517557683234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1774,6 +1778,7 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
+  numberOfVolleysBeforeCheck: 5
 --- !u!114 &114259320834227006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1881,6 +1886,7 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
+  numberOfVolleysBeforeCheck: 5
 --- !u!114 &114302196483473548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1925,6 +1931,7 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
+  numberOfVolleysBeforeCheck: 5
 --- !u!114 &114430106047113412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1942,6 +1949,7 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
+  numberOfVolleysBeforeCheck: 5
 --- !u!114 &114638817772337352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1959,6 +1967,7 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
+  numberOfVolleysBeforeCheck: 5
 --- !u!114 &114761002237642330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1976,6 +1985,7 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
+  numberOfVolleysBeforeCheck: 5
 --- !u!114 &114841757211279814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2024,6 +2034,7 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: -1}
+  numberOfVolleysBeforeCheck: 5
 --- !u!114 &114984290114448108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2041,6 +2052,7 @@ MonoBehaviour:
   cyclePercWeapons: 0
   powerOfCannonBall: 150
   trajectoryCannonBallWorldSpace: {x: 0, y: 0.25, z: 1}
+  numberOfVolleysBeforeCheck: 5
 --- !u!114 &114995376514701168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2075,7 +2087,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1452595409263392}
   m_Material: {fileID: 13400000, guid: 52baaeb214519f347a35cf0edfd262ff, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.1610458
