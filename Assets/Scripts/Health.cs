@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 //there is a sink animation and some other could run this when die
 //there is break also for when they take half damage
@@ -73,7 +74,11 @@ private bool sunk = false;
 
 	private void Sink(){
 
-		if(GetComponent<MyPlayer>() != null){GetComponent<MyPlayer>().ourShipsPlayerPairSettings.setAlive(false);}//ideally would run all the methods except for tracking health in myplayer but because script shared with ai cant
+		if(GetComponent<MyPlayer>() != null){
+		GetComponent<MyPlayer>().ourShipsPlayerPairSettings.setAlive(false);
+		GetComponentInChildren<Image>(true).enabled=true;
+		GetComponentInChildren<LockCamera>().lockCamera();
+		}//ideally would run all the methods except for tracking health in myplayer but because script shared with ai cant
 
 	//Ai not sink maybe because part of it kinematic if changing this 
 	//or because of its control could try turning these things off
@@ -109,7 +114,7 @@ private bool sunk = false;
 
 		foreach(Cannon cannon in cannons){ 
 		//cannon.gameObject.SetActive(false); //was this but shoots when dead
-		cannon.enabled = false;} //trying this
+		cannon.stopShooting();} //trying this
 	//CancelInvoke();
 		
 	}

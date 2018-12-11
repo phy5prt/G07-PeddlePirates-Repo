@@ -62,6 +62,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 
 
 	public bool getWerePlaying(){
+
 	return werePlaying;
 	}
 	public void setWerePlaying(bool YN){
@@ -73,6 +74,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 		// shouldnt really be necessary but just to count when changed one and forgotten to check other, when refactor put a check in to see when its used and go through code
 		//and ensure its done where its supposed to be as well
 
+		Debug.Log("werePlaying is " + werePlaying + " I am " + shipPairColor);
 
 	}
 	public string getShipPairColor(){
@@ -87,7 +89,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	return volt100Perc;
 	}
 	public void SetVolt100Perc(float MPercVolt){
-//	Debug.Log(shipPairColor + " our volt max is " + volt100Perc);
+	Debug.Log(shipPairColor + " our volt max is " + volt100Perc);
 	volt100Perc = MPercVolt;
 	}
 
@@ -140,7 +142,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 		return splitScreenArea;
 	}
 	public void SetSplitScreenArea(Rect thisRect){
-			
+		Debug.Log("setting splitScreenArea " + thisRect + " I am " + shipPairColor);	
 	splitScreenArea = thisRect;
 	}
 
@@ -173,7 +175,7 @@ public class thisPlayerPairSettings : MonoBehaviour {
 	return alive;
 	}
 	public void setAlive(bool YN){
-
+		Debug.Log("setAlive is " + YN + " I am " + shipPairColor);
 	alive = YN;}
 
 

@@ -389,7 +389,15 @@ fourthRectFor3playerCam.enabled = false;
 
 		if(numScreensNeeded<1){Debug.Log(" found no players "); resetSetUp();}
 
-		if(numScreensNeeded == 1){return;} //ihavent given it a rect as i will just set the default as the split for one in playerSettings rather than find the one and give it rect it already has
+		if(numScreensNeeded == 1){
+
+			for(int i = 0; i<GameManager.shipPlayerSettingsAr.Length; i++){
+				if(GameManager.shipPlayerSettingsAr[i].getWerePlaying() == true){
+					Rect thisShipRect = new Rect (0f,0f,1f,1f);
+					GameManager.shipPlayerSettingsAr[i].SetSplitScreenArea(thisShipRect); 
+				}}} //ihavent given it a rect as i will just set the default as the split for one in playerSettings rather than find the one and give it rect it already has
+
+	
 
 		if(numScreensNeeded == 2){ //this is the only one that changes the view ratio, in doing so tactical cams
 		//dont move so need to stretch the camera or squash their height and then stretch canvas or uv rect or camera rect
@@ -491,11 +499,15 @@ fourthRectFor3playerCam.enabled = false;
 
 		private void resetSetUp(){//todo
 
-		Debug.Log(" tried to trigger reset on setup but we dont have that option ");
+		Debug.Log(" no players so triggered reset later we need some text and animation speed up etc ");
 		//speed up fuse animation
 		//set text to something like too slow your not gonna make it
 		//do an explosion bubble
 		//reset everything ... will have to come through and see whats changed
+
+		GameObject.Find("Game Manager").GetComponent<GameManager>().resetGameScene(); //should really put gamemanager finding in startup but hoping wont have to use it
+		//or maybe i should just reset the scene by changing all the variables instead of telling gameManager to do it.
+		//GameManager.resetGameScene(); doesnt work because if i make everything static sceneload is built in and isnt static
 
 		}
 

@@ -101,7 +101,7 @@ private backgroundSound backgroundSoundScript;
 	 //should i get a seperate script to be triggered for end game like for player setup
 	 //end game and reset
 	[SerializeField] float displayEndResultTimePeriod = 3.0f;
-	private float timeToReset = 9999999f;
+	private static float timeToReset = 9999999f;
 
 	private rigAllocateThisplayerPairSettingsToBars bikeRig;
 																																															
@@ -248,7 +248,7 @@ private void feedFakeArduino (){ //made it static ?!?
 
 
 
-public  void startGameScene(){ //cant be static because button uses it
+public void startGameScene(){ //cant be static because button uses it
 
 //take some things of player setup and put them in here
 Debug.Log("im in the startGameScene method");
@@ -368,12 +368,20 @@ backgroundSoundScript.playGameBackGroundSound();
 				endGame();
 				endGameTime = 99999999999f;}
 
-			if(Time.timeSinceLevelLoad>timeToReset){Debug.Log(" GM update about to run reset "+" current time is " + Time.timeSinceLevelLoad + " reset time is " + timeToReset);resetMyShipsTeamAndMaxData(); timeToReset = 9999999f;   startGameScene();}
+			if(Time.timeSinceLevelLoad>timeToReset){
+			Debug.Log(" GM update about to run reset "+" current time is " + Time.timeSinceLevelLoad + " reset time is " + timeToReset);
+				resetGameScene();
+			}
 
 
 	}}
 
+	public void resetGameScene(){
+		resetMyShipsTeamAndMaxData(); 
+			timeToReset = 9999999f;   
+			startGameScene();
 
+	}
 
 	public static void useArduinoMethod(){useArduinoData =true;}
 }

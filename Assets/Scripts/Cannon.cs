@@ -210,5 +210,12 @@ private bool iAmShootingAPlayer = false;
         coolDown = Time.time + attackSpeed;
         */
 
+	
+public void stopShooting(){ //seems like i should do it through update but if turning script off 
+	//then may not turn off shooting itself if i just change the bool
+
+	startFiring = false; alreadyFiring=false; CancelInvoke();
+	this.gameObject.SetActive(false);
+	}
 	}
 
