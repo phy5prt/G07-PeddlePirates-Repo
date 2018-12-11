@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 20155521363767436}
   - component: {fileID: 124885453254725358}
   - component: {fileID: 81756545183150326}
+  - component: {fileID: 114397067065736226}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -2743,6 +2744,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayBeforeBattleCamTurnsOff: 3
+--- !u!114 &114397067065736226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1120063634375730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3feae0b9bfc5fb441a4049e90dd104b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114406908721860588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2883,7 +2895,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1167772760010956}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
