@@ -10,7 +10,8 @@ private int damage = 1;
 private int damageMultiplier = 10;
 private bool playerLocalCannonBall = false;
 private AudioSource audioSource;
-public GameObject impartedFire;
+public GameObject fireSail, fireHull, fireBow;
+
 
 [SerializeField] AudioClip splosh;
 [SerializeField] AudioClip explosion;
@@ -75,12 +76,19 @@ private float timePersist = 1.1f;
 //	if(transform.parent.transform.parent.transform.parent.transform.parent.gameObject.transform == coll.transform){return;}
 
 
-		Instantiate(impartedFire,this.gameObject.transform.position, Quaternion.identity, coll.gameObject.transform);
-		Debug.Log("should just of instantiated fire");
 
 	if(coll is SphereCollider){targetHit = "bow";}
 		else if(coll is CapsuleCollider){targetHit = "hull";}else if(coll is BoxCollider){targetHit = "sails";}
-		if(targetHit == "bow"){damageMultiplier = 60;}else if(targetHit == "hull"){damageMultiplier = 4;}else if(targetHit == "sails"){damageMultiplier = 1;}
+		if(targetHit == "bow"){damageMultiplier = 60;
+								Instantiate(fireBow,this.gameObject.transform.position, Quaternion.identity, coll.gameObject.transform);
+
+					}else if(targetHit == "hull"){
+					damageMultiplier = 4;
+			Instantiate(fireHull,this.gameObject.transform.position, Quaternion.identity, coll.gameObject.transform);
+					}else if(targetHit == "sails"){
+					damageMultiplier = 1;
+			Instantiate(fireSail,this.gameObject.transform.position, Quaternion.identity, coll.gameObject.transform);
+					}
 
 	damage = baseDamage*damageMultiplier;
 	Debug.Log(damage);
